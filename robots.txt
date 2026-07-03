@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://persua-neurovente.com/sitemap.xml
