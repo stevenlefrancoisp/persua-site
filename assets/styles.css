@@ -53,11 +53,11 @@ h1.hero-h1 .hl{color:transparent;background:linear-gradient(100deg,var(--indigo)
 .hero-cut>img{width:auto;max-width:100%;max-height:560px;display:block;filter:drop-shadow(0 42px 60px rgba(0,0,0,.55))}
 .hero-cut::before{content:"";position:absolute;left:50%;top:4%;transform:translateX(-50%);width:min(82%,390px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(84,74,250,.62),transparent 62%);filter:blur(36px);z-index:-1}
 .hero-cut::after{content:"";position:absolute;left:50%;bottom:2px;transform:translateX(-50%);width:74%;height:70px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(84,74,250,.5),transparent 70%);filter:blur(16px);z-index:-1}
-.float-card{position:absolute;background:rgba(20,20,54,.86);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:16px 20px;box-shadow:0 20px 50px -14px rgba(0,0,0,.6)}
-.fc-1{top:8px;left:-38px;display:flex;align-items:center;gap:12px}
+.float-card{position:absolute;z-index:6;background:rgba(20,20,54,.92);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:16px 20px;box-shadow:0 20px 50px -14px rgba(0,0,0,.7)}
+.fc-1{top:26px;left:-34px;display:flex;align-items:center;gap:12px}
 .fc-1 .k{font-family:var(--title);font-weight:800;font-size:26px;color:#fff;line-height:1}
 .fc-1 .l{font-size:12.5px;color:var(--mist)}
-.fc-2{bottom:14px;right:-30px;max-width:210px}
+.fc-2{bottom:40px;right:-16px;max-width:215px}
 .fc-2 .q{font-size:13.5px;color:#E7E4F5;font-style:italic}
 .fc-2 .a{font-size:12px;color:var(--indigo);font-weight:600;margin-top:6px}
 
