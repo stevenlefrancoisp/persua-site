@@ -137,17 +137,15 @@
     ba.addEventListener('touchmove', function(e){ if(dragging) move(e.touches[0].clientX); }, {passive:true});
     ba.addEventListener('touchend', function(){ dragging=false; });
 
-    // Petit truc au défilement : balayage auto qui démontre la bascule (une fois)
-    if(!mq){
-      var swept=false, t0=null;
-      function ez(p){ return p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2; }
-      function sweep(t){ if(t0===null) t0=t; var p=Math.min((t-t0)/2400,1), pos;
-        if(p<.5){ pos = 18 + ez(p/.5)*(86-18); } else { pos = 86 + ez((p-.5)/.5)*(50-86); }
-        if(!dragging) set(pos);
-        if(p<1 && !dragging) requestAnimationFrame(sweep);
-      }
-      var obba=new IntersectionObserver(function(x){ if(x[0].isIntersecting && !swept){ swept=true; ba.classList.add('ba-live'); requestAnimationFrame(sweep); obba.disconnect(); } }, {threshold:.45});
-      obba.observe(ba);
+    // Au défilement : le cerveau apparaît + balayage auto qui démontre la bascule (une fois)
+    var swept=false, t0=null;
+    function ez(p){ return p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2; }
+    function sweep(t){ if(t0===null) t0=t; var p=Math.min((t-t0)/2600,1), pos;
+      if(p<.5){ pos = 18 + ez(p/.5)*(86-18); } else { pos = 86 + ez((p-.5)/.5)*(50-86); }
+      if(!dragging) set(pos);
+      if(p<1 && !dragging) requestAnimationFrame(sweep);
     }
+    var obba=new IntersectionObserver(function(x){ if(x[0].isIntersecting && !swept){ swept=true; ba.classList.add('ba-live'); if(!mq) requestAnimationFrame(sweep); obba.disconnect(); } }, {threshold:.4});
+    obba.observe(ba);
   });
 })();
