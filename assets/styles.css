@@ -401,9 +401,11 @@ nav.scrolled{background:rgba(13,13,42,.82);backdrop-filter:blur(16px);border-bot
 .ba-viz{position:absolute;top:50%;transform:translateY(-50%);width:84px;height:104px}
 .ba-before .ba-viz{right:55%}
 .ba-after .ba-viz{left:55%}
-.ba-disc{position:absolute;top:50%;transform:translateY(-50%);max-width:25%}
-.ba-before .ba-disc{right:14%;text-align:left}
-.ba-after .ba-disc{left:14%;text-align:left}
+.ba-disc{position:absolute;top:50%;max-width:25%;opacity:0;transition:opacity .45s ease,transform .5s cubic-bezier(.2,.8,.25,1)}
+.ba-before .ba-disc{right:14%;text-align:left;transform:translate(16px,-50%)}
+.ba-after .ba-disc{left:14%;text-align:left;transform:translate(-16px,-50%)}
+.ba.disc-b .ba-before .ba-disc{opacity:1;transform:translate(0,-50%)}
+.ba.disc-a .ba-after .ba-disc{opacity:1;transform:translate(0,-50%)}
 .ba-disc .disc-chip{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:12px}
 .ba-before .ba-disc .disc-chip{background:rgba(255,90,122,.22);color:#ff9ab0}
 .ba-after .ba-disc .disc-chip{background:rgba(84,74,250,.3);color:#c9c4ff}

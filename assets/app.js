@@ -120,7 +120,8 @@
   document.querySelectorAll('[data-ba]').forEach(function(ba){
     var after=ba.querySelector('.ba-after'), handle=ba.querySelector('.ba-handle'), dragging=false;
     if(!after || !handle) return;
-    function set(p){ p=Math.max(4,Math.min(96,p)); after.style.clipPath='inset(0 0 0 '+p+'%)'; handle.style.left=p+'%'; }
+    function set(p){ p=Math.max(4,Math.min(96,p)); after.style.clipPath='inset(0 0 0 '+p+'%)'; handle.style.left=p+'%';
+      ba.classList.toggle('disc-b', p>72); ba.classList.toggle('disc-a', p<28); }
     set(50);
     function move(x){ var r=ba.getBoundingClientRect(); set((x-r.left)/r.width*100); }
     ba.addEventListener('mousedown', function(e){ dragging=true; move(e.clientX); e.preventDefault(); });
@@ -133,7 +134,7 @@
     var swept=false, t0=null;
     function ez(p){ return p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2; }
     function sweep(t){ if(t0===null) t0=t; var p=Math.min((t-t0)/2500,1), pos;
-      if(p<.5){ pos = 26 + ez(p/.5)*(76-26); } else { pos = 76 + ez((p-.5)/.5)*(50-76); }
+      if(p<.5){ pos = 32 + ez(p/.5)*(68-32); } else { pos = 68 + ez((p-.5)/.5)*(50-68); }
       if(!dragging){ set(pos); if(p<1) requestAnimationFrame(sweep); }
     }
     var ob=new IntersectionObserver(function(x){ if(x[0].isIntersecting && !swept){ swept=true; ba.classList.add('ba-live'); if(!mq) requestAnimationFrame(sweep); ob.disconnect(); } }, {threshold:.35});
