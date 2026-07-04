@@ -411,6 +411,23 @@ nav.scrolled{background:rgba(13,13,42,.82);backdrop-filter:blur(16px);border-bot
 .ba-after .ba-disc .disc-chip{background:rgba(84,74,250,.3);color:#c9c4ff}
 .ba-disc p{margin:0;font-size:14px;line-height:1.5;color:#E7E4F4}
 .ba-disc p b{color:#fff}
+
+/* --- Mentorat : lien "En savoir plus" + modale application Kliora --- */
+.li-more{display:inline;background:none;border:0;padding:0;margin-left:4px;font:inherit;font-size:12.5px;color:#b9b2ff;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+.li-more:hover{color:#fff}
+.modal{position:fixed;inset:0;background:rgba(8,8,22,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
+.modal.open{display:flex}
+.modal-in{position:relative;max-width:540px;width:100%;background:linear-gradient(180deg,#1a1a44,#111130);border:1px solid rgba(255,255,255,.12);border-radius:26px;padding:38px 34px;box-shadow:0 50px 120px -30px rgba(0,0,0,.85)}
+.modal-close{position:absolute;top:14px;right:18px;background:none;border:0;color:#fff;font-size:28px;line-height:1;cursor:pointer;opacity:.65}
+.modal-close:hover{opacity:1}
+.modal-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c9c4ff;background:rgba(84,74,250,.22);padding:6px 12px;border-radius:100px;margin-bottom:14px}
+.modal-in h3{font-family:var(--title);font-weight:800;color:#fff;font-size:23px;margin:0 0 12px;line-height:1.22}
+.modal-in>p{color:#C6C2DC;font-size:14.5px;line-height:1.55;margin:0 0 18px}
+.modal-feats{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:12px}
+.modal-feats li{position:relative;padding-left:24px;color:#D7D3EC;font-size:14px;line-height:1.5}
+.modal-feats li::before{content:"◆";position:absolute;left:0;top:1px;color:var(--indigo);font-size:10px}
+.modal-feats li b{color:#fff}
+.modal-note{color:var(--mist);font-size:13px;font-style:italic;margin:0}
 .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,.85);z-index:5;transform:translateX(-1px)}
 .ba-handle::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--indigo);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px -6px rgba(84,74,250,.75)}
 @media (prefers-reduced-motion: no-preference){

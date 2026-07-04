@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=12">
+<link rel="stylesheet" href="assets/styles.css?v=13">
 </head>
 <body>
 <div id="prog"></div>
@@ -186,7 +186,7 @@
       <div class="tier">Mentorat 1:1</div>
       <div class="forwho">Pour aller vite, avec Steven à tes côtés</div>
       <div class="price">2 000€ <small>/ 6 mois</small></div>
-      <ul><li>Tout l'Académie inclus</li><li>Coaching 1:1 tous les 15 jours</li><li>Tes vrais appels audités</li><li>Plan d'action personnalisé</li></ul>
+      <ul><li>Tout l'Académie inclus (18h + 40 protocoles)</li><li><b>Coaching 1:1 chaque semaine</b> avec Steven</li><li>Accès à l'application <b>Kliora</b> <button type="button" class="li-more" data-modal="appModal">En savoir plus</button></li><li><b>Soutien 7/7 par WhatsApp</b></li><li>Tes vrais appels audités et décortiqués</li><li>Plan d'action 100 % personnalisé</li></ul>
       <div class="proof-chip">◆ Tes rendez-vous décortiqués en direct</div>
       <a class="btn" href="https://cal.com/steven-lfrs-persua/diagnostic">Réserver un diagnostic</a>
     </div>
@@ -293,6 +293,22 @@
 
 <div class="lightbox" id="lb"><div class="lb-inner"><button class="lb-close" id="lbClose" aria-label="Fermer">×</button><iframe id="lbFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
 
-<script src="assets/app.js?v=12"></script>
+<div class="modal" id="appModal" aria-hidden="true">
+  <div class="modal-in">
+    <button class="modal-close" aria-label="Fermer">×</button>
+    <span class="modal-tag">L'application incluse</span>
+    <h3>Kliora, ton copilote de vente au quotidien</h3>
+    <p>Kliora, c'est l'application que j'ai conçue pour que la méthode ne reste pas dans un classeur. Tu y pilotes ta vente au jour le jour, au même endroit :</p>
+    <ul class="modal-feats">
+      <li><b>Ton pipeline en un coup d'œil</b> : tous tes prospects, où ils en sont, qui relancer et quand. Fini le fichier Excel éparpillé.</li>
+      <li><b>Tes chiffres en temps réel</b> : taux de closing, rendez-vous, panier moyen, CA. Tu vois ce qui marche et ce qui fuit.</li>
+      <li><b>Ta prospection organisée</b> : relances cadrées, notes de rendez-vous, prochaines actions, toujours sous la main.</li>
+      <li><b>Pensée pour la neurovente</b> : tu appliques les réflexes vus en coaching directement sur tes vrais deals.</li>
+    </ul>
+    <p class="modal-note">Accès inclus pendant tout ton accompagnement Mentorat.</p>
+  </div>
+</div>
+
+<script src="assets/app.js?v=13"></script>
 </body>
 </html>

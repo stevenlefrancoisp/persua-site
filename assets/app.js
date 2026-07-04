@@ -116,6 +116,16 @@
     addEventListener('keydown', function(e){ if(e.key==='Escape' && lb.classList.contains('open')) closeLb(); });
   }
 
+  // Modales "En savoir plus" (ex : application Kliora)
+  document.querySelectorAll('[data-modal]').forEach(function(btn){
+    btn.addEventListener('click', function(){ var m=document.getElementById(btn.getAttribute('data-modal')); if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; } });
+  });
+  document.querySelectorAll('.modal').forEach(function(m){
+    function close(){ m.classList.remove('open'); document.body.style.overflow=''; }
+    m.addEventListener('click', function(e){ if(e.target===m || e.target.classList.contains('modal-close')) close(); });
+    addEventListener('keydown', function(e){ if(e.key==='Escape' && m.classList.contains('open')) close(); });
+  });
+
   // Before / After : curseur wipe (drag + tactile) + balayage démo au défilement (une fois)
   document.querySelectorAll('[data-ba]').forEach(function(ba){
     var after=ba.querySelector('.ba-after'), handle=ba.querySelector('.ba-handle'), dragging=false;
