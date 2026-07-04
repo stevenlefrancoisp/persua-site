@@ -47,23 +47,41 @@
     });
   }
 
-  // Calculateur de deals perdus
-  var cr=document.getElementById('c-rdv'), cp=document.getElementById('c-panier'), ct=document.getElementById('c-taux'), out=document.getElementById('calc-result'), cur=0, raf;
-  function fmt(n){ return Math.round(n).toLocaleString('fr-FR'); }
-  function tween(to){ cancelAnimationFrame(raf); var from=cur, start=null; function fr(t){ if(!start)start=t; var p=Math.min((t-start)/500,1); cur=from+(to-from)*(1-Math.pow(1-p,3)); out.textContent=fmt(cur)+' €'; if(p<1) raf=requestAnimationFrame(fr); else cur=to; } raf=requestAnimationFrame(fr); }
+  // Calculateur — coût d'un commercial qui close trop bas (aversion à la perte)
+  var cc=document.getElementById('c-cout'), cr=document.getElementById('c-rdv'), cp=document.getElementById('c-panier'), ct=document.getElementById('c-taux'), out=document.getElementById('calc-result'), cur=0, raf;
+  function fmt(n){ return Math.round(n).toLocaleString('fr-FR')+' €'; }
+  function tween(to){ cancelAnimationFrame(raf); var from=cur, start=null; function fr(t){ if(!start)start=t; var p=Math.min((t-start)/500,1); cur=from+(to-from)*(1-Math.pow(1-p,3)); out.textContent=fmt(cur); if(p<1) raf=requestAnimationFrame(fr); else cur=to; } raf=requestAnimationFrame(fr); }
+  function setTxt(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; }
   function compute(){
-    var rdv=+cr.value, panier=+cp.value, taux=+ct.value;
-    document.getElementById('v-rdv').textContent=rdv;
-    document.getElementById('v-panier').textContent=fmt(panier);
-    document.getElementById('v-taux').textContent=taux;
-    var target=Math.min(Math.round(taux*1.4), 65);
-    tween(Math.max(0, rdv*12*((target-taux)/100)*panier));
+    var cout=+cc.value, rdv=+cr.value, panier=+cp.value, taux=+ct.value;
+    setTxt('v-cout', Math.round(cout).toLocaleString('fr-FR'));
+    setTxt('v-rdv', rdv);
+    setTxt('v-panier', Math.round(panier).toLocaleString('fr-FR'));
+    setTxt('v-taux', taux);
+    var tNeuro=Math.min(Math.round(taux*1.37), 72);
+    var coutAn=cout*12;
+    var caNow=rdv*12*(taux/100)*panier;
+    var caNeuro=rdv*12*(tNeuro/100)*panier;
+    setTxt('cb-cout', fmt(coutAn));
+    setTxt('cb-now', fmt(caNow));
+    setTxt('cb-neuro', fmt(caNeuro));
+    setTxt('cb-t1', taux);
+    setTxt('cb-t2', tNeuro);
+    tween(Math.max(0, caNeuro-caNow));
   }
-  if(cr && out){
-    [cr,cp,ct].forEach(function(s){ s.addEventListener('input', compute); });
-    var io3=new IntersectionObserver(function(x){ if(x[0].isIntersecting){ compute(); io3.disconnect(); } }, {threshold:.4});
+  if(cc && cr && out){
+    [cc,cr,cp,ct].forEach(function(s){ s.addEventListener('input', compute); });
+    var io3=new IntersectionObserver(function(x){ if(x[0].isIntersecting){ compute(); io3.disconnect(); } }, {threshold:.35});
     io3.observe(document.querySelector('.calc-box'));
   }
+
+  // Miniatures vidéo (poster Drive, visibles quand le dossier est partagé "tout le monde avec le lien")
+  document.querySelectorAll('.vcard[data-vid]').forEach(function(c){
+    var id=c.getAttribute('data-vid');
+    var img=new Image();
+    img.onload=function(){ c.classList.add('has-thumb'); c.style.backgroundImage="linear-gradient(180deg,rgba(19,19,58,.35),rgba(19,19,58,.82)), url('https://drive.google.com/thumbnail?id="+id+"&sz=w1000')"; };
+    img.src='https://drive.google.com/thumbnail?id='+id+'&sz=w1000';
+  });
 
   // Toggle e-learning / présentiel (page formation)
   document.querySelectorAll('[data-pane-group]').forEach(function(group){
@@ -97,10 +115,18 @@
     addEventListener('keydown', function(e){ if(e.key==='Escape' && lb.classList.contains('open')) closeLb(); });
   }
 
-  // Before / After slider
+  // Before / After slider + découverte éducative Système 1/2
+  var baInsight=document.getElementById('baInsight');
+  var baSteps=[
+    "Système 2 (lent) : tu parles à la logique. Elle ne décide pas, elle ne fait que justifier après coup.",
+    "Point de bascule : le cerveau émotionnel reprend la main. C'est là que le vrai « oui » se joue.",
+    "Système 1 (rapide) : le client se projette, ressent, et se vend la solution à lui-même."
+  ];
   document.querySelectorAll('[data-ba]').forEach(function(ba){
     var after=ba.querySelector('.ba-after'), handle=ba.querySelector('.ba-handle'), dragging=false;
-    function set(p){ p=Math.max(2,Math.min(98,p)); after.style.clipPath='inset(0 0 0 '+p+'%)'; handle.style.left=p+'%'; }
+    function set(p){ p=Math.max(2,Math.min(98,p)); after.style.clipPath='inset(0 0 0 '+p+'%)'; handle.style.left=p+'%';
+      if(baInsight){ var s = p<38 ? 0 : (p<66 ? 1 : 2); if(baInsight.dataset.s!=s){ baInsight.dataset.s=s; baInsight.textContent=baSteps[s]; baInsight.parentElement.className='ba-insight s'+s; } }
+    }
     set(50);
     function move(x){ var r=ba.getBoundingClientRect(); set((x-r.left)/r.width*100); }
     ba.addEventListener('mousedown', function(e){ dragging=true; move(e.clientX); e.preventDefault(); });
