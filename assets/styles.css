@@ -9,8 +9,8 @@
   --black:"Archivo Black",var(--title);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:var(--body);background:var(--deep);color:var(--white);-webkit-font-smoothing:antialiased;line-height:1.55}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{font-family:var(--body);background:var(--deep);color:var(--white);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden;max-width:100%}
 a{text-decoration:none;color:inherit}
 .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
 h1,h2,h3{font-family:var(--title);line-height:1.05;letter-spacing:-.02em}
@@ -468,7 +468,11 @@ footer .foot-brand img{height:26px}
   .hero-cut>img{max-height:360px}
   .float-card{display:none}
   .photo-ring{width:230px;height:230px}
-  .sec-head h2{font-size:32px}
+  .sec-head h2{font-size:30px}
+  h1.hero-h1{font-size:34px}
+  .hero-sub{font-size:16.5px}
+  .calc-out .big{font-size:42px}
+  .method-punch{font-size:20px}
   .pain-grid,.offer-grid,.values-grid,.stats,.module-grid,.s12,.tgrid,.vgrid,.post-grid,.step-grid{grid-template-columns:1fr}
   .article{padding:120px 22px 30px}.article h1{font-size:32px}.article-body h2{font-size:24px}
   .results{grid-template-columns:1fr 1fr}
