@@ -391,20 +391,20 @@ nav.scrolled{background:rgba(13,13,42,.82);backdrop-filter:blur(16px);border-bot
 .ba-lbl{position:absolute;top:22px;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 13px;border-radius:100px;z-index:4}
 .ba-before .ba-lbl{left:24px;background:rgba(255,90,122,.2);color:#ff9ab0}
 .ba-after .ba-lbl{right:24px;background:rgba(84,74,250,.25);color:#c9c4ff}
-.ba-txt{position:absolute;top:50%;transform:translateY(-50%);max-width:33%}
+.ba-txt{position:absolute;top:50%;transform:translateY(-50%);max-width:31%}
 .ba-before .ba-txt{left:46px;text-align:left}
 .ba-after .ba-txt{right:46px;text-align:right}
 .ba h3{font-size:19px;color:#fff;margin-bottom:10px;line-height:1.24}
 .ba .say{color:#CFCBE6;font-size:14px}
 .ba .react{margin-top:12px;font-size:13.5px;font-style:italic;font-weight:500}
 .ba-before .react{color:#ff8ba6}.ba-after .react{color:#a79fff}
-.ba-viz{position:absolute;top:50%;transform:translateY(-50%);width:96px;height:118px}
-.ba-before .ba-viz{right:53%}
-.ba-after .ba-viz{left:53%}
+.ba-viz{position:absolute;top:50%;transform:translateY(-50%);width:84px;height:104px}
+.ba-before .ba-viz{right:55%}
+.ba-after .ba-viz{left:55%}
 .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,.85);z-index:5;transform:translateX(-1px)}
 .ba-handle::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--indigo);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px -6px rgba(84,74,250,.75)}
 @media (prefers-reduced-motion: no-preference){
-  @keyframes baPulse{0%,100%{box-shadow:0 10px 26px -6px rgba(84,74,250,.75),0 0 0 0 rgba(84,74,250,.5)}55%{box-shadow:0 10px 26px -6px rgba(84,74,250,.75),0 0 0 14px rgba(84,74,250,0)}}
+  @keyframes baPulse{0%,100%{box-shadow:0 10px 26px -6px rgba(84,74,250,.75),0 0 0 0 rgba(84,74,250,.45)}55%{box-shadow:0 10px 26px -6px rgba(84,74,250,.75),0 0 0 10px rgba(84,74,250,0)}}
   .ba-handle::after{animation:baPulse 2.6s ease-out infinite}
 }
 
