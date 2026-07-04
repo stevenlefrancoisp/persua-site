@@ -401,6 +401,14 @@ nav.scrolled{background:rgba(13,13,42,.82);backdrop-filter:blur(16px);border-bot
 .ba-viz{position:absolute;top:50%;transform:translateY(-50%);width:84px;height:104px}
 .ba-before .ba-viz{right:55%}
 .ba-after .ba-viz{left:55%}
+.ba-disc{position:absolute;top:50%;transform:translateY(-50%);max-width:25%}
+.ba-before .ba-disc{right:14%;text-align:left}
+.ba-after .ba-disc{left:14%;text-align:left}
+.ba-disc .disc-chip{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:100px;margin-bottom:12px}
+.ba-before .ba-disc .disc-chip{background:rgba(255,90,122,.22);color:#ff9ab0}
+.ba-after .ba-disc .disc-chip{background:rgba(84,74,250,.3);color:#c9c4ff}
+.ba-disc p{margin:0;font-size:14px;line-height:1.5;color:#E7E4F4}
+.ba-disc p b{color:#fff}
 .ba-handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:rgba(255,255,255,.85);z-index:5;transform:translateX(-1px)}
 .ba-handle::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--indigo);color:#fff;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px -6px rgba(84,74,250,.75)}
 @media (prefers-reduced-motion: no-preference){
@@ -445,7 +453,7 @@ footer .foot-brand img{height:26px}
   .pain-grid,.offer-grid,.values-grid,.stats,.module-grid,.s12,.tgrid,.vgrid,.post-grid,.step-grid{grid-template-columns:1fr}
   .article{padding:120px 22px 30px}.article h1{font-size:32px}.article-body h2{font-size:24px}
   .results{grid-template-columns:1fr 1fr}
-  .ba{height:400px}.ba h3{font-size:15px}.ba .say{font-size:12px}.ba .react{font-size:12px}.ba-txt{max-width:44%}.ba-before .ba-txt{left:20px}.ba-after .ba-txt{right:20px}.ba-viz{display:none}
+  .ba{height:400px}.ba h3{font-size:15px}.ba .say{font-size:12px}.ba .react{font-size:12px}.ba-txt{max-width:44%}.ba-before .ba-txt{left:20px}.ba-after .ba-txt{right:20px}.ba-viz,.ba-disc{display:none}
   footer .foot-top{flex-direction:column;align-items:flex-start;gap:16px}
   .calc-box,.about-split{grid-template-columns:1fr;gap:30px}
   .final h2{font-size:32px}
