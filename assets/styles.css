@@ -413,8 +413,8 @@ nav.scrolled{background:rgba(13,13,42,.82);backdrop-filter:blur(16px);border-bot
 .ba-disc p b{color:#fff}
 
 /* --- Mentorat : lien "En savoir plus" + modale application Kliora --- */
-.li-more{display:inline;background:none;border:0;padding:0;margin-left:4px;font:inherit;font-size:12.5px;color:#b9b2ff;text-decoration:underline;text-underline-offset:2px;cursor:pointer}
-.li-more:hover{color:#fff}
+.li-i{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1.5px solid #b9b2ff;background:none;color:#b9b2ff;font:italic 700 11px/1 Georgia,'Times New Roman',serif;cursor:pointer;padding:0;margin-left:7px;vertical-align:middle;transition:background .2s,color .2s}
+.li-i:hover{background:#b9b2ff;color:#12122f}
 .modal{position:fixed;inset:0;background:rgba(8,8,22,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:200;padding:24px}
 .modal.open{display:flex}
 .modal-in{position:relative;max-width:540px;width:100%;background:linear-gradient(180deg,#1a1a44,#111130);border:1px solid rgba(255,255,255,.12);border-radius:26px;padding:38px 34px;box-shadow:0 50px 120px -30px rgba(0,0,0,.85)}
