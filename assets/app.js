@@ -59,9 +59,10 @@
     setTxt('v-panier', Math.round(panier).toLocaleString('fr-FR'));
     setTxt('v-taux', taux);
     var tNeuro=Math.min(Math.round(taux*1.37), 72);
+    var rdvNeuro=rdv*1.25;
     var coutAn=cout*12;
     var caNow=rdv*12*(taux/100)*panier;
-    var caNeuro=rdv*12*(tNeuro/100)*panier;
+    var caNeuro=rdvNeuro*12*(tNeuro/100)*panier;
     setTxt('cb-cout', fmt(coutAn));
     setTxt('cb-now', fmt(caNow));
     setTxt('cb-neuro', fmt(caNeuro));
@@ -132,7 +133,21 @@
     ba.addEventListener('mousedown', function(e){ dragging=true; move(e.clientX); e.preventDefault(); });
     addEventListener('mousemove', function(e){ if(dragging) move(e.clientX); });
     addEventListener('mouseup', function(){ dragging=false; });
-    ba.addEventListener('touchstart', function(e){ move(e.touches[0].clientX); }, {passive:true});
-    ba.addEventListener('touchmove', function(e){ move(e.touches[0].clientX); }, {passive:true});
+    ba.addEventListener('touchstart', function(e){ dragging=true; move(e.touches[0].clientX); }, {passive:true});
+    ba.addEventListener('touchmove', function(e){ if(dragging) move(e.touches[0].clientX); }, {passive:true});
+    ba.addEventListener('touchend', function(){ dragging=false; });
+
+    // Petit truc au défilement : balayage auto qui démontre la bascule (une fois)
+    if(!mq){
+      var swept=false, t0=null;
+      function ez(p){ return p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2; }
+      function sweep(t){ if(t0===null) t0=t; var p=Math.min((t-t0)/2400,1), pos;
+        if(p<.5){ pos = 18 + ez(p/.5)*(86-18); } else { pos = 86 + ez((p-.5)/.5)*(50-86); }
+        if(!dragging) set(pos);
+        if(p<1 && !dragging) requestAnimationFrame(sweep);
+      }
+      var obba=new IntersectionObserver(function(x){ if(x[0].isIntersecting && !swept){ swept=true; ba.classList.add('ba-live'); requestAnimationFrame(sweep); obba.disconnect(); } }, {threshold:.45});
+      obba.observe(ba);
+    }
   });
 })();
