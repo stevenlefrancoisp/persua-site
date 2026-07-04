@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=18">
+<link rel="stylesheet" href="assets/styles.css?v=19">
 </head>
 <body>
 <div id="prog"></div>
@@ -97,7 +97,7 @@
       <div class="row"><label>Rendez-vous de vente / mois <b><span id="v-rdv">20</span></b></label><input id="c-rdv" type="range" min="2" max="80" value="20"></div>
       <div class="row"><label>Panier moyen <b><span id="v-panier">3 000</span> €</b></label><input id="c-panier" type="range" min="200" max="20000" step="100" value="3000"></div>
       <div class="row"><label>Taux de closing actuel <b><span id="v-taux">20</span> %</b></label><input id="c-taux" type="range" min="5" max="70" value="20"></div>
-      <p class="calc-note">Hypothèse : la neurovente fait gagner en moyenne +37 % de taux de closing et +25 % de rendez-vous pris (variable selon ton offre et ton produit). On chiffre le CA que ce même commercial laisse sur la table chaque année.</p>
+      <p class="calc-note">Hypothèse prudente : un gain de closing réaliste de +5 points, à nombre de rendez-vous et panier constants. Ce n'est pas une promesse : les résultats réels dépendent de ton offre, de ton produit et de ta pratique.</p>
     </div>
     <div class="calc-out">
       <div class="lbl">Manque à gagner récupérable / an</div>
@@ -105,7 +105,7 @@
       <div class="calc-break">
         <div class="cb-row"><span>Ce commercial te coûte</span><b id="cb-cout">0 €</b></div>
         <div class="cb-row"><span>Il génère aujourd'hui (<span id="cb-t1">20</span>%)</span><b id="cb-now">0 €</b></div>
-        <div class="cb-row hi"><span>Avec la neurovente (+25% RDV · <span id="cb-t2">27</span>% closing)</span><b id="cb-neuro">0 €</b></div>
+        <div class="cb-row hi"><span>Avec la neurovente (<span id="cb-t2">25</span>% de closing)</span><b id="cb-neuro">0 €</b></div>
       </div>
       <div class="sub">Le CA que ce commercial laisse filer faute de parler au système qui décide vraiment.</div>
       <a class="btn btn-primary" href="https://diagnostic.persua-neurovente.com/">Récupérer ce CA →</a>
@@ -310,6 +310,6 @@
   </div>
 </div>
 
-<script src="assets/app.js?v=18"></script>
+<script src="assets/app.js?v=19"></script>
 </body>
 </html>

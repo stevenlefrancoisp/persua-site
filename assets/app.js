@@ -58,11 +58,10 @@
     setTxt('v-rdv', rdv);
     setTxt('v-panier', Math.round(panier).toLocaleString('fr-FR'));
     setTxt('v-taux', taux);
-    var tNeuro=Math.min(Math.round(taux*1.37), 72);
-    var rdvNeuro=rdv*1.25;
+    var tNeuro=Math.min(taux+5, 60);
     var coutAn=cout*12;
     var caNow=rdv*12*(taux/100)*panier;
-    var caNeuro=rdvNeuro*12*(tNeuro/100)*panier;
+    var caNeuro=rdv*12*(tNeuro/100)*panier;
     setTxt('cb-cout', fmt(coutAn));
     setTxt('cb-now', fmt(caNow));
     setTxt('cb-neuro', fmt(caNeuro));
