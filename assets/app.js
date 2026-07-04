@@ -47,30 +47,29 @@
     });
   }
 
-  // Calculateur — coût d'un commercial qui close trop bas (aversion à la perte)
-  var cc=document.getElementById('c-cout'), cr=document.getElementById('c-rdv'), cp=document.getElementById('c-panier'), ct=document.getElementById('c-taux'), out=document.getElementById('calc-result'), cur=0, raf;
+  // Calculateur — impact de la neurovente sur ton CA (générique : solo ou équipe)
+  var cr=document.getElementById('c-rdv'), cp=document.getElementById('c-panier'), ct=document.getElementById('c-taux'), out=document.getElementById('calc-result'), cur=0, raf;
+  var RDV_UP=0.10, CLOSE_UP=5; // leviers neuro : +10% de RDV, +5 points de closing
   function fmt(n){ return Math.round(n).toLocaleString('fr-FR')+' €'; }
   function tween(to){ cancelAnimationFrame(raf); var from=cur, start=null; function fr(t){ if(!start)start=t; var p=Math.min((t-start)/500,1); cur=from+(to-from)*(1-Math.pow(1-p,3)); out.textContent=fmt(cur); if(p<1) raf=requestAnimationFrame(fr); else cur=to; } raf=requestAnimationFrame(fr); }
   function setTxt(id,v){ var el=document.getElementById(id); if(el) el.textContent=v; }
   function compute(){
-    var cout=+cc.value, rdv=+cr.value, panier=+cp.value, taux=+ct.value;
-    setTxt('v-cout', Math.round(cout).toLocaleString('fr-FR'));
+    var rdv=+cr.value, panier=+cp.value, taux=+ct.value;
     setTxt('v-rdv', rdv);
     setTxt('v-panier', Math.round(panier).toLocaleString('fr-FR'));
     setTxt('v-taux', taux);
-    var tNeuro=Math.min(taux+5, 60);
-    var coutAn=cout*12;
+    var tNeuro=Math.min(taux+CLOSE_UP, 60);
+    var rdvNeuro=rdv*(1+RDV_UP);
     var caNow=rdv*12*(taux/100)*panier;
-    var caNeuro=rdv*12*(tNeuro/100)*panier;
-    setTxt('cb-cout', fmt(coutAn));
+    var caNeuro=rdvNeuro*12*(tNeuro/100)*panier;
     setTxt('cb-now', fmt(caNow));
     setTxt('cb-neuro', fmt(caNeuro));
     setTxt('cb-t1', taux);
     setTxt('cb-t2', tNeuro);
     tween(Math.max(0, caNeuro-caNow));
   }
-  if(cc && cr && out){
-    [cc,cr,cp,ct].forEach(function(s){ s.addEventListener('input', compute); });
+  if(cr && cp && ct && out){
+    [cr,cp,ct].forEach(function(s){ s.addEventListener('input', compute); });
     var io3=new IntersectionObserver(function(x){ if(x[0].isIntersecting){ compute(); io3.disconnect(); } }, {threshold:.35});
     io3.observe(document.querySelector('.calc-box'));
   }

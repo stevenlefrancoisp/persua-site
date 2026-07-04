@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=19">
+<link rel="stylesheet" href="assets/styles.css?v=20">
 </head>
 <body>
 <div id="prog"></div>
@@ -88,26 +88,24 @@
 <section class="block calc"><div class="wrap">
   <div class="sec-head">
     <span class="eyebrow">Le coût de l'inaction</span>
-    <h2>Combien te coûte un commercial qui close trop bas ?</h2>
-    <p>Un commercial a un coût fixe, qu'il signe ou non. Bouge les curseurs : vois ce qu'il te rapporte aujourd'hui, et ce qu'il te rapporterait en parlant au bon système de décision.</p>
+    <h2>Combien ta vente te laisse filer chaque année ?</h2>
+    <p>Que tu vendes toi-même ou avec une équipe : bouge les curseurs et vois ce que la neurovente peut ajouter à ton chiffre d'affaires.</p>
   </div>
   <div class="calc-box">
     <div class="calc-controls">
-      <div class="row"><label>Coût du commercial / mois <b><span id="v-cout">3 500</span> €</b></label><input id="c-cout" type="range" min="1000" max="9000" step="100" value="3500"><span class="row-hint">salaire chargé, variable, outils</span></div>
-      <div class="row"><label>Rendez-vous de vente / mois <b><span id="v-rdv">20</span></b></label><input id="c-rdv" type="range" min="2" max="80" value="20"></div>
+      <div class="row"><label>Rendez-vous de vente / mois <b><span id="v-rdv">20</span></b></label><input id="c-rdv" type="range" min="2" max="80" value="20"><span class="row-hint">les tiens, ou ceux de ton équipe</span></div>
       <div class="row"><label>Panier moyen <b><span id="v-panier">3 000</span> €</b></label><input id="c-panier" type="range" min="200" max="20000" step="100" value="3000"></div>
       <div class="row"><label>Taux de closing actuel <b><span id="v-taux">20</span> %</b></label><input id="c-taux" type="range" min="5" max="70" value="20"></div>
-      <p class="calc-note">Hypothèse prudente : un gain de closing réaliste de +5 points, à nombre de rendez-vous et panier constants. Ce n'est pas une promesse : les résultats réels dépendent de ton offre, de ton produit et de ta pratique.</p>
+      <p class="calc-note">Hypothèse prudente : mieux comprendre tes interlocuteurs, c'est un peu plus de rendez-vous pris (+10 %) et un meilleur closing (+5 points). Ce n'est pas une promesse : les résultats dépendent de ton offre, de ton produit et de ta pratique.</p>
     </div>
     <div class="calc-out">
       <div class="lbl">Manque à gagner récupérable / an</div>
       <div class="big" id="calc-result">0 €</div>
       <div class="calc-break">
-        <div class="cb-row"><span>Ce commercial te coûte</span><b id="cb-cout">0 €</b></div>
-        <div class="cb-row"><span>Il génère aujourd'hui (<span id="cb-t1">20</span>%)</span><b id="cb-now">0 €</b></div>
-        <div class="cb-row hi"><span>Avec la neurovente (<span id="cb-t2">25</span>% de closing)</span><b id="cb-neuro">0 €</b></div>
+        <div class="cb-row"><span>Ton CA aujourd'hui (<span id="cb-t1">20</span>%)</span><b id="cb-now">0 €</b></div>
+        <div class="cb-row hi"><span>Avec la neurovente (+10% RDV · <span id="cb-t2">25</span>% closing)</span><b id="cb-neuro">0 €</b></div>
       </div>
-      <div class="sub">Le CA que ce commercial laisse filer faute de parler au système qui décide vraiment.</div>
+      <div class="sub">Le CA que tu laisses sur la table faute de parler au système qui décide vraiment.</div>
       <a class="btn btn-primary" href="https://diagnostic.persua-neurovente.com/">Récupérer ce CA →</a>
     </div>
   </div>
@@ -310,6 +308,6 @@
   </div>
 </div>
 
-<script src="assets/app.js?v=19"></script>
+<script src="assets/app.js?v=20"></script>
 </body>
 </html>
