@@ -116,36 +116,9 @@
     addEventListener('keydown', function(e){ if(e.key==='Escape' && lb.classList.contains('open')) closeLb(); });
   }
 
-  // Before / After slider + découverte éducative Système 1/2
-  var baInsight=document.getElementById('baInsight');
-  var baSteps=[
-    "Système 2 (lent) : tu parles à la logique. Elle ne décide pas, elle ne fait que justifier après coup.",
-    "Point de bascule : le cerveau émotionnel reprend la main. C'est là que le vrai « oui » se joue.",
-    "Système 1 (rapide) : le client se projette, ressent, et se vend la solution à lui-même."
-  ];
+  // Before / After : les deux cartes se révèlent au défilement (specs qui s'empilent, ampoule qui s'allume)
   document.querySelectorAll('[data-ba]').forEach(function(ba){
-    var after=ba.querySelector('.ba-after'), handle=ba.querySelector('.ba-handle'), dragging=false;
-    function set(p){ p=Math.max(2,Math.min(98,p)); after.style.clipPath='inset(0 0 0 '+p+'%)'; handle.style.left=p+'%';
-      if(baInsight){ var s = p<38 ? 0 : (p<66 ? 1 : 2); if(baInsight.dataset.s!=s){ baInsight.dataset.s=s; baInsight.textContent=baSteps[s]; baInsight.parentElement.className='ba-insight s'+s; } }
-    }
-    set(50);
-    function move(x){ var r=ba.getBoundingClientRect(); set((x-r.left)/r.width*100); }
-    ba.addEventListener('mousedown', function(e){ dragging=true; move(e.clientX); e.preventDefault(); });
-    addEventListener('mousemove', function(e){ if(dragging) move(e.clientX); });
-    addEventListener('mouseup', function(){ dragging=false; });
-    ba.addEventListener('touchstart', function(e){ dragging=true; move(e.touches[0].clientX); }, {passive:true});
-    ba.addEventListener('touchmove', function(e){ if(dragging) move(e.touches[0].clientX); }, {passive:true});
-    ba.addEventListener('touchend', function(){ dragging=false; });
-
-    // Au défilement : le cerveau apparaît + balayage auto qui démontre la bascule (une fois)
-    var swept=false, t0=null;
-    function ez(p){ return p<.5 ? 2*p*p : 1-Math.pow(-2*p+2,2)/2; }
-    function sweep(t){ if(t0===null) t0=t; var p=Math.min((t-t0)/2600,1), pos;
-      if(p<.5){ pos = 18 + ez(p/.5)*(86-18); } else { pos = 86 + ez((p-.5)/.5)*(50-86); }
-      if(!dragging) set(pos);
-      if(p<1 && !dragging) requestAnimationFrame(sweep);
-    }
-    var obba=new IntersectionObserver(function(x){ if(x[0].isIntersecting && !swept){ swept=true; ba.classList.add('ba-live'); if(!mq) requestAnimationFrame(sweep); obba.disconnect(); } }, {threshold:.4});
-    obba.observe(ba);
+    var ob=new IntersectionObserver(function(x){ if(x[0].isIntersecting){ ba.classList.add('ba-live'); ob.disconnect(); } }, {threshold:.3});
+    ob.observe(ba);
   });
 })();
