@@ -153,7 +153,7 @@
     function showBanner(){
       if(document.getElementById('cookieBanner')) return;
       var d = document.createElement('div'); d.id = 'cookieBanner'; d.className = 'cookie-banner';
-      d.innerHTML = "<p>Nous utilisons des cookies de mesure d'audience (Google Analytics) pour comprendre comment le site est utilisé et l'améliorer. Vous pouvez accepter ou refuser. <a href=\"confidentialite.html\">En savoir plus</a>.</p><div class=\"cb-btns\"><button class=\"cb-refuse\" type=\"button\">Refuser</button><button class=\"cb-accept\" type=\"button\">Accepter</button></div>";
+      d.innerHTML = "<p>Nous utilisons des cookies de mesure d'audience (Google Analytics) pour comprendre comment le site est utilisé et l'améliorer. Vous pouvez accepter ou refuser. <a href=\"/confidentialite\">En savoir plus</a>.</p><div class=\"cb-btns\"><button class=\"cb-refuse\" type=\"button\">Refuser</button><button class=\"cb-accept\" type=\"button\">Accepter</button></div>";
       document.body.appendChild(d);
       d.querySelector('.cb-accept').addEventListener('click', function(){ decide('granted'); });
       d.querySelector('.cb-refuse').addEventListener('click', function(){ decide('denied'); });
