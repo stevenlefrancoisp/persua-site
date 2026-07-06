@@ -1,6 +1,29 @@
 (function(){
   var mq = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Menu mobile (hamburger) — injecté sur toutes les pages
+  (function(){
+    var navEl = document.querySelector('nav'); if(!navEl) return;
+    var navIn = navEl.querySelector('.nav-in'), links = navEl.querySelector('.nav-links');
+    if(!navIn || !links) return;
+    var tog = document.createElement('button');
+    tog.className = 'nav-toggle'; tog.type = 'button';
+    tog.setAttribute('aria-label','Ouvrir le menu'); tog.setAttribute('aria-expanded','false');
+    tog.innerHTML = '<span></span><span></span><span></span>';
+    navIn.appendChild(tog);
+    var cta = navIn.querySelector(':scope > .btn');
+    if(cta){ var c = cta.cloneNode(true); c.classList.add('nav-cta-mobile'); links.appendChild(c); }
+    function setOpen(o){
+      navEl.classList.toggle('menu-open', o);
+      tog.setAttribute('aria-expanded', o ? 'true' : 'false');
+      tog.setAttribute('aria-label', o ? 'Fermer le menu' : 'Ouvrir le menu');
+    }
+    tog.addEventListener('click', function(e){ e.stopPropagation(); setOpen(!navEl.classList.contains('menu-open')); });
+    links.addEventListener('click', function(e){ if(e.target.closest('a')) setOpen(false); });
+    document.addEventListener('click', function(e){ if(navEl.classList.contains('menu-open') && !navEl.contains(e.target)) setOpen(false); });
+    addEventListener('keydown', function(e){ if(e.key === 'Escape') setOpen(false); });
+  })();
+
   // Scroll reveal (stagger)
   if(!mq){
     var io = new IntersectionObserver(function(es){
@@ -235,12 +258,7 @@
     xbtn.addEventListener('click', function(e){ e.stopPropagation(); close(); });
     addEventListener('keydown', function(e){ if(e.key==='Escape' && w.classList.contains('open')) close(); });
 
-    // Ouverture auto une seule fois par session (effet accroche)
-    try{
-      if(!sessionStorage.getItem('lyaSeen')){
-        setTimeout(function(){ if(!w.classList.contains('open')) open(); try{ sessionStorage.setItem('lyaSeen','1'); }catch(e){} }, 3500);
-      }
-    }catch(e){}
+    // Auto-ouverture désactivée : Lya reste en pastille, l'utilisateur l'ouvre s'il le souhaite.
   })();
 
   // Before / After : curseur wipe (drag + tactile) + balayage démo au défilement (une fois)

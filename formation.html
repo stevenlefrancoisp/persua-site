@@ -40,7 +40,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=29">
+<link rel="stylesheet" href="assets/styles.css?v=32">
 <style>
 .mnt-hero{position:relative;overflow:hidden;padding:120px 0 80px;background:radial-gradient(1200px 600px at 70% -10%,#1e1e5c 0%,transparent 55%),linear-gradient(180deg,var(--deep) 0%,#141439 100%)}
 .mnt-hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
@@ -89,7 +89,7 @@
 .mnt-founder .f-photo{position:relative;justify-self:center;width:100%;max-width:360px;aspect-ratio:3/3.55;border-radius:28px;overflow:hidden;background:radial-gradient(120% 90% at 50% 12%,#23236a,#14143a 55%,#0f0f2e);display:flex;align-items:flex-end;justify-content:center;box-shadow:0 34px 80px -26px rgba(84,74,250,.5), 0 0 120px -10px rgba(99,91,255,.55)}
 .mnt-founder .f-photo::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(139,131,255,.13) 1px,transparent 1px),linear-gradient(90deg,rgba(139,131,255,.13) 1px,transparent 1px);background-size:32px 32px}
 .mnt-founder .f-photo::after{content:"";position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);width:84%;height:74%;background:radial-gradient(closest-side,rgba(120,110,255,.6),transparent 72%);filter:blur(28px)}
-.mnt-founder .f-photo img{position:relative;z-index:2;width:auto;max-width:106%;max-height:99%;filter:drop-shadow(0 16px 30px rgba(0,0,0,.5))}
+.mnt-founder .f-photo img{position:relative;z-index:2;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 16px 30px rgba(0,0,0,.5))}
 .mnt-founder .f-txt p{color:#54506E;font-size:16px;margin-bottom:14px}
 .mnt-founder .f-txt b{color:var(--ink)}
 .f-track{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
@@ -295,7 +295,7 @@
 
 <div class="lightbox" id="lb"><div class="lb-inner"><button class="lb-close" id="lbClose" aria-label="Fermer">×</button><iframe id="lbFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
 
-<script src="assets/app.js?v=27"></script>
+<script src="assets/app.js?v=29"></script>
 <script src="assets/reviews.js?v=4"></script>
 </body>
 </html>
