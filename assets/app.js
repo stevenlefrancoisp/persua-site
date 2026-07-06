@@ -22,6 +22,16 @@
   }
   addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
+  // Masquer les éléments flottants (RDV + chat) quand le footer est visible (évite le chevauchement)
+  var foot=document.querySelector('footer');
+  if(foot && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      var vis=es[0].isIntersecting;
+      var bk=document.getElementById('book'); if(bk) bk.classList.toggle('at-foot', vis);
+      // Lya reste toujours visible (on ne la masque plus au footer)
+    }, {threshold:0.01}).observe(foot);
+  }
+
   // Count-up (supports multiple [data-count])
   document.querySelectorAll('[data-count]').forEach(function(cu){
     var target = +cu.dataset.count;
@@ -123,6 +133,122 @@
     m.addEventListener('click', function(e){ if(e.target===m || e.target.classList.contains('modal-close')) close(); });
     addEventListener('keydown', function(e){ if(e.key==='Escape' && m.classList.contains('open')) close(); });
   });
+
+  // Consentement cookies (RGPD) + Google Analytics chargé UNIQUEMENT après accord
+  (function(){
+    var GA_ID = 'G-XXXXXXXXXX'; // <-- remplacer par l'ID GA4 réel quand il sera prêt
+    function loadGA(){
+      if(!GA_ID || GA_ID.indexOf('XXXX') > -1) return;   // pas encore configuré
+      if(window.__gaLoaded) return; window.__gaLoaded = true;
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){ dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', GA_ID, { anonymize_ip: true });
+    }
+    var consent = null;
+    try { consent = localStorage.getItem('persua-consent'); } catch(e){}
+    if(consent === 'granted') loadGA();
+
+    function decide(v){
+      try { localStorage.setItem('persua-consent', v); } catch(e){}
+      var b = document.getElementById('cookieBanner'); if(b) b.remove();
+      if(v === 'granted') loadGA();
+    }
+    function showBanner(){
+      if(document.getElementById('cookieBanner')) return;
+      var d = document.createElement('div'); d.id = 'cookieBanner'; d.className = 'cookie-banner';
+      d.innerHTML = "<p>Nous utilisons des cookies de mesure d'audience (Google Analytics) pour comprendre comment le site est utilisé et l'améliorer. Vous pouvez accepter ou refuser. <a href=\"confidentialite.html\">En savoir plus</a>.</p><div class=\"cb-btns\"><button class=\"cb-refuse\" type=\"button\">Refuser</button><button class=\"cb-accept\" type=\"button\">Accepter</button></div>";
+      document.body.appendChild(d);
+      d.querySelector('.cb-accept').addEventListener('click', function(){ decide('granted'); });
+      d.querySelector('.cb-refuse').addEventListener('click', function(){ decide('denied'); });
+    }
+    // Bouton "modifier mes préférences" (utilisable depuis la page confidentialité)
+    window.persuaCookiePrefs = function(){ try { localStorage.removeItem('persua-consent'); } catch(e){} showBanner(); };
+    if(consent !== 'granted' && consent !== 'denied') showBanner();
+  })();
+
+  // Widget WhatsApp façon chat (Lya) avec questions rapides + réponses — toutes les pages
+  (function(){
+    if(document.querySelector('.wa-widget')) return;
+    var PHONE='33749554615';
+    function waLink(t){ return 'https://wa.me/'+PHONE+'?text='+encodeURIComponent(t); }
+    var WA='<svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.9.9-2.7-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.5-.2-.3.2-.3.5-.9.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.4c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.5 2.7.5 1.4 1.5 2.5 2.9 3.3.5.3 1 .5 1.5.6.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.1-.4-.2z"/></svg>';
+    var AVATAR='<svg viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="lyaBg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe6d2"/><stop offset="1" stop-color="#ffcdaf"/></linearGradient></defs><rect width="100" height="100" fill="url(#lyaBg)"/><path d="M23 58 C21 30 33 15 50 15 C67 15 79 30 77 58 C77 70 74 84 70 96 L64 96 C68 84 70 72 68 60 C58 66 42 66 32 60 C30 72 32 84 36 96 L30 96 C26 84 23 70 23 58 Z" fill="#4a3730"/><path d="M20 100 C22 78 34 70 50 70 C66 70 78 78 80 100 Z" fill="#2c2c4e"/><path d="M44 72 L50 84 L56 72 Z" fill="#f4f2f8"/><rect x="45" y="58" width="10" height="14" rx="4" fill="#f0c19c"/><ellipse cx="50" cy="47" rx="15.5" ry="17.5" fill="#f6cba4"/><path d="M34 42 C33 30 40 24 50 24 C60 24 67 30 66 42 C63 36 58 33 50 33 C42 33 37 36 34 42 Z" fill="#4a3730"/><circle cx="43.5" cy="47" r="1.7" fill="#3a2b28"/><circle cx="56.5" cy="47" r="1.7" fill="#3a2b28"/><path d="M40 43 Q43.5 41.5 47 43" stroke="#4a3730" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M53 43 Q56.5 41.5 60 43" stroke="#4a3730" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M45 54 Q50 58 55 54" stroke="#c47a5a" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="40" cy="52" r="2.4" fill="#f7a98a" opacity=".5"/><circle cx="60" cy="52" r="2.4" fill="#f7a98a" opacity=".5"/></svg>';
+    // Réponses pré-écrites aux questions les plus fréquentes
+    var QA=[
+      {q:"Différence Académie / Mentorat ?", a:"L'Académie, c'est toute la méthode en autonomie : 34 leçons, accès à vie, 700 € HT (payable en 1, 2 ou 3 fois). Le Mentorat, c'est en plus un coaching 1:1 chaque semaine où on décortique tes vrais rendez-vous. Le Mentorat est sur candidature."},
+      {q:"Combien ça coûte ?", a:"L'Académie : 700 € HT, accès à vie, payable en 1, 2 ou 3 fois. Le Mentorat 1:1 est sur candidature. Les formations en entreprise sont finançables via les OPCO."},
+      {q:"C'est finançable OPCO ?", a:"Oui, pour les formations en entreprise (équipe). On s'appuie sur un partenaire de portage certifié Qualiopi le temps que notre propre certification soit finalisée."},
+      {q:"L'Académie est-elle remboursable ?", a:"C'est un contenu numérique à accès immédiat : une fois l'accès ouvert, il n'est pas remboursable (tu le valides à l'achat). Le plus sûr avant d'acheter : faire le diagnostic gratuit, ou me poser ta question ici."},
+      {q:"C'est pour qui ?", a:"Pour les dirigeants, indépendants et commerciaux qui vendent leur offre et veulent closer plus, sans forcer ni manipuler. Si tu vends au quotidien, c'est fait pour toi."},
+      {q:"Comment se passe le Mentorat ?", a:"6 mois : un coaching 1:1 chaque semaine, tes vrais appels audités, l'accès à l'Espace Membre + l'IA neurovente, et un soutien WhatsApp 7/7. C'est sur candidature."}
+    ];
+    var w=document.createElement('div'); w.className='wa-widget';
+    w.innerHTML=''+
+      '<div class="wa-panel" role="dialog" aria-label="Chat avec Lya">'+
+        '<div class="wa-head"><div class="wa-ava">'+AVATAR+'<span class="wa-on"></span></div>'+
+        '<div class="wa-hid"><b>Lya</b><span>En ligne</span></div>'+
+        '<button class="wa-xbtn" aria-label="Fermer">&times;</button></div>'+
+        '<div class="wa-body" id="waBody">'+
+          '<div class="wa-time">maintenant</div>'+
+          '<div class="wa-typing" aria-hidden="true"><i></i><i></i><i></i></div>'+
+          '<div class="wa-bubble wa-msg">Bonjour 👋\n\nUne question sur les offres, les prix, le financement ? Choisissez ci-dessous, je réponds tout de suite. Sinon, écrivez-moi.</div>'+
+        '</div>'+
+        '<div class="wa-chips" id="waChips"></div>'+
+        '<a class="wa-cta" href="'+waLink("Bonjour Lya, j'ai une question sur Persua.")+'" target="_blank" rel="noopener">'+WA+'Échanger sur WhatsApp</a>'+
+      '</div>'+
+      '<button class="wa-launcher" aria-label="Ouvrir le chat WhatsApp"><span class="wa-dot">1</span>'+WA+'<span class="wa-close-ic">&times;</span></button>';
+    document.body.appendChild(w);
+
+    // Photo réelle de Lya si disponible (assets/brand/lya.jpg), sinon l'avatar dessiné reste
+    var ava=w.querySelector('.wa-ava'), im=new Image();
+    im.onload=function(){ var s=ava.querySelector('svg'); if(s) s.replaceWith(im); };
+    im.src='assets/brand/lya.jpg';
+
+    var launcher=w.querySelector('.wa-launcher'), xbtn=w.querySelector('.wa-xbtn');
+    var typ=w.querySelector('.wa-typing'), msg=w.querySelector('.wa-msg');
+    var body=w.querySelector('#waBody'), chips=w.querySelector('#waChips');
+    var revealed=false, chipsBuilt=false;
+    msg.classList.remove('show');
+
+    function scrollDown(){ body.scrollTop=body.scrollHeight; }
+    function addUser(t){ var d=document.createElement('div'); d.className='wa-msg-user'; d.textContent=t; body.appendChild(d); scrollDown(); }
+    function addLya(t){ var d=document.createElement('div'); d.className='wa-bubble reply'; d.textContent=t; body.appendChild(d); scrollDown(); }
+    function lyaAnswers(t){ var d=document.createElement('div'); d.className='wa-typing'; d.innerHTML='<i></i><i></i><i></i>'; body.appendChild(d); scrollDown();
+      setTimeout(function(){ d.remove(); addLya(t); }, 1000); }
+    function buildChips(){
+      if(chipsBuilt) return; chipsBuilt=true;
+      QA.forEach(function(item){
+        var b=document.createElement('button'); b.type='button'; b.className='wa-chip'; b.textContent=item.q;
+        b.addEventListener('click', function(){ addUser(item.q); lyaAnswers(item.a); });
+        chips.appendChild(b);
+      });
+      var wa=document.createElement('a'); wa.className='wa-chip wa-chip-wa';
+      wa.href=waLink("Bonjour Lya, j'ai une autre question sur Persua."); wa.target='_blank'; wa.rel='noopener';
+      wa.textContent='J’ai une autre question 💬';
+      chips.appendChild(wa);
+    }
+
+    function reveal(){
+      if(revealed) return;
+      setTimeout(function(){ typ.style.display='none'; msg.classList.add('show'); revealed=true; buildChips(); scrollDown(); }, 2000);
+    }
+    function open(){ w.classList.add('open'); reveal(); }
+    function close(){ w.classList.remove('open'); }
+    launcher.addEventListener('click', function(){ w.classList.contains('open') ? close() : open(); });
+    xbtn.addEventListener('click', function(e){ e.stopPropagation(); close(); });
+    addEventListener('keydown', function(e){ if(e.key==='Escape' && w.classList.contains('open')) close(); });
+
+    // Ouverture auto une seule fois par session (effet accroche)
+    try{
+      if(!sessionStorage.getItem('lyaSeen')){
+        setTimeout(function(){ if(!w.classList.contains('open')) open(); try{ sessionStorage.setItem('lyaSeen','1'); }catch(e){} }, 3500);
+      }
+    }catch(e){}
+  })();
 
   // Before / After : curseur wipe (drag + tactile) + balayage démo au défilement (une fois)
   document.querySelectorAll('[data-ba]').forEach(function(ba){
