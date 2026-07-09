@@ -644,3 +644,16 @@ footer .foot-brand img{height:26px}
   .ba-live .viz-spark{animation:bulbGlow 2.8s ease-in-out infinite 1s}
 }
 @media (max-width:900px){ .ba-brain{display:none} }
+
+/* ── Méthode CALME ── */
+.calme-strip{margin-top:34px;padding:28px 26px;border:1px solid rgba(139,131,255,.25);border-radius:18px;background:linear-gradient(135deg,rgba(84,74,250,.14),rgba(27,27,108,.35))}
+.calme-tag{font-family:var(--title);font-weight:800;font-size:22px;color:#fff;margin:0 0 6px;letter-spacing:-.01em}
+.calme-sub{color:var(--mist,#9B96B8);font-size:15px;margin:0 0 20px}
+.calme-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.calme-step{background:rgba(10,10,20,.45);border:1px solid rgba(139,131,255,.18);border-radius:12px;padding:14px 12px}
+.calme-step b{display:block;font-family:var(--title);font-size:20px;color:#8B83FF;margin-bottom:4px}
+.calme-step h4{margin:0 0 4px;font-size:14px;color:#fff}
+.calme-step p{margin:0;font-size:12.5px;line-height:1.45;color:var(--mist,#9B96B8)}
+.calme-link{display:inline-block;margin-top:18px;color:#8B83FF;font-weight:600;text-decoration:none}
+.calme-link:hover{text-decoration:underline}
+@media (max-width:900px){.calme-grid{grid-template-columns:1fr 1fr}.calme-grid .calme-step:last-child{grid-column:1/-1}}
