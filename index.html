@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=34">
+<link rel="stylesheet" href="assets/styles.css?v=35">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Persua","url":"https://persua-neurovente.com/","logo":"https://persua-neurovente.com/assets/brand/persua_logo.svg","description":"Persua forme dirigeants, indépendants et commerciaux à la neurovente : vendre en s'appuyant sur les neurosciences de la décision (Système 1 / Système 2), sans manipuler.","founder":{"@type":"Person","name":"Steven Lefrançois"},"sameAs":["https://www.linkedin.com/in/stevenlfrs","https://www.instagram.com/steven_lefrancois_vente/","https://www.youtube.com/@steven_vente_persua","https://www.tiktok.com/@steven_lefrancois_vente"],"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/33749554615","availableLanguage":"French"}}
 </script>
@@ -131,41 +131,34 @@
   </div>
   <p class="method-punch">L'émotion décide. La logique justifie. <b>Dans cet ordre.</b></p>
   <div class="calme" id="calme">
-    <div class="calme-head">
-      <span class="calme-name">La Méthode CALME™</span>
-      <span class="calme-tagline">Dans un rendez-vous, <b>le cerveau le plus stable prend le contrôle</b>.</span>
-    </div>
-    <div class="calme-rail" role="tablist" aria-label="Les 5 étapes de la Méthode CALME">
-      <span class="fill"></span>
-      <button class="calme-node on" role="tab" aria-selected="true" data-i="0"><span class="dot">C</span><span class="lbl">Cadre</span></button>
-      <button class="calme-node" role="tab" aria-selected="false" data-i="1"><span class="dot">A</span><span class="lbl">Apaiser</span></button>
-      <button class="calme-node" role="tab" aria-selected="false" data-i="2"><span class="dot">L</span><span class="lbl">Localiser</span></button>
-      <button class="calme-node" role="tab" aria-selected="false" data-i="3"><span class="dot">M</span><span class="lbl">Miroir</span></button>
-      <button class="calme-node" role="tab" aria-selected="false" data-i="4"><span class="dot">E</span><span class="lbl">Engager</span></button>
+    <p class="calme-tagline">La Méthode CALME™ : dans un rendez-vous, <b>le cerveau le plus stable prend le contrôle</b>.</p>
+    <div class="calme-word" role="tablist" aria-label="Les 5 étapes de la Méthode CALME">
+      <button class="calme-letter on" role="tab" aria-selected="true" data-i="0">C<small>Cadre</small></button>
+      <button class="calme-letter" role="tab" aria-selected="false" data-i="1">A<small>Apaiser</small></button>
+      <button class="calme-letter" role="tab" aria-selected="false" data-i="2">L<small>Localiser</small></button>
+      <button class="calme-letter" role="tab" aria-selected="false" data-i="3">M<small>Miroir</small></button>
+      <button class="calme-letter" role="tab" aria-selected="false" data-i="4">E<small>Engager</small></button>
     </div>
     <div class="calme-panel" aria-live="polite">
-      <div class="step" id="calmeStep">Étape 1 · 5, avant le rendez-vous</div>
+      <div class="step" id="calmeStep">Étape 1 · 5 · avant le rendez-vous</div>
       <h4 id="calmeTitle">Cadre : l'état du vendeur</h4>
       <p id="calmeText">Réglé avant le rendez-vous. L'étape que toutes les autres méthodes sautent : ton état se transmet à ton client, dans un sens comme dans l'autre.</p>
       <span class="sci" id="calmeSci">Fondement : <b>corégulation émotionnelle</b> · Gross, Barrett</span>
     </div>
     <div class="calme-timer"><i id="calmeTimer"></i></div>
-    <div class="calme-foot">
-      <span class="calme-hint">Clique une étape, ou laisse le rendez-vous se dérouler.</span>
-      <a class="calme-link" href="/methode-calme">Découvrir la Méthode CALME en détail →</a>
-    </div>
+    <a class="calme-more" href="/methode-calme">Découvrir la Méthode CALME en détail →</a>
   </div>
   <script>
   (function(){
     var steps=[
-      {k:"Étape 1 · 5, avant le rendez-vous",t:"Cadre : l'état du vendeur",p:"Réglé avant le rendez-vous. L'étape que toutes les autres méthodes sautent : ton état se transmet à ton client, dans un sens comme dans l'autre.",s:"Fondement : <b>corégulation émotionnelle</b> · Gross, Barrett"},
-      {k:"Étape 2 · 5, l'ouverture",t:"Apaiser : la sécurité d'abord",p:"Un cerveau sur la défensive n'écoute pas, il surveille. Tant que la menace perçue n'est pas tombée, aucun argument ne passe, même excellent.",s:"Fondement : <b>régulation de la menace</b> · LeDoux"},
-      {k:"Étape 3 · 5, la découverte",t:"Localiser : la douleur mesurée",p:"Ton client mesure lui-même ce que son problème lui coûte vraiment. Ce qu'il formule avec ses chiffres pèse plus que tout ce que tu pourrais affirmer.",s:"Fondement : <b>aversion à la perte</b> · Kahneman & Tversky"},
-      {k:"Étape 4 · 5, la présentation",t:"Miroir : la valeur dans ses mots",p:"Une présentation construite dans les mots du client, pas dans les tiens. Quand il entend son propre vocabulaire, il ressent le « c'est exactement ça ».",s:"Fondement : <b>marqueurs somatiques</b> · Damasio"},
-      {k:"Étape 5 · 5, la décision",t:"Engager : la décision déjà mûre",p:"Un closing qui formule une décision déjà prise. Conclure, pas pousser : la pression amplifie l'alarme, la stabilité la dissout.",s:"Fondement : <b>évaluation subjective de la décision</b> · vmPFC"}
+      {k:"Étape 1 · 5 · avant le rendez-vous",t:"Cadre : l'état du vendeur",p:"Réglé avant le rendez-vous. L'étape que toutes les autres méthodes sautent : ton état se transmet à ton client, dans un sens comme dans l'autre.",s:"Fondement : <b>corégulation émotionnelle</b> · Gross, Barrett"},
+      {k:"Étape 2 · 5 · l'ouverture",t:"Apaiser : la sécurité d'abord",p:"Un cerveau sur la défensive n'écoute pas, il surveille. Tant que la menace perçue n'est pas tombée, aucun argument ne passe, même excellent.",s:"Fondement : <b>régulation de la menace</b> · LeDoux"},
+      {k:"Étape 3 · 5 · la découverte",t:"Localiser : la douleur mesurée",p:"Ton client mesure lui-même ce que son problème lui coûte vraiment. Ce qu'il formule avec ses chiffres pèse plus que tout ce que tu pourrais affirmer.",s:"Fondement : <b>aversion à la perte</b> · Kahneman & Tversky"},
+      {k:"Étape 4 · 5 · la présentation",t:"Miroir : la valeur dans ses mots",p:"Une présentation construite dans les mots du client, pas dans les tiens. Quand il entend son propre vocabulaire, il ressent le « c'est exactement ça ».",s:"Fondement : <b>marqueurs somatiques</b> · Damasio"},
+      {k:"Étape 5 · 5 · la décision",t:"Engager : la décision déjà mûre",p:"Un closing qui formule une décision déjà prise. Conclure, pas pousser : la pression amplifie l'alarme, la stabilité la dissout.",s:"Fondement : <b>évaluation subjective de la décision</b> · vmPFC"}
     ];
     var root=document.getElementById('calme'); if(!root) return;
-    var nodes=root.querySelectorAll('.calme-node'), fill=root.querySelector('.fill'),
+    var nodes=root.querySelectorAll('.calme-letter'),
         elS=document.getElementById('calmeStep'), elT=document.getElementById('calmeTitle'),
         elP=document.getElementById('calmeText'), elC=document.getElementById('calmeSci'),
         timer=document.getElementById('calmeTimer'), panel=root.querySelector('.calme-panel'),
@@ -174,10 +167,9 @@
     function show(i){
       cur=i;
       nodes.forEach(function(n,j){
-        n.classList.toggle('on',j===i); n.classList.toggle('done',j<i);
+        n.classList.toggle('on',j===i);
         n.setAttribute('aria-selected', j===i ? 'true':'false');
       });
-      fill.style.width=(i/(steps.length-1)*100)*( (root.querySelector('.calme-rail').offsetWidth-68)/root.querySelector('.calme-rail').offsetWidth )+'%';
       elS.textContent=steps[i].k; elT.textContent=steps[i].t; elP.textContent=steps[i].p; elC.innerHTML=steps[i].s;
       panel.classList.remove('calme-fade'); void panel.offsetWidth; panel.classList.add('calme-fade');
     }

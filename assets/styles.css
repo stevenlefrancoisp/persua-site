@@ -645,42 +645,32 @@ footer .foot-brand img{height:26px}
 }
 @media (max-width:900px){ .ba-brain{display:none} }
 
-/* ── Méthode CALME : stepper interactif ── */
-.calme{margin-top:38px;border-radius:24px;border:1px solid rgba(84,74,250,.35);background:linear-gradient(135deg,#13133A,#101029 60%,#141439);background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(135deg,#13133A,#101029 60%,#141439);background-size:44px 44px,44px 44px,cover;box-shadow:0 24px 60px rgba(19,19,58,.35);padding:34px 32px 28px;color:#F4F2F8}
-.calme-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;margin-bottom:6px}
-.calme-name{font-family:var(--title);font-weight:800;font-size:24px;color:#fff;letter-spacing:-.01em}
-.calme-tagline{font-size:15px;color:#9B96B8}
-.calme-tagline b{color:#fff;font-weight:600}
-.calme-rail{position:relative;display:flex;justify-content:space-between;margin:26px 6px 6px}
-.calme-rail::before{content:"";position:absolute;top:22px;left:34px;right:34px;height:2px;background:rgba(139,131,255,.22)}
-.calme-rail .fill{position:absolute;top:22px;left:34px;height:2px;width:0;background:linear-gradient(90deg,#4747FD,#8B83FF);transition:width .45s cubic-bezier(.2,.7,.2,1)}
-.calme-node{position:relative;z-index:1;background:none;border:none;cursor:pointer;font-family:inherit;text-align:center;width:88px;padding:0}
-.calme-node .dot{width:44px;height:44px;margin:0 auto;border-radius:50%;border:2px solid rgba(139,131,255,.45);background:#101029;color:#8B83FF;font-family:var(--title);font-weight:800;font-size:19px;line-height:40px;transition:all .3s}
-.calme-node .lbl{display:block;margin-top:9px;font-size:13px;font-weight:600;color:#9B96B8;transition:color .3s}
-.calme-node:hover .dot{border-color:#8B83FF;color:#fff}
-.calme-node.on .dot{background:#544AFA;border-color:#8B83FF;color:#fff;box-shadow:0 0 22px rgba(84,74,250,.75)}
-.calme-node.on .lbl{color:#fff}
-.calme-node.done .dot{border-color:#544AFA;color:#B9B4FF}
-.calme-panel{position:relative;margin-top:22px;background:rgba(10,10,20,.45);border:1px solid rgba(139,131,255,.2);border-radius:16px;padding:22px 24px 20px;min-height:118px}
-.calme-panel .step{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8B83FF;margin-bottom:6px}
-.calme-panel h4{margin:0 0 8px;font-family:var(--title);font-size:21px;color:#fff}
-.calme-panel p{margin:0;font-size:15.5px;line-height:1.6;color:#DCD9EA}
-.calme-panel .sci{display:block;margin-top:10px;font-size:12.5px;color:#9B96B8}
-.calme-panel .sci b{color:#B9B4FF;font-weight:600}
+/* ── Méthode CALME : lettres géantes ── */
+.calme{margin-top:44px;text-align:center}
+.calme-tagline{font-size:16px;color:#5A5670;margin:0 0 10px}
+.calme-tagline b{color:#1B1B6C;font-weight:700}
+.calme-word{display:flex;justify-content:center;align-items:flex-end;gap:clamp(6px,2vw,22px);margin:6px 0 4px}
+.calme-letter{background:none;border:none;cursor:pointer;padding:6px 2px 10px;font-family:'Archivo Black',var(--title),sans-serif;font-size:clamp(58px,10.5vw,124px);line-height:1;color:#C9C5E4;-webkit-text-stroke:0;transition:color .25s,transform .25s,text-shadow .25s;position:relative}
+.calme-letter small{display:block;margin-top:10px;font-family:var(--title);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9B96B8;transition:color .25s}
+.calme-letter:hover{color:#544AFA;transform:translateY(-4px)}
+.calme-letter.on{color:#544AFA;transform:translateY(-6px);text-shadow:0 14px 44px rgba(84,74,250,.45)}
+.calme-letter.on small{color:#1B1B6C}
+.calme-letter.on::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-6px;width:34px;height:4px;border-radius:99px;background:linear-gradient(90deg,#4747FD,#8B83FF)}
+.calme-panel{max-width:660px;margin:26px auto 0;background:#fff;border:1px solid rgba(84,74,250,.16);border-radius:18px;padding:26px 30px 22px;box-shadow:0 20px 50px rgba(27,27,108,.10);text-align:left}
+.calme-panel .step{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#544AFA;margin-bottom:7px}
+.calme-panel h4{margin:0 0 8px;font-family:var(--title);font-weight:800;font-size:22px;color:#1B1B6C;letter-spacing:-.01em}
+.calme-panel p{margin:0;font-size:15.5px;line-height:1.6;color:#3A3752}
+.calme-panel .sci{display:block;margin-top:12px;padding-top:12px;border-top:1px solid rgba(84,74,250,.12);font-size:12.5px;color:#7B7694}
+.calme-panel .sci b{color:#544AFA;font-weight:700}
 .calme-fade{animation:calmeFade .35s ease}
-@keyframes calmeFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.calme-timer{height:3px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:16px}
+@keyframes calmeFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.calme-timer{max-width:660px;height:3px;border-radius:99px;background:rgba(84,74,250,.10);overflow:hidden;margin:14px auto 0}
 .calme-timer i{display:block;height:100%;width:0;background:linear-gradient(90deg,#4747FD,#8B83FF)}
-.calme-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-top:16px}
-.calme-hint{font-size:12.5px;color:#9B96B8}
-.calme-link{color:#8B83FF;font-weight:600;text-decoration:none}
-.calme-link:hover{text-decoration:underline;color:#B9B4FF}
-@media (max-width:760px){
-  .calme{padding:26px 18px 22px}
-  .calme-rail{flex-wrap:nowrap;overflow-x:auto;gap:2px;padding-bottom:4px}
-  .calme-rail::before,.calme-rail .fill{left:30px;right:30px}
-  .calme-node{width:72px;flex:0 0 auto}
-  .calme-node .lbl{font-size:11.5px}
-  .calme-hint{display:none}
+.calme-more{display:inline-block;margin-top:18px;color:#544AFA;font-weight:600;text-decoration:none}
+.calme-more:hover{text-decoration:underline}
+@media (max-width:600px){
+  .calme-letter small{display:none}
+  .calme-letter{padding-bottom:2px}
+  .calme-panel{padding:20px 18px 18px}
 }
-@media (prefers-reduced-motion: reduce){.calme-fade{animation:none}}
+@media (prefers-reduced-motion: reduce){.calme-fade{animation:none}.calme-letter,.calme-letter.on{transform:none}}
