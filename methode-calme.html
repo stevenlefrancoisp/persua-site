@@ -18,29 +18,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=35">
+<link rel="stylesheet" href="assets/styles.css?v=36">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"La Méthode CALME™ : vendre sans forcer, avec le cerveau","description":"La méthode de vente signature Persua, fondée sur les neurosciences de la décision : Cadre, Apaiser, Localiser, Miroir, Engager.","author":{"@type":"Person","name":"Steven Lefrançois","jobTitle":"Formateur en neurovente","url":"https://persua-neurovente.com/a-propos"},"publisher":{"@type":"Organization","name":"Persua","url":"https://persua-neurovente.com"},"datePublished":"2026-07-09","inLanguage":"fr","mainEntityOfPage":"https://persua-neurovente.com/methode-calme","about":["méthode de vente","neurovente","neurosciences de la vente","closing"]}
 </script>
 <style>
-/* ===== Page immersive Méthode CALME ===== */
+/* ===== styles de la page immersive (identiques à la version live) ===== */
 body.calme-exp{background:#0A0A14;overflow-x:hidden}
 body.calme-exp nav{position:fixed;top:0;left:0;right:0;z-index:60;background:transparent;border:0;transition:opacity .45s,transform .45s}
 body.calme-exp nav.gone{opacity:0;transform:translateY(-14px);pointer-events:none}
-
-/* fond continu */
 .cx-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .cx-bg .g{position:absolute;inset:0;background:
-  radial-gradient(1100px 700px at 78% 12%, rgba(84,74,250,.32), transparent 62%),
-  radial-gradient(900px 640px at 12% 88%, rgba(27,27,108,.55), transparent 60%),
+  radial-gradient(1100px 700px at 78% 12%, rgba(84,74,250,.30), transparent 62%),
+  radial-gradient(900px 640px at 12% 88%, rgba(27,27,108,.5), transparent 60%),
   linear-gradient(175deg,#101038 0%,#0A0A14 58%,#0A0A14 100%)}
-.cx-bg .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(75% 60% at 50% 40%,#000 30%,transparent 100%)}
-.cx-bg .blob{position:absolute;width:46vw;height:46vw;border-radius:50%;filter:blur(90px);opacity:.34}
-.cx-bg .b1{background:#544AFA;top:-12%;right:-8%}
-.cx-bg .b2{background:#1B1B6C;bottom:-16%;left:-10%}
-
-/* scènes */
-.scene{position:relative;z-index:1;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:96px 24px;scroll-snap-align:start}
+.cx-bg .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(75% 60% at 50% 40%,#000 30%,transparent 100%)}
+.scene{position:relative;z-index:2;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:96px 24px;scroll-snap-align:start}
 html{scroll-snap-type:y proximity}
 .sc-in{max-width:880px;text-align:center;position:relative}
 .sc-eyebrow{font-family:'Chivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:#8B83FF;display:block;margin-bottom:26px}
@@ -49,60 +42,49 @@ html{scroll-snap-type:y proximity}
 .sc-sub{font-size:clamp(16px,1.6vw,20px);line-height:1.65;color:#C9C5E2;max-width:620px;margin:28px auto 0;font-weight:500}
 .sc-note{margin-top:34px;font-size:13.5px;color:#9B96B8;letter-spacing:.02em}
 .sc-note b{color:#B9B3DE;font-weight:600}
-
-/* lettre géante en fond de scène */
-.sc-letter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:-1;pointer-events:none}
-.sc-letter span{font-family:'Archivo Black',sans-serif;font-size:min(74vh,58vw);line-height:1;color:transparent;-webkit-text-stroke:2px rgba(139,131,255,.22);background:linear-gradient(180deg,rgba(84,74,250,.16),rgba(84,74,250,.02));-webkit-background-clip:text;background-clip:text}
 .sc-step .sc-in{max-width:760px}
-.sc-stepname{font-family:'Archivo Black',sans-serif;font-size:clamp(38px,6vw,78px);color:#F4F2F8;letter-spacing:-1px}
+.sc-stepname{font-family:'Archivo Black',sans-serif;font-size:clamp(38px,6vw,78px);color:#F4F2F8;letter-spacing:-1px;text-shadow:0 4px 40px rgba(10,10,20,.8)}
 .sc-stepthese{font-family:'Chivo',sans-serif;font-weight:800;font-size:clamp(17px,2vw,24px);color:#8B83FF;margin-top:10px;letter-spacing:.01em}
-
-/* écran des 5 lettres */
+.sc-step .sc-sub,.sc-step .sc-note{text-shadow:0 2px 24px rgba(10,10,20,.9)}
 .sc-alphabet{display:flex;gap:2vw;justify-content:center;margin-top:8px}
-.sc-alphabet b{font-family:'Archivo Black',sans-serif;font-size:clamp(52px,11vw,150px);color:#F4F2F8;line-height:1;transition:color .3s,transform .3s}
+.sc-alphabet b{font-family:'Archivo Black',sans-serif;font-size:clamp(52px,11vw,150px);color:#F4F2F8;line-height:1}
 .sc-alphabet b:nth-child(odd){color:#8B83FF}
-
-/* refus */
 .sc-refus-list{display:flex;flex-direction:column;gap:10px;margin-top:6px}
 .sc-refus-list span{font-family:'Archivo Black',sans-serif;font-size:clamp(24px,4vw,48px);color:#F4F2F8}
 .sc-refus-list span s{color:#5A5580;text-decoration-thickness:4px;text-decoration-color:#8B83FF}
-
-/* rail de progression */
 .cx-rail{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:16px;opacity:0;transition:opacity .4s;pointer-events:none}
 .cx-rail.show{opacity:1;pointer-events:auto}
 .cx-rail a{font-family:'Archivo Black',sans-serif;font-size:15px;color:rgba(244,242,248,.28);text-decoration:none;transition:color .25s,transform .25s;line-height:1}
 .cx-rail a.on{color:#8B83FF;transform:scale(1.45)}
-
-/* indice scroll */
 .cx-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);color:#9B96B8;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
 .cx-cue i{display:block;width:1px;height:38px;margin:12px auto 0;background:linear-gradient(#8B83FF,transparent);animation:cuedrop 1.8s infinite}
 @keyframes cuedrop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-
-/* CTA final */
 .sc-final .btn-primary{font-size:17px;padding:18px 36px;margin-top:34px}
 .sc-final-links{margin-top:26px;display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
 .sc-final-links a{color:#9B96B8;font-size:14.5px;text-decoration:none;border-bottom:1px solid rgba(155,150,184,.35);padding-bottom:2px;transition:color .2s}
 .sc-final-links a:hover{color:#F4F2F8}
 .sc-author{margin-top:56px;font-size:13px;color:#6D6890}
-
-/* apparitions */
 @media (prefers-reduced-motion: no-preference){
   .fx{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
   .scene.in .fx{opacity:1;transform:none}
   .scene.in .fx.d1{transition-delay:.12s}.scene.in .fx.d2{transition-delay:.26s}.scene.in .fx.d3{transition-delay:.42s}
-  .sc-letter span{opacity:0;transform:scale(1.12);transition:opacity 1.1s,transform 1.1s cubic-bezier(.2,.7,.2,1)}
-  .scene.in .sc-letter span{opacity:1;transform:none}
 }
-
-/* footer discret */
-body.calme-exp footer{position:relative;z-index:1;background:transparent;border-top:1px solid rgba(255,255,255,.07)}
-
+body.calme-exp footer{position:relative;z-index:2;background:transparent;border-top:1px solid rgba(255,255,255,.07)}
 @media (max-width:720px){
   .cx-rail{right:12px;gap:13px}
   .cx-rail a{font-size:13px}
   .scene{padding:84px 20px}
-  .sc-letter span{font-size:88vw;-webkit-text-stroke-width:1.5px}
 }
+
+/* ===== NOUVEAU : couche cerveau ===== */
+#brainfx{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:0;transition:opacity 1.6s ease .3s}
+#brainfx.ready{opacity:1}
+.sc-zone{display:inline-flex;align-items:center;gap:10px;margin-top:26px;padding:10px 18px;border:1px solid rgba(255,84,104,.35);border-radius:100px;font-family:'Chivo',sans-serif;font-weight:800;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:#FFB3BC;background:rgba(255,59,78,.08);cursor:pointer;transition:background .25s,border-color .25s,transform .25s;user-select:none}
+.sc-zone:hover{background:rgba(255,59,78,.16);border-color:rgba(255,84,104,.6)}
+.sc-zone.on{background:rgba(255,59,78,.28);border-color:#FF5468;color:#fff;transform:scale(1.04)}
+.sc-zone small{font-weight:600;letter-spacing:.08em;opacity:.65;text-transform:none}
+.sc-zone i{width:8px;height:8px;border-radius:50%;background:#FF5468;box-shadow:0 0 12px #FF5468;animation:zpulse 1.6s infinite;flex:none}
+@keyframes zpulse{0%,100%{opacity:1}50%{opacity:.4}}
 </style>
 </head>
 <body class="calme-exp">
@@ -116,7 +98,8 @@ body.calme-exp footer{position:relative;z-index:1;background:transparent;border-
   <a class="btn btn-primary" href="https://diagnostic.persua-neurovente.com/">Faire le diagnostic</a>
 </div></nav>
 
-<div class="cx-bg" aria-hidden="true"><div class="g"></div><span class="blob b1"></span><span class="blob b2"></span><div class="grid"></div></div>
+<div class="cx-bg" aria-hidden="true"><div class="g"></div><div class="grid"></div></div>
+<canvas id="brainfx" aria-hidden="true"></canvas>
 
 <div class="cx-rail" id="rail" aria-label="Progression">
   <a href="#etape-c">C</a><a href="#etape-a">A</a><a href="#etape-l">L</a><a href="#etape-m">M</a><a href="#etape-e">E</a>
@@ -124,8 +107,7 @@ body.calme-exp footer{position:relative;z-index:1;background:transparent;border-
 
 <main>
 
-  <!-- 1 · Ouverture -->
-  <section class="scene in" id="ouverture">
+  <section class="scene in" id="ouverture" data-brain="-1">
     <div class="sc-in">
       <span class="sc-eyebrow fx">La Méthode CALME™ · Persua</span>
       <h1 class="sc-line fx d1">Dans un rendez-vous, le cerveau le plus <span class="hl">stable</span> prend le contrôle.</h1>
@@ -134,8 +116,7 @@ body.calme-exp footer{position:relative;z-index:1;background:transparent;border-
     <div class="cx-cue" aria-hidden="true">Découvrir<i></i></div>
   </section>
 
-  <!-- 2 · Le basculement -->
-  <section class="scene" id="constat">
+  <section class="scene" id="constat" data-brain="-1">
     <div class="sc-in">
       <h2 class="sc-line fx" style="font-size:clamp(26px,4.2vw,52px)">Repense à ton dernier rendez-vous raté.<br><span class="hl">À quel moment ça a basculé ?</span></h2>
       <p class="sc-sub fx d1">Le prix annoncé. La première objection. Le silence qui s'installe. Ça a basculé au moment où tu t'es tendu. Ton client l'a senti avant toi.</p>
@@ -143,8 +124,7 @@ body.calme-exp footer{position:relative;z-index:1;background:transparent;border-
     </div>
   </section>
 
-  <!-- 3 · Les 5 lettres -->
-  <section class="scene" id="alphabet">
+  <section class="scene" id="alphabet" data-brain="-1">
     <div class="sc-in">
       <span class="sc-eyebrow fx">Cinq étapes. Un ordre non négociable.</span>
       <div class="sc-alphabet fx d1" aria-hidden="true"><b>C</b><b>A</b><b>L</b><b>M</b><b>E</b></div>
@@ -152,67 +132,61 @@ body.calme-exp footer{position:relative;z-index:1;background:transparent;border-
     </div>
   </section>
 
-  <!-- C -->
-  <section class="scene sc-step" id="etape-c">
-    <div class="sc-letter" aria-hidden="true"><span>C</span></div>
+  <section class="scene sc-step" id="etape-c" data-brain="0">
     <div class="sc-in">
       <span class="sc-eyebrow fx">Étape 1</span>
       <h2 class="sc-stepname fx d1">Cadre</h2>
       <p class="sc-stepthese fx d1">L'état du vendeur.</p>
       <p class="sc-sub fx d2">La méthode commence avant le rendez-vous, et elle commence par toi. Un vendeur dérégulé communique son alarme, quoi qu'il dise.</p>
       <p class="sc-note fx d3"><b>Corégulation</b> · James Gross, Lisa Feldman Barrett</p>
+      <br><span class="sc-zone fx d3"><i></i>Zone active : cortex préfrontal · régulation</span>
     </div>
   </section>
 
-  <!-- A -->
-  <section class="scene sc-step" id="etape-a">
-    <div class="sc-letter" aria-hidden="true"><span>A</span></div>
+  <section class="scene sc-step" id="etape-a" data-brain="1">
     <div class="sc-in">
       <span class="sc-eyebrow fx">Étape 2</span>
       <h2 class="sc-stepname fx d1">Apaiser</h2>
       <p class="sc-stepthese fx d1">La sécurité avant l'offre.</p>
       <p class="sc-sub fx d2">Un prospect sur la défensive n'écoute pas, il surveille. Tant que son cerveau te classe dans la colonne « menace », aucun argument ne passe.</p>
       <p class="sc-note fx d3"><b>Régulation de la menace</b> · Joseph LeDoux</p>
+      <br><span class="sc-zone fx d3"><i></i>Zone active : amygdale · détection de menace</span>
     </div>
   </section>
 
-  <!-- L -->
-  <section class="scene sc-step" id="etape-l">
-    <div class="sc-letter" aria-hidden="true"><span>L</span></div>
+  <section class="scene sc-step" id="etape-l" data-brain="2">
     <div class="sc-in">
       <span class="sc-eyebrow fx">Étape 3</span>
       <h2 class="sc-stepname fx d1">Localiser</h2>
       <p class="sc-stepthese fx d1">La douleur mesurée.</p>
       <p class="sc-sub fx d2">Ton client mesure lui-même ce que son problème lui coûte. Une perte pèse près de deux fois plus lourd qu'un gain, à une condition : que ce soit lui qui la voie.</p>
       <p class="sc-note fx d3"><b>Aversion à la perte</b> · Kahneman &amp; Tversky</p>
+      <br><span class="sc-zone fx d3"><i></i>Zone active : insula · le coût ressenti</span>
     </div>
   </section>
 
-  <!-- M -->
-  <section class="scene sc-step" id="etape-m">
-    <div class="sc-letter" aria-hidden="true"><span>M</span></div>
+  <section class="scene sc-step" id="etape-m" data-brain="3">
     <div class="sc-in">
       <span class="sc-eyebrow fx">Étape 4</span>
       <h2 class="sc-stepname fx d1">Miroir</h2>
       <p class="sc-stepthese fx d1">La valeur dans ses mots.</p>
       <p class="sc-sub fx d2">Quand un client entend son propre vocabulaire décrire la solution, il ressent le « c'est exactement ça ». C'est lui qui vend, pas ta plaquette.</p>
       <p class="sc-note fx d3"><b>Marqueurs somatiques</b> · Antonio Damasio</p>
+      <br><span class="sc-zone fx d3"><i></i>Zone active : cortex ventromédian · marqueurs somatiques</span>
     </div>
   </section>
 
-  <!-- E -->
-  <section class="scene sc-step" id="etape-e">
-    <div class="sc-letter" aria-hidden="true"><span>E</span></div>
+  <section class="scene sc-step" id="etape-e" data-brain="4">
     <div class="sc-in">
       <span class="sc-eyebrow fx">Étape 5</span>
       <h2 class="sc-stepname fx d1">Engager</h2>
       <p class="sc-stepthese fx d1">La décision déjà mûre.</p>
       <p class="sc-sub fx d2">Le closing CALME vérifie que la décision est mûre, puis la formule. Quand les étapes ont fait leur travail, l'engagement est une formalité. Toute la différence entre conclure et pousser.</p>
+      <br><span class="sc-zone fx d3"><i></i>Zone active : striatum · engagement</span>
     </div>
   </section>
 
-  <!-- Refus -->
-  <section class="scene" id="refus">
+  <section class="scene" id="refus" data-brain="5">
     <div class="sc-in">
       <span class="sc-eyebrow fx">Ce que la méthode refuse</span>
       <div class="sc-refus-list">
@@ -224,8 +198,7 @@ body.calme-exp footer{position:relative;z-index:1;background:transparent;border-
     </div>
   </section>
 
-  <!-- Final -->
-  <section class="scene sc-final" id="commencer">
+  <section class="scene sc-final" id="commencer" data-brain="6">
     <div class="sc-in">
       <span class="sc-eyebrow fx">Le point de départ est gratuit</span>
       <h2 class="sc-line fx d1" style="font-size:clamp(28px,4.6vw,56px)">Avant la méthode :<br><span class="hl">le diagnostic.</span></h2>
@@ -247,24 +220,32 @@ body.calme-exp footer{position:relative;z-index:1;background:transparent;border-
   <p><a href="/mentions-legales">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/cgv">CGV</a></p>
 </div></footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ===== scènes + rail (identique au live) ===== */
   var scenes = [].slice.call(document.querySelectorAll('.scene'));
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); });
   }, {threshold:.35});
   scenes.forEach(function(s){ io.observe(s); });
 
-  // rail : visible pendant les étapes, lettre active
   var rail = document.getElementById('rail');
   var links = [].slice.call(rail.querySelectorAll('a'));
   var stepIds = links.map(function(a){ return a.getAttribute('href').slice(1); });
+
+  /* ===== état cerveau piloté par la scène visible ===== */
+  var brainStep = -1; // -1 intro · 0-4 = C..E · 5 refus · 6 final
   var spy = new IntersectionObserver(function(es){
     es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var b = e.target.getAttribute('data-brain');
+      if(b !== null) brainStep = parseInt(b,10);
       var i = stepIds.indexOf(e.target.id);
-      if(i > -1 && e.isIntersecting){
-        links.forEach(function(l,j){ l.classList.toggle('on', j===i); });
-      }
+      if(i > -1) links.forEach(function(l,j){ l.classList.toggle('on', j===i); });
+      updateZoneLabel();
     });
     var inSteps = scenes.some(function(s){ return s.classList.contains('sc-step') && nearViewport(s); });
     rail.classList.toggle('show', inSteps);
@@ -275,11 +256,311 @@ body.calme-exp footer{position:relative;z-index:1;background:transparent;border-
     return r.top < innerHeight*.6 && r.bottom > innerHeight*.4;
   }
 
-  // nav : visible en haut de page seulement
   var nav = document.querySelector('nav');
   addEventListener('scroll', function(){
     nav.classList.toggle('gone', scrollY > innerHeight*.6 && !document.querySelector('nav.menu-open'));
   }, {passive:true});
+
+  /* ===== étiquette de zone ===== */
+  function updateZoneLabel(){}
+
+  if(reduced || !window.THREE) return; // pas de cerveau si motion réduite
+
+  /* ============================================================
+     CERVEAU · nuage de points procédural
+     ============================================================ */
+  var canvas = document.getElementById('brainfx');
+  var renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:false, powerPreference:'low-power'});
+  } catch(e) { return; } // pas de WebGL : la page reste pleinement fonctionnelle sans cerveau
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  var scene3 = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(38, 1, .1, 20);
+  camera.position.set(0, 0, 3.0);
+
+  /* ---- bruit 3D simple (value noise + fbm) ---- */
+  function hash3(x,y,z){
+    var n = Math.sin(x*127.1 + y*311.7 + z*74.7) * 43758.5453;
+    return n - Math.floor(n);
+  }
+  function vnoise(x,y,z){
+    var xi=Math.floor(x), yi=Math.floor(y), zi=Math.floor(z);
+    var xf=x-xi, yf=y-yi, zf=z-zi;
+    function s(t){return t*t*(3-2*t);}
+    var u=s(xf), v=s(yf), w=s(zf);
+    function h(i,j,k){return hash3(xi+i, yi+j, zi+k);}
+    return (
+      (h(0,0,0)*(1-u)+h(1,0,0)*u)*(1-v)*(1-w) +
+      (h(0,1,0)*(1-u)+h(1,1,0)*u)*v*(1-w) +
+      (h(0,0,1)*(1-u)+h(1,0,1)*u)*(1-v)*w +
+      (h(0,1,1)*(1-u)+h(1,1,1)*u)*v*w
+    );
+  }
+  function fbm(x,y,z){
+    return vnoise(x,y,z)*.55 + vnoise(x*2.1,y*2.1,z*2.1)*.28 + vnoise(x*4.3,y*4.3,z*4.3)*.17;
+  }
+  /* plis corticaux : bruit "ridged" */
+  function ridge(x,y,z){ return 1 - Math.abs(2*fbm(x,y,z) - 1); }
+
+  /* ---- nuage de points : ÉCHANTILLON D'UN VRAI CORTEX ----
+     Points bakés depuis pialCortex.obj (Losses/open-brain, licence MIT),
+     30 000 sommets quantifiés -> assets/models/brain-points.bin (~180 Ko). */
+  var BRAIN_ZFLIP = -1;  // frontal du mesh = -Z -> on remet frontal en +z
+  var isMobile = innerWidth < 720;
+  var TOTAL = 55000;
+  var pos = new Float32Array(TOTAL*3);
+  var col = new Float32Array(TOTAL*3);
+  var colTarget = new Float32Array(TOTAL*3);
+  var baseCol = new Float32Array(TOTAL*3);
+  var finalPos = new Float32Array(TOTAL*3);   // rempli quand le mesh arrive
+  var meshReady = false;
+
+  /* Nuage de points échantillonné d'un cortex réel — mesh open-brain (Losses/open-brain, licence MIT). */
+  /* teinte provisoire (indigo) le temps du chargement */
+  for(var i=0;i<TOTAL;i++){
+    var t0 = hash3(i*0.19, 3.3, 1.1);
+    baseCol[i*3]=.30+.16*t0; baseCol[i*3+1]=.27+.12*t0; baseCol[i*3+2]=.95;
+    col[i*3]=baseCol[i*3]; col[i*3+1]=baseCol[i*3+1]; col[i*3+2]=baseCol[i*3+2];
+  }
+
+  /* ---- assemblage au scroll : poussiere -> cerveau ---- */
+  var scatterPos = new Float32Array(TOTAL*3);
+  var stagger = new Float32Array(TOTAL);
+  for(var si=0;si<TOTAL;si++){
+    var rr = 2.0 + 1.6*hash3(si*0.37,1.7,3.1);
+    var aa = hash3(si*0.11,7.3,2.9)*Math.PI*2;
+    var bb = Math.acos(2*hash3(si*0.23,4.1,8.7)-1);
+    scatterPos[si*3]   = rr*Math.sin(bb)*Math.cos(aa);
+    scatterPos[si*3+1] = rr*0.7*Math.cos(bb);
+    scatterPos[si*3+2] = rr*0.6*Math.sin(bb)*Math.sin(aa);
+    stagger[si] = hash3(si*0.51,2.2,5.5);
+    pos[si*3]=scatterPos[si*3]; pos[si*3+1]=scatterPos[si*3+1]; pos[si*3+2]=scatterPos[si*3+2];
+  }
+  var assembleT = 0, assembleTarget = 0, assembleDirty = true;
+  var assembleAnchor = document.getElementById('alphabet');
+  function computeAssembleTarget(){
+    var end = assembleAnchor.offsetTop + assembleAnchor.offsetHeight*0.6;
+    var raw = (scrollY + innerHeight*0.6) / end;
+    assembleTarget = Math.min(1, Math.max(0, (raw - 0.18) / 0.82));
+  }
+  addEventListener('scroll', computeAssembleTarget, {passive:true});
+  addEventListener('resize', computeAssembleTarget);
+  computeAssembleTarget();
+
+  /* charge le vrai cortex : remplit finalPos + teinte par profondeur */
+  fetch('assets/models/brain-points.bin').then(function(r){ return r.arrayBuffer(); }).then(function(ab){
+    var q = new Int16Array(ab);
+    var n = Math.min(TOTAL, (q.length/3)|0);
+    for(var i=0;i<n;i++){
+      var x=q[i*3]/32767, y=q[i*3+1]/32767, z=q[i*3+2]/32767;
+      finalPos[i*3]=x*1.02; finalPos[i*3+1]=y*1.02; finalPos[i*3+2]=z*BRAIN_ZFLIP*1.02;
+      var t = 0.5 + 0.5*(z*BRAIN_ZFLIP);            /* face avant plus lumineuse */
+      baseCol[i*3]=.24+.20*t; baseCol[i*3+1]=.22+.15*t; baseCol[i*3+2]=.95;
+    }
+    meshReady = true; assembleDirty = true; setZone(brainStep);
+  }).catch(function(){ /* si le mesh ne charge pas : la poussiere reste, aucune casse */ });
+
+  /* ---- zones anatomiques (couleur rouge par étape) ---- */
+  /* [ [cx,cy,cz,rayon], ... ]  coordonnées locales cerveau */
+  var ZONES = [
+    [[ 0.26, 0.32, 0.66, .40],[-0.26, 0.32, 0.66, .40]],          // C · cortex préfrontal
+    [[ 0.34,-0.16, 0.24, .17],[-0.34,-0.16, 0.24, .17]],          // A · amygdale
+    [[ 0.58, 0.02, 0.12, .21],[-0.58, 0.02, 0.12, .21]],          // L · insula
+    [[ 0.0 ,-0.08, 0.80, .27]],                                    // M · vmPFC
+    [[ 0.22, 0.04, 0.12, .20],[-0.22, 0.04, 0.12, .20]]           // E · striatum
+  ];
+  var RED = [1.0, .28, .36];
+
+  function setZone(step){
+    var zone = (step>=0 && step<=4) ? ZONES[step] : null;
+    var calme = 1;
+    for(var i=0;i<TOTAL;i++){
+      var r=baseCol[i*3]*calme, g=baseCol[i*3+1]*calme, b=Math.min(1,baseCol[i*3+2]*calme);
+      if(zone){
+        var x=pos[i*3], y=pos[i*3+1], z=pos[i*3+2];
+        var w=0;
+        for(var zi=0;zi<zone.length;zi++){
+          var zc=zone[zi];
+          var d=Math.sqrt((x-zc[0])*(x-zc[0])+(y-zc[1])*(y-zc[1])+(z-zc[2])*(z-zc[2]));
+          var f=Math.max(0, 1 - d/zc[3]);
+          w=Math.max(w, f);
+        }
+        if(w>0.06){
+          r = Math.min(1.35, r + (RED[0]*1.5-r)*w);
+          g = g + (RED[1]-g)*w;
+          b = b + (RED[2]-b)*w;
+        } else {
+          var dim = (focusZone===step)? 0.45 : 0.8;
+          r*=dim; g*=dim; b*=dim;  /* le reste s'éteint : la zone devient le sujet */
+        }
+      }
+      colTarget[i*3]=r; colTarget[i*3+1]=g; colTarget[i*3+2]=b;
+    }
+  }
+  setZone(-1);
+
+  /* ---- objet points ---- */
+  var geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color', new THREE.BufferAttribute(col,3));
+  /* sprite rond doux */
+  var cv = document.createElement('canvas'); cv.width=cv.height=64;
+  var cx = cv.getContext('2d');
+  var gr = cx.createRadialGradient(32,32,0,32,32,32);
+  gr.addColorStop(0,'rgba(255,255,255,1)');
+  gr.addColorStop(.4,'rgba(255,255,255,.55)');
+  gr.addColorStop(1,'rgba(255,255,255,0)');
+  cx.fillStyle=gr; cx.fillRect(0,0,64,64);
+  var sprite = new THREE.CanvasTexture(cv);
+  var mat = new THREE.PointsMaterial({
+    size: isMobile? 0.018 : 0.013,
+    map: sprite, vertexColors: true, transparent: true, opacity: .85,
+    blending: THREE.AdditiveBlending, depthWrite: false, sizeAttenuation: true
+  });
+  var brain = new THREE.Points(geo, mat);
+  var group = new THREE.Group();
+  group.add(brain);
+  group.scale.setScalar(0.66);
+  group.position.y = 0;
+  scene3.add(group);
+
+  /* amas rouges par zone : garantit la lisibilite des structures profondes */
+  var zoneClouds = ZONES.map(function(zone){
+    var n = (isMobile? 260:520) * zone.length, p = new Float32Array(n*3), k=0;
+    zone.forEach(function(zc){
+      var per = n/zone.length;
+      for(var i=0;i<per;i++){
+        var gx = (Math.random()+Math.random()+Math.random()-1.5)/1.5;
+        var gy = (Math.random()+Math.random()+Math.random()-1.5)/1.5;
+        var gz = (Math.random()+Math.random()+Math.random()-1.5)/1.5;
+        p[k*3]   = zc[0] + gx*zc[3]*0.55;
+        p[k*3+1] = zc[1] + gy*zc[3]*0.55;
+        p[k*3+2] = zc[2] + gz*zc[3]*0.55;
+        k++;
+      }
+    });
+    var g2 = new THREE.BufferGeometry();
+    g2.setAttribute('position', new THREE.BufferAttribute(p,3));
+    var m2 = new THREE.PointsMaterial({
+      size: isMobile? 0.034 : 0.028, map: sprite, color: 0xFF3B4E,
+      transparent: true, opacity: 0, blending: THREE.AdditiveBlending,
+      depthWrite: false, sizeAttenuation: true
+    });
+    var pts = new THREE.Points(g2, m2);
+    group.add(pts);
+    return pts;
+  });
+
+  /* ---- mode focus : clic sur la pastille -> presenter la zone ---- */
+  var focusZone = -1;
+  /* angle (Y puis X) qui amene le centre de zone face camera */
+  function zoneFacing(zi){
+    var c = ZONES[zi][0];
+    var h = Math.sqrt(c[0]*c[0] + c[2]*c[2]) || 1e-4;
+    return { y: Math.atan2(-c[0], c[2]), x: Math.atan2(c[1], h) };
+  }
+  function nearestAngle(target, current){
+    while(target - current >  Math.PI) target -= Math.PI*2;
+    while(target - current < -Math.PI) target += Math.PI*2;
+    return target;
+  }
+  var chipEls = [];
+  document.querySelectorAll('.scene[data-brain]').forEach(function(sec){
+    var b = parseInt(sec.getAttribute('data-brain'),10);
+    var chip = sec.querySelector('.sc-zone');
+    if(!chip || b<0 || b>4) return;
+    chip.setAttribute('role','button');
+
+    chipEls.push({el:chip, zone:b});
+    chip.addEventListener('click', function(){
+      focusZone = (focusZone===b)? -1 : b;
+      chipEls.forEach(function(c){ c.el.classList.toggle('on', c.zone===focusZone); });
+      setZone(brainStep);
+    });
+  });
+
+  /* ---- boucle : rotation par crans + idle + lissage couleurs ---- */
+  var lastStep = -99;
+  var rotTarget = 0, rotCurrent = 0, idle = 0;
+  var EIGHTH = Math.PI/4; // 45° par étape
+
+  function stepToRot(s){
+    if(s < 0) return 0;
+    if(s <= 4) return (s+1)*EIGHTH;      // C..E : 1/8 → 5/8 de tour
+    if(s === 5) return 6*EIGHTH;
+    return 7*EIGHTH;                      // final
+  }
+
+  function resize(){
+    var w = innerWidth, h = innerHeight;
+    renderer.setSize(w,h,false);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+  }
+  addEventListener('resize', resize); resize();
+
+  var clock = new THREE.Clock();
+  function tick(){
+    var dt = Math.min(clock.getDelta(), .05);
+    if(brainStep !== lastStep){
+      lastStep = brainStep;
+      rotTarget = stepToRot(brainStep);
+      if(focusZone !== -1){                            // scroll = sortie du focus
+        focusZone = -1;
+        chipEls.forEach(function(c){ c.el.classList.remove('on'); });
+      }
+      setZone(brainStep);
+    }
+    idle += dt*0.05;                                    // dérive lente permanente
+    rotCurrent += (rotTarget - rotCurrent)*Math.min(1, dt*2.2);  // cran amorti
+    var focused = (brainStep >= 0 && brainStep <= 4);
+    var BASE = 0.66;
+    var wantY, wantX, wantPX, wantS;
+    if(focused){
+      var f = zoneFacing(brainStep);
+      wantY = nearestAngle(f.y, group.rotation.y);
+      wantX = f.x;
+      wantPX = 0.72;                                    // le cerveau se décale à droite (texte lisible)
+      wantS = BASE*1.02;                                // à peine plus près
+    } else {
+      wantY = nearestAngle(Math.PI/2 + rotCurrent + idle, group.rotation.y);
+      wantX = -0.06 + Math.sin(idle*0.7)*0.02;
+      wantPX = 0;
+      wantS = BASE;
+    }
+    var k = Math.min(1, dt*2.6);
+    group.rotation.y += (wantY - group.rotation.y)*k;
+    group.rotation.x += (wantX - group.rotation.x)*k;
+    group.position.x += (wantPX - group.position.x)*k;
+    var sNow = group.scale.x + (wantS - group.scale.x)*k;
+    mat.opacity += ((focused? 0.72 : 0.9) - mat.opacity)*k;   // points : cerveau toujours lisible
+    group.scale.setScalar(sNow);
+    group.position.y = Math.sin(idle*1.3)*0.015;       // respiration
+    assembleT += (assembleTarget - assembleT)*Math.min(1, dt*1.8);
+    var aEff = meshReady ? assembleT : 0;   /* dust tant que le cortex n'est pas charge */
+    if(assembleDirty || Math.abs(assembleTarget - assembleT) > 0.0005){
+      for(var i=0;i<TOTAL;i++){
+        var e = aEff*1.35 - stagger[i]*0.35;
+        e = e<0?0:(e>1?1:e); e = e*e*(3-2*e);
+        pos[i*3]   = scatterPos[i*3]   + (finalPos[i*3]  -scatterPos[i*3])*e;
+        pos[i*3+1] = scatterPos[i*3+1] + (finalPos[i*3+1]-scatterPos[i*3+1])*e;
+        pos[i*3+2] = scatterPos[i*3+2] + (finalPos[i*3+2]-scatterPos[i*3+2])*e;
+      }
+      geo.attributes.position.needsUpdate = true;
+      assembleDirty = false;
+    }
+    for(var i=0;i<TOTAL*3;i++){ col[i] += (colTarget[i]-col[i])*Math.min(1, dt*3.5); }
+    var pulse = 0.72 + 0.28*Math.sin(clock.elapsedTime*2.4);
+    zoneClouds.forEach(function(zc,i){
+      var target = (i===brainStep && brainStep<=4) ? 1.0*pulse : 0;
+      zc.material.opacity += (target - zc.material.opacity)*Math.min(1, dt*4);
+    });
+    geo.attributes.color.needsUpdate = true;
+    renderer.render(scene3, camera);
+    requestAnimationFrame(tick);
+  }
+  canvas.classList.add('ready');
+  tick();
 })();
 </script>
 <script src="assets/app.js" defer></script>

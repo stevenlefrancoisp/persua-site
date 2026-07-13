@@ -308,16 +308,17 @@ nav.scrolled{background:rgba(13,13,42,.82);backdrop-filter:blur(16px);border-bot
 .wa-widget.at-foot{opacity:0;pointer-events:none;transform:translateY(16px);transition:.35s}
 
 /* Bandeau consentement cookies (RGPD) */
-.cookie-banner{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);width:min(620px,calc(100vw - 32px));background:#13133A;color:#EDEBF6;border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:16px 18px;box-shadow:0 22px 60px -14px rgba(0,0,0,.65);z-index:300;display:flex;flex-direction:column;gap:12px;font-family:var(--body)}
-.cookie-banner p{font-size:13.5px;line-height:1.55;margin:0;color:#CFC9E6}
+.cookie-banner{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);width:min(720px,calc(100vw - 28px));background:#13133A;color:#EDEBF6;border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:11px 14px;box-shadow:0 22px 60px -14px rgba(0,0,0,.6);z-index:300;display:flex;flex-direction:row;align-items:center;gap:14px;font-family:var(--body)}
+.cookie-banner p{font-size:12.5px;line-height:1.45;margin:0;color:#CFC9E6;flex:1}
 .cookie-banner a{color:#8b83ff;text-decoration:underline}
-.cookie-banner .cb-btns{display:flex;gap:10px;justify-content:flex-end}
-.cookie-banner button{cursor:pointer;font-family:var(--body);font-weight:600;font-size:14px;padding:9px 20px;border-radius:100px;border:none;transition:.2s}
+.cookie-banner .cb-btns{display:flex;gap:8px;flex:none}
+.cookie-banner button{cursor:pointer;font-family:var(--body);font-weight:600;font-size:13px;padding:8px 16px;border-radius:100px;border:none;transition:.2s;white-space:nowrap}
 .cookie-banner .cb-refuse{background:transparent;color:#CFC9E6;border:1px solid rgba(255,255,255,.28)}
 .cookie-banner .cb-refuse:hover{background:rgba(255,255,255,.08)}
 .cookie-banner .cb-accept{background:var(--indigo);color:#fff}
 .cookie-banner .cb-accept:hover{filter:brightness(1.08)}
-@media(max-width:560px){.cookie-banner{left:12px;right:12px;transform:none;width:auto}.cookie-banner .cb-btns button{flex:1}}
+@media(max-width:560px){.cookie-banner{left:12px;right:12px;transform:none;width:auto;flex-direction:column;align-items:stretch;gap:9px}.cookie-banner .cb-btns{justify-content:flex-end}.cookie-banner .cb-btns button{flex:1}}
+@media(max-width:400px){h1.hero-h1{font-size:29px;letter-spacing:-.02em}.page-hero h1{font-size:30px}}
 
 /* Widget WhatsApp façon chat (injecté par app.js, présent sur toutes les pages) */
 .wa-widget{position:fixed;left:22px;bottom:22px;z-index:46;font-family:var(--body)}
