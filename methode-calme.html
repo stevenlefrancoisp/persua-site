@@ -22,11 +22,90 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"La Méthode CALME™ : vendre sans forcer, avec le cerveau","description":"La méthode de vente signature Persua, fondée sur les neurosciences de la décision : Cadre, Apaiser, Localiser, Miroir, Engager.","author":{"@type":"Person","name":"Steven Lefrançois","jobTitle":"Formateur en neurovente","url":"https://persua-neurovente.com/a-propos"},"publisher":{"@type":"Organization","name":"Persua","url":"https://persua-neurovente.com"},"datePublished":"2026-07-09","inLanguage":"fr","mainEntityOfPage":"https://persua-neurovente.com/methode-calme","about":["méthode de vente","neurovente","neurosciences de la vente","closing"]}
 </script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"La Méthode CALME, c'est une méthode « douce » ?","acceptedAnswer":{"@type":"Answer","text":"Non. Le calme dont il est question est celui du négociateur ou du chirurgien : un état de contrôle entraîné, pas de la gentillesse. C'est une méthode de précision, fondée sur la façon dont le cerveau décide réellement."}},{"@type":"Question","name":"En quoi la Méthode CALME est-elle différente des formations de vente classiques ?","acceptedAnswer":{"@type":"Answer","text":"Elle commence par le vendeur, pas par le client. La première étape (Cadre) consiste à réguler son propre état interne, car l'état émotionnel du vendeur se transmet au prospect. Le reste de la méthode suit l'ordre réel de la décision dans le cerveau : sécurité d'abord, valeur ensuite, engagement à la fin."}},{"@type":"Question","name":"Où apprendre la Méthode CALME ?","acceptedAnswer":{"@type":"Answer","text":"Dans l'Académie Persua (en autonomie, accès à vie), en Mentorat individuel avec Steven Lefrançois, ou en formation d'équipe finançable OPCO. Le point d'entrée gratuit est le diagnostic Persua, en 5 minutes."}}]}
-</script>
+<style>
+/* ===== Page immersive Méthode CALME ===== */
+body.calme-exp{background:#0A0A14;overflow-x:hidden}
+body.calme-exp nav{position:fixed;top:0;left:0;right:0;z-index:60;background:transparent;border:0;transition:opacity .45s,transform .45s}
+body.calme-exp nav.gone{opacity:0;transform:translateY(-14px);pointer-events:none}
+
+/* fond continu */
+.cx-bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.cx-bg .g{position:absolute;inset:0;background:
+  radial-gradient(1100px 700px at 78% 12%, rgba(84,74,250,.32), transparent 62%),
+  radial-gradient(900px 640px at 12% 88%, rgba(27,27,108,.55), transparent 60%),
+  linear-gradient(175deg,#101038 0%,#0A0A14 58%,#0A0A14 100%)}
+.cx-bg .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(75% 60% at 50% 40%,#000 30%,transparent 100%)}
+.cx-bg .blob{position:absolute;width:46vw;height:46vw;border-radius:50%;filter:blur(90px);opacity:.34}
+.cx-bg .b1{background:#544AFA;top:-12%;right:-8%}
+.cx-bg .b2{background:#1B1B6C;bottom:-16%;left:-10%}
+
+/* scènes */
+.scene{position:relative;z-index:1;min-height:100svh;display:flex;align-items:center;justify-content:center;padding:96px 24px;scroll-snap-align:start}
+html{scroll-snap-type:y proximity}
+.sc-in{max-width:880px;text-align:center;position:relative}
+.sc-eyebrow{font-family:'Chivo',sans-serif;font-weight:800;font-size:13px;letter-spacing:.32em;text-transform:uppercase;color:#8B83FF;display:block;margin-bottom:26px}
+.sc-line{font-family:'Archivo Black',sans-serif;font-size:clamp(30px,5.4vw,66px);line-height:1.12;color:#F4F2F8;letter-spacing:-.5px}
+.sc-line .hl{color:#8B83FF}
+.sc-sub{font-size:clamp(16px,1.6vw,20px);line-height:1.65;color:#C9C5E2;max-width:620px;margin:28px auto 0;font-weight:500}
+.sc-note{margin-top:34px;font-size:13.5px;color:#9B96B8;letter-spacing:.02em}
+.sc-note b{color:#B9B3DE;font-weight:600}
+
+/* lettre géante en fond de scène */
+.sc-letter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:-1;pointer-events:none}
+.sc-letter span{font-family:'Archivo Black',sans-serif;font-size:min(74vh,58vw);line-height:1;color:transparent;-webkit-text-stroke:2px rgba(139,131,255,.22);background:linear-gradient(180deg,rgba(84,74,250,.16),rgba(84,74,250,.02));-webkit-background-clip:text;background-clip:text}
+.sc-step .sc-in{max-width:760px}
+.sc-stepname{font-family:'Archivo Black',sans-serif;font-size:clamp(38px,6vw,78px);color:#F4F2F8;letter-spacing:-1px}
+.sc-stepthese{font-family:'Chivo',sans-serif;font-weight:800;font-size:clamp(17px,2vw,24px);color:#8B83FF;margin-top:10px;letter-spacing:.01em}
+
+/* écran des 5 lettres */
+.sc-alphabet{display:flex;gap:2vw;justify-content:center;margin-top:8px}
+.sc-alphabet b{font-family:'Archivo Black',sans-serif;font-size:clamp(52px,11vw,150px);color:#F4F2F8;line-height:1;transition:color .3s,transform .3s}
+.sc-alphabet b:nth-child(odd){color:#8B83FF}
+
+/* refus */
+.sc-refus-list{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.sc-refus-list span{font-family:'Archivo Black',sans-serif;font-size:clamp(24px,4vw,48px);color:#F4F2F8}
+.sc-refus-list span s{color:#5A5580;text-decoration-thickness:4px;text-decoration-color:#8B83FF}
+
+/* rail de progression */
+.cx-rail{position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:16px;opacity:0;transition:opacity .4s;pointer-events:none}
+.cx-rail.show{opacity:1;pointer-events:auto}
+.cx-rail a{font-family:'Archivo Black',sans-serif;font-size:15px;color:rgba(244,242,248,.28);text-decoration:none;transition:color .25s,transform .25s;line-height:1}
+.cx-rail a.on{color:#8B83FF;transform:scale(1.45)}
+
+/* indice scroll */
+.cx-cue{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);color:#9B96B8;font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+.cx-cue i{display:block;width:1px;height:38px;margin:12px auto 0;background:linear-gradient(#8B83FF,transparent);animation:cuedrop 1.8s infinite}
+@keyframes cuedrop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* CTA final */
+.sc-final .btn-primary{font-size:17px;padding:18px 36px;margin-top:34px}
+.sc-final-links{margin-top:26px;display:flex;gap:26px;justify-content:center;flex-wrap:wrap}
+.sc-final-links a{color:#9B96B8;font-size:14.5px;text-decoration:none;border-bottom:1px solid rgba(155,150,184,.35);padding-bottom:2px;transition:color .2s}
+.sc-final-links a:hover{color:#F4F2F8}
+.sc-author{margin-top:56px;font-size:13px;color:#6D6890}
+
+/* apparitions */
+@media (prefers-reduced-motion: no-preference){
+  .fx{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .scene.in .fx{opacity:1;transform:none}
+  .scene.in .fx.d1{transition-delay:.12s}.scene.in .fx.d2{transition-delay:.26s}.scene.in .fx.d3{transition-delay:.42s}
+  .sc-letter span{opacity:0;transform:scale(1.12);transition:opacity 1.1s,transform 1.1s cubic-bezier(.2,.7,.2,1)}
+  .scene.in .sc-letter span{opacity:1;transform:none}
+}
+
+/* footer discret */
+body.calme-exp footer{position:relative;z-index:1;background:transparent;border-top:1px solid rgba(255,255,255,.07)}
+
+@media (max-width:720px){
+  .cx-rail{right:12px;gap:13px}
+  .cx-rail a{font-size:13px}
+  .scene{padding:84px 20px}
+  .sc-letter span{font-size:88vw;-webkit-text-stroke-width:1.5px}
+}
+</style>
 </head>
-<body>
+<body class="calme-exp">
 <div id="prog"></div>
 
 <nav><div class="wrap nav-in">
@@ -37,78 +116,172 @@
   <a class="btn btn-primary" href="https://diagnostic.persua-neurovente.com/">Faire le diagnostic</a>
 </div></nav>
 
-<article class="article">
-  <div class="crumb"><a href="/">Accueil</a> / La Méthode CALME</div>
-  <span class="a-cat">La méthode</span>
-  <h1>La Méthode CALME™ : vendre sans forcer, avec le cerveau</h1>
-  <div class="a-meta"><span class="av">SL</span><span>Par Steven Lefrançois · 7 min de lecture</span></div>
+<div class="cx-bg" aria-hidden="true"><div class="g"></div><span class="blob b1"></span><span class="blob b2"></span><div class="grid"></div></div>
 
-  <p class="lead">Dans un rendez-vous, le cerveau le plus stable prend le contrôle. La Méthode CALME™ est la méthode de vente Persua : 5 étapes qui suivent l'ordre réel de la décision dans le cerveau de ton client, et qui commencent par un endroit que personne ne regarde. Le tien.</p>
+<div class="cx-rail" id="rail" aria-label="Progression">
+  <a href="#etape-c">C</a><a href="#etape-a">A</a><a href="#etape-l">L</a><a href="#etape-m">M</a><a href="#etape-e">E</a>
+</div>
 
-  <div class="article-body">
-    <div class="takeaways">
-      <h3>À retenir</h3>
-      <ul>
-        <li>CALME = Cadre, Apaiser, Localiser, Miroir, Engager. Cinq étapes, un ordre non négociable.</li>
-        <li>L'étape 1 concerne le vendeur, pas le client : ton état interne se transmet (corégulation).</li>
-        <li>Le calme dont on parle est celui du négociateur du GIGN, du chirurgien, du sniper. Un état de contrôle entraîné.</li>
-        <li>Fondée sur des travaux documentés : Kahneman, Damasio, LeDoux, Gross.</li>
-      </ul>
+<main>
+
+  <!-- 1 · Ouverture -->
+  <section class="scene in" id="ouverture">
+    <div class="sc-in">
+      <span class="sc-eyebrow fx">La Méthode CALME™ · Persua</span>
+      <h1 class="sc-line fx d1">Dans un rendez-vous, le cerveau le plus <span class="hl">stable</span> prend le contrôle.</h1>
+      <p class="sc-sub fx d2">La méthode de vente Persua, fondée sur les neurosciences de la décision. Elle commence par un endroit que personne ne regarde. Le tien.</p>
     </div>
+    <div class="cx-cue" aria-hidden="true">Découvrir<i></i></div>
+  </section>
 
-    <h2>D'où vient le nom</h2>
-    <p>Fais le test. Repense à ton dernier rendez-vous raté. À quel moment ça a basculé ? Il y a de fortes chances que ce soit au moment où TU t'es tendu : l'annonce du prix, la première objection, le silence qui s'installe. Ton client l'a senti avant toi.</p>
-    <p>J'ai appris ça bien avant la vente. Engagé à 17 ans comme sapeur de combat au 17ᵉ Régiment du Génie Parachutiste, j'ai vu ce que devient un groupe quand celui qui décide panique, et ce qu'il devient quand il reste posé. Les neurosciences ont mis un mot sur cette intuition de terrain : la <b>corégulation</b> (James Gross, Lisa Feldman Barrett). L'état physiologique le plus stable d'une relation contamine l'autre. Dans un rendez-vous de vente, c'est une arme. La Méthode CALME l'a transformée en protocole.</p>
-
-    <h2>Les 5 étapes</h2>
-    <p>Chaque lettre couvre un territoire précis du rendez-vous. Ici, tu découvres ce que chaque étape fait et pourquoi elle marche. Le mode d'emploi complet (les protocoles, les scripts, l'entraînement) vit dans l'Académie et le Mentorat : une méthode ne s'attrape pas en lisant une page, elle s'installe en la pratiquant.</p>
-
-    <h3>C · Cadre : l'état du vendeur</h3>
-    <p>La méthode commence avant le rendez-vous, et elle commence par toi. Ton état interne se transmet à ton interlocuteur, dans un sens comme dans l'autre : c'est la corégulation (James Gross, Lisa Feldman Barrett). Un vendeur dérégulé communique son alarme, quoi qu'il dise. Cette étape installe l'état qui donne sa couleur à tout le reste.</p>
-
-    <h3>A · Apaiser : la sécurité avant l'offre</h3>
-    <p>Un prospect sur la défensive n'écoute pas, il surveille (Joseph LeDoux). Tant que son cerveau te classe dans la colonne « menace », aucun argument ne passe, même excellent. Cette étape désamorce la vigilance et ouvre l'écoute, avant le moindre mot sur ton offre.</p>
-
-    <h3>L · Localiser : la douleur mesurée</h3>
-    <p>Le cœur du rendez-vous. Cette étape amène ton client à mesurer lui-même ce que son problème lui coûte, plutôt que de te l'entendre dire. Une perte pèse près de deux fois plus lourd qu'un gain équivalent dans la décision (Kahneman &amp; Tversky), à une condition : que ce soit lui qui la voie.</p>
-
-    <h3>M · Miroir : la valeur dans ses mots</h3>
-    <p>La présentation ne parle pas ta langue, elle parle la sienne. Quand un client entend son propre vocabulaire décrire la solution, il ressent le « c'est exactement ça » : un marqueur somatique (Antonio Damasio), le signal corporel qui précède la décision. C'est lui qui vend, pas ta plaquette.</p>
-
-    <h3>E · Engager : la décision déjà mûre</h3>
-    <p>Le closing CALME ne force rien : il vérifie que la décision est mûre, puis il la formule. Quand les étapes précédentes ont fait leur travail, l'engagement est une formalité. Quand elles ne l'ont pas fait, aucune « technique de closing » ne comblera le trou. C'est toute la différence entre conclure et pousser.</p>
-
-    <h2>Ce que cette méthode refuse</h2>
-    <p>Pas d'urgence fabriquée. Pas de faille exploitée. Pas de folklore non plus : tu ne trouveras ici ni « cerveau reptilien » ni « 95 % des décisions sont inconscientes », parce que ces affirmations ne tiennent pas scientifiquement. La Méthode CALME aide une décision, elle n'en fabrique pas contre l'intérêt du client. C'est la condition pour que tes clients reviennent, et qu'ils t'envoient les leurs.</p>
-
-    <h2>Où l'apprendre</h2>
-    <p>La méthode complète (les protocoles, les scripts, les 40 situations terrain) s'apprend dans <a href="/academie">l'Académie Persua</a>, en <a href="/mentorat">Mentorat individuel</a>, ou en <a href="/formation">formation d'équipe finançable OPCO</a>. Le point de départ, lui, est gratuit.</p>
-
-    <div class="article-cta">
-      <h3>Avant la méthode : le diagnostic.</h3>
-      <p>5 minutes pour savoir où ta vente fuit : découverte, prix, closing ou posture. Ton score /100 et ton levier prioritaire.</p>
-      <a class="btn btn-primary" href="https://diagnostic.persua-neurovente.com/">Faire le diagnostic gratuit →</a>
+  <!-- 2 · Le basculement -->
+  <section class="scene" id="constat">
+    <div class="sc-in">
+      <h2 class="sc-line fx" style="font-size:clamp(26px,4.2vw,52px)">Repense à ton dernier rendez-vous raté.<br><span class="hl">À quel moment ça a basculé ?</span></h2>
+      <p class="sc-sub fx d1">Le prix annoncé. La première objection. Le silence qui s'installe. Ça a basculé au moment où tu t'es tendu. Ton client l'a senti avant toi.</p>
+      <p class="sc-note fx d2"><b>Corégulation</b> : l'état physiologique le plus stable d'une relation contamine l'autre (Gross, Barrett). La Méthode CALME en a fait un protocole.</p>
     </div>
+  </section>
 
-    <h2>FAQ</h2>
-    <h3>La Méthode CALME, c'est une méthode « douce » ?</h3>
-    <p>Non. Le calme dont il est question est celui du négociateur ou du chirurgien : un état de contrôle entraîné, pas de la gentillesse. La méthode est exigeante précisément parce qu'elle demande de la maîtrise là où la plupart compensent par la pression.</p>
-    <h3>Qu'est-ce qui la différencie des formations classiques ?</h3>
-    <p>L'ordre. Elle commence par l'état du vendeur (étape Cadre), puis suit la séquence réelle de la décision : sécurité, douleur, valeur, engagement. La plupart des formations font l'inverse : elles arment le vendeur de techniques et oublient que son stress les annule toutes.</p>
-    <h3>Il faut un « bon mental » pour l'appliquer ?</h3>
-    <p>Non, il faut un protocole. Le calme de la méthode s'entraîne comme le reste : c'est la première chose qu'on installe, avec des exercices concrets, pas des injonctions à « avoir confiance en soi ».</p>
-
-    <div class="author-box">
-      <div class="abx-av"><img src="assets/brand/steven_portrait.webp" alt="Steven Lefrançois"></div>
-      <div><div class="abx-n">Steven Lefrançois</div><div class="abx-r">Fondateur de Persua, organisme de formation en neurovente. Ancien sapeur parachutiste, meilleur vendeur de sa région avant de se former aux neurosciences. Créateur de la Méthode CALME™.</div></div>
+  <!-- 3 · Les 5 lettres -->
+  <section class="scene" id="alphabet">
+    <div class="sc-in">
+      <span class="sc-eyebrow fx">Cinq étapes. Un ordre non négociable.</span>
+      <div class="sc-alphabet fx d1" aria-hidden="true"><b>C</b><b>A</b><b>L</b><b>M</b><b>E</b></div>
+      <p class="sc-sub fx d2">Cadre. Apaiser. Localiser. Miroir. Engager. La séquence suit l'ordre réel de la décision dans le cerveau de ton client.</p>
     </div>
-  </div>
-</article>
+  </section>
+
+  <!-- C -->
+  <section class="scene sc-step" id="etape-c">
+    <div class="sc-letter" aria-hidden="true"><span>C</span></div>
+    <div class="sc-in">
+      <span class="sc-eyebrow fx">Étape 1</span>
+      <h2 class="sc-stepname fx d1">Cadre</h2>
+      <p class="sc-stepthese fx d1">L'état du vendeur.</p>
+      <p class="sc-sub fx d2">La méthode commence avant le rendez-vous, et elle commence par toi. Un vendeur dérégulé communique son alarme, quoi qu'il dise.</p>
+      <p class="sc-note fx d3"><b>Corégulation</b> · James Gross, Lisa Feldman Barrett</p>
+    </div>
+  </section>
+
+  <!-- A -->
+  <section class="scene sc-step" id="etape-a">
+    <div class="sc-letter" aria-hidden="true"><span>A</span></div>
+    <div class="sc-in">
+      <span class="sc-eyebrow fx">Étape 2</span>
+      <h2 class="sc-stepname fx d1">Apaiser</h2>
+      <p class="sc-stepthese fx d1">La sécurité avant l'offre.</p>
+      <p class="sc-sub fx d2">Un prospect sur la défensive n'écoute pas, il surveille. Tant que son cerveau te classe dans la colonne « menace », aucun argument ne passe.</p>
+      <p class="sc-note fx d3"><b>Régulation de la menace</b> · Joseph LeDoux</p>
+    </div>
+  </section>
+
+  <!-- L -->
+  <section class="scene sc-step" id="etape-l">
+    <div class="sc-letter" aria-hidden="true"><span>L</span></div>
+    <div class="sc-in">
+      <span class="sc-eyebrow fx">Étape 3</span>
+      <h2 class="sc-stepname fx d1">Localiser</h2>
+      <p class="sc-stepthese fx d1">La douleur mesurée.</p>
+      <p class="sc-sub fx d2">Ton client mesure lui-même ce que son problème lui coûte. Une perte pèse près de deux fois plus lourd qu'un gain, à une condition : que ce soit lui qui la voie.</p>
+      <p class="sc-note fx d3"><b>Aversion à la perte</b> · Kahneman &amp; Tversky</p>
+    </div>
+  </section>
+
+  <!-- M -->
+  <section class="scene sc-step" id="etape-m">
+    <div class="sc-letter" aria-hidden="true"><span>M</span></div>
+    <div class="sc-in">
+      <span class="sc-eyebrow fx">Étape 4</span>
+      <h2 class="sc-stepname fx d1">Miroir</h2>
+      <p class="sc-stepthese fx d1">La valeur dans ses mots.</p>
+      <p class="sc-sub fx d2">Quand un client entend son propre vocabulaire décrire la solution, il ressent le « c'est exactement ça ». C'est lui qui vend, pas ta plaquette.</p>
+      <p class="sc-note fx d3"><b>Marqueurs somatiques</b> · Antonio Damasio</p>
+    </div>
+  </section>
+
+  <!-- E -->
+  <section class="scene sc-step" id="etape-e">
+    <div class="sc-letter" aria-hidden="true"><span>E</span></div>
+    <div class="sc-in">
+      <span class="sc-eyebrow fx">Étape 5</span>
+      <h2 class="sc-stepname fx d1">Engager</h2>
+      <p class="sc-stepthese fx d1">La décision déjà mûre.</p>
+      <p class="sc-sub fx d2">Le closing CALME vérifie que la décision est mûre, puis la formule. Quand les étapes ont fait leur travail, l'engagement est une formalité. Toute la différence entre conclure et pousser.</p>
+    </div>
+  </section>
+
+  <!-- Refus -->
+  <section class="scene" id="refus">
+    <div class="sc-in">
+      <span class="sc-eyebrow fx">Ce que la méthode refuse</span>
+      <div class="sc-refus-list">
+        <span class="fx d1"><s>L'urgence fabriquée.</s></span>
+        <span class="fx d2"><s>La faille exploitée.</s></span>
+        <span class="fx d3"><s>Le folklore.</s></span>
+      </div>
+      <p class="sc-note fx d3">Ni « cerveau reptilien », ni « 95 % des décisions sont inconscientes » : ces affirmations ne tiennent pas scientifiquement. La Méthode CALME aide une décision, elle n'en fabrique pas contre l'intérêt du client.</p>
+    </div>
+  </section>
+
+  <!-- Final -->
+  <section class="scene sc-final" id="commencer">
+    <div class="sc-in">
+      <span class="sc-eyebrow fx">Le point de départ est gratuit</span>
+      <h2 class="sc-line fx d1" style="font-size:clamp(28px,4.6vw,56px)">Avant la méthode :<br><span class="hl">le diagnostic.</span></h2>
+      <p class="sc-sub fx d2">5 minutes pour savoir où ta vente fuit : découverte, prix, closing ou posture. Ton score /100 et ton levier prioritaire.</p>
+      <a class="btn btn-primary fx d2" href="https://diagnostic.persua-neurovente.com/">Faire le diagnostic gratuit →</a>
+      <div class="sc-final-links fx d3">
+        <a href="/academie">L'Académie</a>
+        <a href="/mentorat">Le Mentorat</a>
+        <a href="/formation">Formation d'équipe OPCO</a>
+      </div>
+      <p class="sc-author fx d3">La Méthode CALME™ a été créée par Steven Lefrançois, fondateur de Persua. Ancien sapeur de combat parachutiste, meilleur vendeur de sa région avant de se former aux neurosciences.</p>
+    </div>
+  </section>
+
+</main>
 
 <footer><div class="wrap">
   <p>© Persua, 2026. Tous droits réservés. La Méthode CALME™ est une méthode Persua SAS.</p>
   <p><a href="/mentions-legales">Mentions légales</a> · <a href="/confidentialite">Confidentialité</a> · <a href="/cgv">CGV</a></p>
 </div></footer>
+
+<script>
+(function(){
+  var scenes = [].slice.call(document.querySelectorAll('.scene'));
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); });
+  }, {threshold:.35});
+  scenes.forEach(function(s){ io.observe(s); });
+
+  // rail : visible pendant les étapes, lettre active
+  var rail = document.getElementById('rail');
+  var links = [].slice.call(rail.querySelectorAll('a'));
+  var stepIds = links.map(function(a){ return a.getAttribute('href').slice(1); });
+  var spy = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var i = stepIds.indexOf(e.target.id);
+      if(i > -1 && e.isIntersecting){
+        links.forEach(function(l,j){ l.classList.toggle('on', j===i); });
+      }
+    });
+    var inSteps = scenes.some(function(s){ return s.classList.contains('sc-step') && nearViewport(s); });
+    rail.classList.toggle('show', inSteps);
+  }, {threshold:.5});
+  scenes.forEach(function(s){ spy.observe(s); });
+  function nearViewport(el){
+    var r = el.getBoundingClientRect();
+    return r.top < innerHeight*.6 && r.bottom > innerHeight*.4;
+  }
+
+  // nav : visible en haut de page seulement
+  var nav = document.querySelector('nav');
+  addEventListener('scroll', function(){
+    nav.classList.toggle('gone', scrollY > innerHeight*.6 && !document.querySelector('nav.menu-open'));
+  }, {passive:true});
+})();
+</script>
 <script src="assets/app.js" defer></script>
 </body>
 </html>
