@@ -60,12 +60,46 @@ a{color:inherit;text-decoration:none}
 .card .t{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--muted);margin-bottom:9px}
 .card .c{font-family:var(--disp);font-size:20px;letter-spacing:.14em}
 .scrollhint{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:10;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:10px;will-change:opacity}
-/* bouton WhatsApp « Demander à Steven » (ouvre WhatsApp direct) */
-.wa-btn{position:fixed;right:22px;bottom:22px;z-index:250;display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:var(--ui);font-weight:600;font-size:14.5px;padding:12px 18px 12px 14px;border-radius:100px;box-shadow:0 14px 34px -8px rgba(37,211,102,.6),0 4px 14px rgba(0,0,0,.25);transition:transform .2s}
-.wa-btn:hover{transform:translateY(-2px)}
-.wa-btn svg{width:26px;height:26px;fill:#fff;flex:none}
-body.has-cookie .wa-btn{bottom:74px}
-@media(max-width:560px){.wa-btn span{display:none}.wa-btn{padding:14px;bottom:22px}body.has-cookie .wa-btn{bottom:150px}}
+/* Widget WhatsApp « Lya » (injecté par app.js) */
+.wa-widget{position:fixed;right:22px;bottom:22px;z-index:250;font-family:var(--ui)}
+body.has-cookie .wa-widget{bottom:78px}
+.wa-launcher{position:relative;width:60px;height:60px;border:none;cursor:pointer;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 34px -8px rgba(37,211,102,.6),0 4px 14px rgba(0,0,0,.25);transition:transform .25s}
+.wa-launcher:hover{transform:scale(1.06)}
+.wa-launcher svg{width:32px;height:32px;fill:#fff;transition:.25s}
+.wa-launcher .wa-close-ic{position:absolute;opacity:0;transform:rotate(-90deg);font-size:26px;color:#fff;line-height:1}
+.wa-widget.open .wa-launcher svg{opacity:0;transform:rotate(90deg) scale(.4)}
+.wa-widget.open .wa-launcher .wa-close-ic{opacity:1;transform:none}
+.wa-launcher::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(37,211,102,.5);animation:waPulse 2.4s ease-out infinite}
+.wa-widget.open .wa-launcher::after{animation:none}
+.wa-dot{position:absolute;top:-3px;right:-3px;width:22px;height:22px;border-radius:50%;background:#ff3b30;color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;border:2px solid #fff}
+.wa-widget.open .wa-dot{display:none}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.wa-panel{position:absolute;right:0;bottom:78px;width:340px;max-width:calc(100vw - 44px);max-height:calc(100vh - 120px);display:flex;flex-direction:column;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 26px 70px -18px rgba(0,0,0,.5);opacity:0;transform:translateY(16px) scale(.96);transform-origin:bottom right;pointer-events:none;transition:.3s cubic-bezier(.2,.8,.2,1)}
+.wa-widget.open .wa-panel{opacity:1;transform:none;pointer-events:auto}
+.wa-head{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg,#1f8f76,#127a63);padding:15px 16px;color:#fff;flex:0 0 auto}
+.wa-ava{position:relative;flex:0 0 46px;width:46px;height:46px;border-radius:50%;overflow:hidden;background:#e7e0f2;box-shadow:0 0 0 2px rgba(255,255,255,.5)}
+.wa-ava img,.wa-ava svg{width:100%;height:100%;object-fit:cover;display:block}
+.wa-ava .wa-on{position:absolute;right:0;bottom:0;width:12px;height:12px;border-radius:50%;background:#31d65a;border:2px solid #127a63}
+.wa-hid{flex:1;min-width:0}.wa-hid b{display:block;font-family:var(--disp);font-weight:400;font-size:16px;line-height:1.15}.wa-hid span{font-size:12.5px;opacity:.85}
+.wa-xbtn{background:none;border:none;color:#fff;font-size:22px;line-height:1;cursor:pointer;opacity:.85;padding:2px 4px}
+.wa-body{background:#e9e2d9;background-image:radial-gradient(rgba(0,0,0,.035) 1px,transparent 1px);background-size:16px 16px;padding:20px 16px 8px;flex:0 1 auto;min-height:0;max-height:300px;overflow-y:auto}
+.wa-time{text-align:center;font-size:11.5px;color:#7a756c;margin-bottom:14px}
+.wa-msg-user{background:#d9fdd3;color:#0a2a12;border-radius:14px 4px 14px 14px;padding:10px 13px;max-width:85%;margin:12px 0 2px auto;font-size:14px;line-height:1.45;white-space:pre-line}
+.wa-bubble{position:relative;background:#fff;border-radius:4px 14px 14px 14px;padding:12px 14px;max-width:88%;box-shadow:0 1px 1px rgba(0,0,0,.12);font-size:14.5px;line-height:1.5;color:#111;white-space:pre-line}
+.wa-bubble.reply{margin-top:8px}
+.wa-typing{display:inline-flex;gap:4px;align-items:center;background:#fff;border-radius:4px 14px 14px 14px;padding:14px 16px}
+.wa-typing i{width:7px;height:7px;border-radius:50%;background:#9a94b0;animation:waType 1.2s infinite ease-in-out}
+.wa-typing i:nth-child(2){animation-delay:.18s}.wa-typing i:nth-child(3){animation-delay:.36s}
+@keyframes waType{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+.wa-msg{opacity:0;transform:translateY(6px);transition:.3s}.wa-msg.show{opacity:1;transform:none}
+.wa-chips{display:flex;flex-wrap:wrap;gap:7px;padding:11px 14px;background:#efe8df;border-top:1px solid rgba(0,0,0,.06);flex:0 0 auto}
+.wa-chips:empty{display:none;padding:0}
+.wa-chip{background:#fff;border:1px solid #cfe0d8;color:#0b7a6b;font-family:var(--ui);font-weight:600;font-size:12.3px;padding:7px 12px;border-radius:100px;cursor:pointer;text-decoration:none;transition:.15s}
+.wa-chip:hover{background:#0b7a6b;color:#fff;border-color:#0b7a6b}
+.wa-chip.wa-chip-wa{background:#25D366;color:#fff;border-color:#25D366}
+.wa-cta{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px;background:#25D366;color:#fff;text-decoration:none;font-family:var(--disp);font-weight:400;font-size:15px;padding:15px;border-radius:14px;box-shadow:0 8px 20px -6px rgba(37,211,102,.7);transition:.2s;flex:0 0 auto}
+.wa-cta:hover{background:#1fbe5b}.wa-cta svg{width:24px;height:24px;fill:#fff}
+@media (max-width:640px){.wa-widget{right:16px;bottom:16px}body.has-cookie .wa-widget{bottom:150px}.wa-launcher{width:56px;height:56px}.wa-panel{bottom:72px}}
 .scrollhint i{width:1px;height:34px;background:var(--muted);display:inline-block;animation:pulse 1.8s ease-in-out infinite;transform-origin:top}
 @keyframes pulse{0%,100%{transform:scaleY(.3);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 .zone{position:fixed;left:34px;top:50%;transform:translateY(-50%);z-index:12;max-width:440px;pointer-events:none;opacity:0;will-change:opacity}
@@ -80,9 +114,18 @@ body.has-cookie .wa-btn{bottom:74px}
 #track{position:relative;z-index:5;height:560vh;pointer-events:none}
 
 /* ===== CONTENU (au-dessus du hero, défile après le voyage) ===== */
-.content{position:relative;z-index:8;background-color:var(--deep);
-  background-image:radial-gradient(58% 42% at 84% 14%,rgba(84,74,250,.20),transparent 60%),radial-gradient(52% 44% at 8% 50%,rgba(139,131,255,.14),transparent 60%),radial-gradient(58% 42% at 90% 82%,rgba(84,74,250,.17),transparent 62%);
-  background-attachment:fixed;background-repeat:no-repeat}
+.content{position:relative;z-index:8;isolation:isolate;background:transparent}
+.cbg{position:absolute;inset:0;z-index:0;background:var(--deep)}
+.aura2{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.aura2 span{position:absolute;border-radius:50%;filter:blur(100px);opacity:.42;mix-blend-mode:screen;will-change:transform}
+.aura2 .a1{width:640px;height:640px;background:#544AFA;top:1%;right:-140px;animation:drift1 22s ease-in-out infinite}
+.aura2 .a2{width:520px;height:520px;background:#8b83ff;top:28%;left:-160px;animation:drift2 27s ease-in-out infinite}
+.aura2 .a3{width:600px;height:600px;background:#4747FD;top:55%;right:-120px;animation:drift3 31s ease-in-out infinite}
+.aura2 .a4{width:500px;height:500px;background:#6f5cff;top:80%;left:-100px;animation:drift1 25s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,60px) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(80px,-50px) scale(1.1)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,-40px) scale(1.14)}}
+.content .nav2,.content .sec,.content .final,.content>footer{position:relative;z-index:2}
 .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
 .nav2{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:18px 34px;background:rgba(7,7,26,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav2 .b{font-family:var(--disp);font-size:17px;letter-spacing:-.02em;text-transform:uppercase}
@@ -211,6 +254,8 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 
 <!-- ===== CONTENU ===== -->
 <main class="content">
+  <div class="cbg"></div>
+  <div class="aura2"><span class="a1"></span><span class="a2"></span><span class="a3"></span><span class="a4"></span></div>
   <nav class="nav2">
     <div class="b">Persua</div>
     <div class="lk"><a href="/methode-calme">Méthode CALME</a><a href="#offres">Offres</a><a href="#avis">Avis</a><a href="#faq">FAQ</a></div>
@@ -308,13 +353,10 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   <footer><div class="wrap">Persua SASU · La vente adaptée au cerveau · Proposition A</div></footer>
 </main>
 
-<a class="wa-btn" href="https://wa.me/33749554615?text=Bonjour%20Steven%2C%20j'ai%20une%20question%20sur%20Persua." target="_blank" rel="noopener" aria-label="Demander à Steven sur WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.9.9-2.7-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.5-.2-.3.2-.3.5-.9.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.4c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.5 2.7.5 1.4 1.5 2.5 2.9 3.3.5.3 1 .5 1.5.6.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.1-.4-.2z"/></svg>
-  <span>Demander à Steven</span>
-</a>
 <div class="lightbox" id="lb"><div class="lb-inner"><button class="lb-close" id="lbClose" aria-label="Fermer">×</button><iframe id="lbFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="assets/app.js?v=31"></script>
 <script src="assets/reviews.js?v=4"></script>
 <script>
 (function(){
@@ -404,11 +446,6 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   // reveal du contenu
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.15});
   document.querySelectorAll('.rev').forEach(function(el,i){el.style.transitionDelay=(i%3*0.07)+'s';io.observe(el);});
-  // lightbox vidéo (fermeture)
-  var lb=document.getElementById('lb');
-  if(lb){ function closeLb(){ lb.classList.remove('open'); var f=document.getElementById('lbFrame'); if(f)f.src=''; document.body.style.overflow=''; }
-    lb.addEventListener('click',function(e){ if(e.target===lb||e.target.id==='lbClose') closeLb(); });
-    addEventListener('keydown',function(e){ if(e.key==='Escape'&&lb.classList.contains('open')) closeLb(); }); }
   // calculateur interactif
   (function(){var rdv=document.getElementById('c-rdv'),pan=document.getElementById('c-panier'),tx=document.getElementById('c-taux');if(!rdv)return;
     function euro(n){return Math.round(n).toLocaleString('fr-FR')+' €';}
@@ -417,12 +454,6 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       var now=R*12*T*P, neuro=(R*1.10)*12*Math.min(T+0.05,1)*P;
       document.getElementById('calc-out').textContent=euro(Math.max(neuro-now,0));}
     [rdv,pan,tx].forEach(function(el){el.addEventListener('input',upd);});upd();})();
-  // consentement cookies + Google Tag Manager
-  (function(){var GTM='GTM-PDHDPP3K';function loadGTM(){if(window.__gtmLoaded)return;window.__gtmLoaded=true;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',GTM);}
-    var consent=null;try{consent=localStorage.getItem('persua-consent');}catch(e){}if(consent==='granted')loadGTM();
-    function decide(v){try{localStorage.setItem('persua-consent',v);}catch(e){}var b=document.getElementById('cookieBanner');if(b)b.remove();document.body.classList.remove('has-cookie');if(v==='granted')loadGTM();}
-    function show(){if(document.getElementById('cookieBanner'))return;var d=document.createElement('div');d.id='cookieBanner';d.className='cookie-banner';d.innerHTML="<p>Cookies de mesure d'audience (Google Analytics) pour améliorer le site. <a href=\"/confidentialite\">En savoir plus</a>.</p><div class=\"cb-btns\"><button class=\"cb-refuse\" type=\"button\">Refuser</button><button class=\"cb-accept\" type=\"button\">Accepter</button></div>";document.body.appendChild(d);document.body.classList.add('has-cookie');d.querySelector('.cb-accept').addEventListener('click',function(){decide('granted');});d.querySelector('.cb-refuse').addEventListener('click',function(){decide('denied');});}
-    if(consent!=='granted'&&consent!=='denied')show();})();
 })();
 </script>
 </body>

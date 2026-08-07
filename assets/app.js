@@ -216,7 +216,7 @@
           '<div class="wa-bubble wa-msg">Bonjour 👋\n\nUne question sur les offres, les prix, le financement ? Choisissez ci-dessous, je réponds tout de suite. Sinon, écrivez-moi.</div>'+
         '</div>'+
         '<div class="wa-chips" id="waChips"></div>'+
-        '<a class="wa-cta" href="'+waLink("Bonjour Lya, j'ai une question sur Persua.")+'" target="_blank" rel="noopener">'+WA+'Échanger sur WhatsApp</a>'+
+        '<a class="wa-cta" href="'+waLink("Bonjour Lya, j'ai une question sur Persua.")+'" target="_blank" rel="noopener">'+WA+'Demander à Steven</a>'+
       '</div>'+
       '<button class="wa-launcher" aria-label="Ouvrir le chat WhatsApp"><span class="wa-dot">1</span>'+WA+'<span class="wa-close-ic">&times;</span></button>';
     document.body.appendChild(w);
