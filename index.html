@@ -35,7 +35,8 @@ html.lenis,html.lenis body{height:auto}
   --disp:"Archivo Black",sans-serif; --ui:"Archivo",sans-serif; --mono:"Space Mono",monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--ui);color:var(--ink);background:var(--deep);overflow-x:hidden}
+html{overflow-x:hidden}
+body{font-family:var(--ui);color:var(--ink);background:var(--deep)}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--indigo);color:#fff}
 
@@ -115,7 +116,7 @@ body.has-cookie .wa-widget{bottom:78px}
 
 /* ===== CONTENU (au-dessus du hero, défile après le voyage) ===== */
 .content{position:relative;z-index:8;isolation:isolate;background:transparent}
-.cbg{position:absolute;inset:0;z-index:0;background:var(--deep)}
+.cbg{position:absolute;inset:0;z-index:0;background:rgba(5,5,15,0.6)}
 .aura2{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .aura2 span{position:absolute;border-radius:50%;filter:blur(100px);opacity:.42;mix-blend-mode:screen;will-change:transform}
 .aura2 .a1{width:640px;height:640px;background:#544AFA;top:1%;right:-140px;animation:drift1 22s ease-in-out infinite}
@@ -125,7 +126,8 @@ body.has-cookie .wa-widget{bottom:78px}
 @keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-60px,60px) scale(1.12)}}
 @keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(80px,-50px) scale(1.1)}}
 @keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,-40px) scale(1.14)}}
-.content .nav2,.content .sec,.content .final,.content>footer{position:relative;z-index:2}
+.content .sec,.content .final,.content>footer{position:relative;z-index:2}
+.nav2{z-index:40}
 .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
 .nav2{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:18px 34px;background:rgba(7,7,26,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav2 .b{font-family:var(--disp);font-size:17px;letter-spacing:-.02em;text-transform:uppercase}
@@ -255,7 +257,6 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 <!-- ===== CONTENU ===== -->
 <main class="content">
   <div class="cbg"></div>
-  <div class="aura2"><span class="a1"></span><span class="a2"></span><span class="a3"></span><span class="a4"></span></div>
   <nav class="nav2">
     <div class="b">Persua</div>
     <div class="lk"><a href="/methode-calme">Méthode CALME</a><a href="#offres">Offres</a><a href="#avis">Avis</a><a href="#faq">FAQ</a></div>
@@ -403,7 +404,8 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       topbar=document.getElementById('topbar'),labHead=document.getElementById('labHead'),card=document.getElementById('card'),
       hint=document.getElementById('hint'),zone=document.getElementById('zone'),zkTxt=document.getElementById('zkTxt'),
       zBig=document.getElementById('zBig'),zTitle=document.getElementById('zTitle'),zText=document.getElementById('zText'),zBars=document.getElementById('zBars').children;
-  var P=0,brainReveal=0,revealed=0,scanTarget=0,curZone=-1;
+  var P=0,brainReveal=0,revealed=0,scanTarget=0,curZone=-1,cspin=0,lastT=0;
+  var _fp=location.search.match(/[?&]p=([0-9.]+)/),FORCEP=_fp?parseFloat(_fp[1]):null;
   var starCv=document.getElementById('stars'),sctx=starCv?starCv.getContext('2d'):null,STARS=[];
   function initStars(){STARS=[];var N=Math.min(360,Math.round(innerWidth*innerHeight/8000));for(var i=0;i<N;i++){STARS.push({x:Math.random(),y:Math.random(),r:Math.random()*1.5+0.35,a:Math.random()*0.6+0.25,tw:Math.random()*2.6+0.5,vx:(Math.random()-0.5)*0.00006,vy:Math.random()*0.0001+0.00003});}}
   function sizeStars(){if(!starCv||!sctx)return;var dpr=Math.min(devicePixelRatio,2);starCv.width=innerWidth*dpr;starCv.height=innerHeight*dpr;sctx.setTransform(dpr,0,0,dpr,0,0);}
@@ -412,7 +414,7 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   function setZone(i){i=clamp(i,0,ZONES.length-1);if(i===curZone)return;curZone=i;var z=ZONES[i];zkTxt.textContent='Zone '+(i+1)+' / 5 — activée';zBig.textContent=z.L;zTitle.textContent=z.t;zText.textContent=z.d;for(var k=0;k<zBars.length;k++)zBars[k].classList.toggle('on',k<=i);}
   function frame(){
     var vh=innerHeight,r=track.getBoundingClientRect();
-    P=clamp((-r.top)/(track.offsetHeight-vh),0,1);
+    P=clamp((-r.top)/(track.offsetHeight-vh),0,1); if(FORCEP!==null)P=clamp(FORCEP,0,1);
     var e=smooth(0.05,0.30,P),innerP=smooth(0.30,1.0,P),dark=smooth(0.05,0.30,P);
     var endFade=1-smooth(0.9,1.0,P);                       // la couche hero s'efface à la fin du voyage
     stage.style.background='rgb('+Math.round(mix(19,7,dark))+','+Math.round(mix(19,7,dark))+','+Math.round(mix(58,26,dark))+')';
@@ -430,13 +432,16 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       var hpx=rect.left+HEAD_FX*rect.width,hpy=rect.top+HEAD_FY*rect.height;
       vTmp.set((hpx/innerWidth)*2-1,-((hpy/innerHeight)*2-1),0.5).unproject(camera);vTmp.sub(camera.position).normalize();
       var dist=-camera.position.z/vTmp.z;var hx=camera.position.x+vTmp.x*dist,hy=camera.position.y+vTmp.y*dist;
-      var headScale=(HEAD_DIA*rect.height*wpp)/(2*R),fillScale=(0.72*Hw)/(2*R);
-      var sc=mix(headScale,fillScale,e),pxw=mix(hx,0,e),pyw=mix(hy,0,e);
+      var cT=smooth(0.9,1.0,P);                     // phase « contenu » : le cerveau devient fond immersif
+      var _now=Date.now(); if(lastT===0)lastT=_now; var _dt=Math.min((_now-lastT)/1000,0.05); lastT=_now; cspin+=_dt*0.5*cT; // tourne plus vite en fond
+      var headScale=(HEAD_DIA*rect.height*wpp)/(2*R),fillScale=(0.72*Hw)/(2*R),immScale=(1.1*Hw)/(2*R);
+      var sc=mix(mix(headScale,fillScale,e),immScale,cT),pxw=mix(hx,0,e)*(1-cT),pyw=mix(hy,0,e)*(1-cT);
       var zf=clamp(innerP*5,0,4.999),zi=Math.floor(zf),zj=Math.min(zi+1,4),fr=zf-zi;setZone(zi);
-      var az=mix(ZONES[zi].az,ZONES[zj].az,fr),ey=mix(ZONES[zi].ey,ZONES[zj].ey,fr),roty=mix(0.6,-az,e);
+      var az=mix(ZONES[zi].az,ZONES[zj].az,fr),ey=mix(ZONES[zi].ey,ZONES[zj].ey,fr),roty=mix(0.6,-az,e)+cspin;
       var cr=mix(ZONES[zi].col[0],ZONES[zj].col[0],fr),cg=mix(ZONES[zi].col[1],ZONES[zj].col[1],fr),cb=mix(ZONES[zi].col[2],ZONES[zj].col[2],fr);
+      cr=mix(cr,0.55,cT);cg=mix(cg,0.51,cT);cb=mix(cb,1.0,cT);   // vire au violet en fond
       var morph=clamp(Math.max(brainReveal,smooth(0.02,0.20,P)),0,1);
-      if(mat){var u=mat.uniforms;u.uTime.value=Date.now()*0.001;u.uScale.value=sc;u.uPos.value.set(pxw,pyw,0);u.uRotY.value=roty;u.uMorph.value=morph;u.uColor.value.setRGB(cr,cg,cb);u.uAlpha.value=morph*0.92*endFade;}
+      if(mat){var u=mat.uniforms;u.uTime.value=Date.now()*0.001;u.uScale.value=sc;u.uPos.value.set(pxw,pyw,0);u.uRotY.value=roty;u.uMorph.value=morph;u.uColor.value.setRGB(cr,cg,cb);u.uAlpha.value=morph*0.92*mix(endFade,0.7,cT);u.uSize.value=1.0+cT*0.8;}
       if(glow){glow.position.set(pxw,pyw+ey*R*sc,R*sc*0.9);glow.material.color.setRGB(cr,cg,cb);glow.scale.setScalar(0.25+innerP*0.4);glow.material.opacity=smooth(0.34,0.5,P)*endFade;}
       renderer.render(scene,camera);
     }
