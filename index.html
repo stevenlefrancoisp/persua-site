@@ -59,7 +59,13 @@ a{color:inherit;text-decoration:none}
 .card{position:fixed;left:34px;bottom:34px;z-index:10;border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:rgba(19,19,58,.5);backdrop-filter:blur(6px);will-change:opacity}
 .card .t{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--muted);margin-bottom:9px}
 .card .c{font-family:var(--disp);font-size:20px;letter-spacing:.14em}
-.scrollhint{position:fixed;right:34px;bottom:34px;z-index:10;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:10px;will-change:opacity}
+.scrollhint{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:10;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:10px;will-change:opacity}
+/* bouton WhatsApp « Demander à Steven » (ouvre WhatsApp direct) */
+.wa-btn{position:fixed;right:22px;bottom:22px;z-index:250;display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-family:var(--ui);font-weight:600;font-size:14.5px;padding:12px 18px 12px 14px;border-radius:100px;box-shadow:0 14px 34px -8px rgba(37,211,102,.6),0 4px 14px rgba(0,0,0,.25);transition:transform .2s}
+.wa-btn:hover{transform:translateY(-2px)}
+.wa-btn svg{width:26px;height:26px;fill:#fff;flex:none}
+body.has-cookie .wa-btn{bottom:74px}
+@media(max-width:560px){.wa-btn span{display:none}.wa-btn{padding:14px;bottom:22px}body.has-cookie .wa-btn{bottom:150px}}
 .scrollhint i{width:1px;height:34px;background:var(--muted);display:inline-block;animation:pulse 1.8s ease-in-out infinite;transform-origin:top}
 @keyframes pulse{0%,100%{transform:scaleY(.3);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 .zone{position:fixed;left:34px;top:50%;transform:translateY(-50%);z-index:12;max-width:440px;pointer-events:none;opacity:0;will-change:opacity}
@@ -74,7 +80,9 @@ a{color:inherit;text-decoration:none}
 #track{position:relative;z-index:5;height:560vh;pointer-events:none}
 
 /* ===== CONTENU (au-dessus du hero, défile après le voyage) ===== */
-.content{position:relative;z-index:8;background:var(--deep)}
+.content{position:relative;z-index:8;background-color:var(--deep);
+  background-image:radial-gradient(58% 42% at 84% 14%,rgba(84,74,250,.20),transparent 60%),radial-gradient(52% 44% at 8% 50%,rgba(139,131,255,.14),transparent 60%),radial-gradient(58% 42% at 90% 82%,rgba(84,74,250,.17),transparent 62%);
+  background-attachment:fixed;background-repeat:no-repeat}
 .wrap{max-width:1180px;margin:0 auto;padding:0 40px}
 .nav2{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:18px 34px;background:rgba(7,7,26,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav2 .b{font-family:var(--disp);font-size:17px;letter-spacing:-.02em;text-transform:uppercase}
@@ -300,6 +308,10 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   <footer><div class="wrap">Persua SASU · La vente adaptée au cerveau · Proposition A</div></footer>
 </main>
 
+<a class="wa-btn" href="https://wa.me/33749554615?text=Bonjour%20Steven%2C%20j'ai%20une%20question%20sur%20Persua." target="_blank" rel="noopener" aria-label="Demander à Steven sur WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.9.9-2.7-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.5-.2-.3.2-.3.5-.9.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.4c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.5 2.7.5 1.4 1.5 2.5 2.9 3.3.5.3 1 .5 1.5.6.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.1-.4-.2z"/></svg>
+  <span>Demander à Steven</span>
+</a>
 <div class="lightbox" id="lb"><div class="lb-inner"><button class="lb-close" id="lbClose" aria-label="Fermer">×</button><iframe id="lbFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -408,8 +420,8 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   // consentement cookies + Google Tag Manager
   (function(){var GTM='GTM-PDHDPP3K';function loadGTM(){if(window.__gtmLoaded)return;window.__gtmLoaded=true;(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',GTM);}
     var consent=null;try{consent=localStorage.getItem('persua-consent');}catch(e){}if(consent==='granted')loadGTM();
-    function decide(v){try{localStorage.setItem('persua-consent',v);}catch(e){}var b=document.getElementById('cookieBanner');if(b)b.remove();if(v==='granted')loadGTM();}
-    function show(){if(document.getElementById('cookieBanner'))return;var d=document.createElement('div');d.id='cookieBanner';d.className='cookie-banner';d.innerHTML="<p>Cookies de mesure d'audience (Google Analytics) pour améliorer le site. <a href=\"/confidentialite\">En savoir plus</a>.</p><div class=\"cb-btns\"><button class=\"cb-refuse\" type=\"button\">Refuser</button><button class=\"cb-accept\" type=\"button\">Accepter</button></div>";document.body.appendChild(d);d.querySelector('.cb-accept').addEventListener('click',function(){decide('granted');});d.querySelector('.cb-refuse').addEventListener('click',function(){decide('denied');});}
+    function decide(v){try{localStorage.setItem('persua-consent',v);}catch(e){}var b=document.getElementById('cookieBanner');if(b)b.remove();document.body.classList.remove('has-cookie');if(v==='granted')loadGTM();}
+    function show(){if(document.getElementById('cookieBanner'))return;var d=document.createElement('div');d.id='cookieBanner';d.className='cookie-banner';d.innerHTML="<p>Cookies de mesure d'audience (Google Analytics) pour améliorer le site. <a href=\"/confidentialite\">En savoir plus</a>.</p><div class=\"cb-btns\"><button class=\"cb-refuse\" type=\"button\">Refuser</button><button class=\"cb-accept\" type=\"button\">Accepter</button></div>";document.body.appendChild(d);document.body.classList.add('has-cookie');d.querySelector('.cb-accept').addEventListener('click',function(){decide('granted');});d.querySelector('.cb-refuse').addEventListener('click',function(){decide('denied');});}
     if(consent!=='granted'&&consent!=='denied')show();})();
 })();
 </script>
