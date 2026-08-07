@@ -33,7 +33,12 @@
         "@type": "CourseInstance",
         "courseMode": "online",
         "courseWorkload": "PT6H"
-      }
+      },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "20", "bestRating": "5", "worstRating": "1" },
+      "review": [
+        { "@type": "Review", "author": {"@type":"Person","name":"Louis Le Corre"}, "reviewRating": {"@type":"Rating","ratingValue":"5","bestRating":"5"}, "reviewBody": "Steven m'a littéralement changé la vie. Les résultats ont largement dépassé mes attentes. Aujourd'hui je suis libre et indépendant." },
+        { "@type": "Review", "author": {"@type":"Person","name":"Maxime Gillot"}, "reviewRating": {"@type":"Rating","ratingValue":"5","bestRating":"5"}, "reviewBody": "Un formateur extrêmement à l'écoute. J'ai pris confiance en moi et je me suis réconcilié avec la vente." }
+      ]
     },
     {
       "@type": "FAQPage",
@@ -52,7 +57,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=36">
+<link rel="stylesheet" href="assets/styles.css?v=37">
 <style>
 .mnt-hero{position:relative;overflow:hidden;padding:120px 0 80px;background:radial-gradient(1200px 600px at 70% -10%,#1e1e5c 0%,transparent 55%),linear-gradient(180deg,var(--deep) 0%,#141439 100%)}
 .mnt-hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
@@ -161,7 +166,7 @@
 <nav><div class="wrap nav-in">
   <a class="nav-logo" href="/"><img src="assets/brand/persua_logo.svg" alt="Persua"></a>
   <div class="nav-links">
-    <a href="/">Accueil</a><a href="/offres">Offres</a><a href="/a-propos">À propos</a><a href="/blog">Blog</a>
+    <a href="/">Accueil</a><a href="/methode-calme">Méthode CALME</a><a href="/offres">Offres</a><a href="/a-propos">À propos</a><a href="/blog">Blog</a>
   </div>
   <a class="btn btn-primary" href="/paiement-academie">Rejoindre l'Académie</a>
 </div></nav>
@@ -488,7 +493,7 @@
 
 <div class="lightbox" id="lb"><div class="lb-inner"><button class="lb-close" id="lbClose" aria-label="Fermer">×</button><iframe id="lbFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
 
-<script src="assets/app.js?v=29"></script>
+<script src="assets/app.js?v=30"></script>
 <script src="assets/reviews.js?v=4"></script>
 </body>
 </html>

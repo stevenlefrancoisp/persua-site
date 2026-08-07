@@ -171,6 +171,7 @@
     function decide(v){
       try { localStorage.setItem('persua-consent', v); } catch(e){}
       var b = document.getElementById('cookieBanner'); if(b) b.remove();
+      document.body.classList.remove('has-cookie');
       if(v === 'granted') loadGTM();
     }
     function showBanner(){
@@ -178,6 +179,7 @@
       var d = document.createElement('div'); d.id = 'cookieBanner'; d.className = 'cookie-banner';
       d.innerHTML = "<p>Cookies de mesure d'audience (Google Analytics) pour améliorer le site. <a href=\"/confidentialite\">En savoir plus</a>.</p><div class=\"cb-btns\"><button class=\"cb-refuse\" type=\"button\">Refuser</button><button class=\"cb-accept\" type=\"button\">Accepter</button></div>";
       document.body.appendChild(d);
+      document.body.classList.add('has-cookie');
       d.querySelector('.cb-accept').addEventListener('click', function(){ decide('granted'); });
       d.querySelector('.cb-refuse').addEventListener('click', function(){ decide('denied'); });
     }

@@ -14,7 +14,7 @@ body{font-family:var(--body);background:var(--deep);color:var(--white);-webkit-f
 a{text-decoration:none;color:inherit}
 .wrap{max-width:1200px;margin:0 auto;padding:0 40px}
 h1,h2,h3{font-family:var(--title);line-height:1.05;letter-spacing:-.02em}
-.eyebrow{font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--indigo)}
+.eyebrow{font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#8b83ff}
 .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(155,150,184,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(155,150,184,.07) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse 80% 60% at 50% 0%,#000 40%,transparent 100%);pointer-events:none}
 
 /* NAV */
@@ -126,7 +126,7 @@ section.block{padding:110px 0;position:relative}
 .sci-fig{font-family:var(--title);font-weight:800;font-size:22px;color:var(--indigo);letter-spacing:-.02em;line-height:1.12;margin-bottom:12px}
 .sci-card p{color:#54506E;font-size:15px;margin-bottom:14px}
 .sci-card p b{color:var(--ink)}
-.sci-src{font-size:12px;color:var(--mist);font-style:italic}
+.sci-src{font-size:12px;color:#6b6690;font-style:italic}
 @media (max-width:900px){.sci-grid{grid-template-columns:1fr}}
 
 /* OFFERS */
@@ -308,7 +308,7 @@ nav.scrolled{background:rgba(13,13,42,.82);backdrop-filter:blur(16px);border-bot
 .wa-widget.at-foot{opacity:0;pointer-events:none;transform:translateY(16px);transition:.35s}
 
 /* Bandeau consentement cookies (RGPD) */
-.cookie-banner{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);width:min(720px,calc(100vw - 28px));background:#13133A;color:#EDEBF6;border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:11px 14px;box-shadow:0 22px 60px -14px rgba(0,0,0,.6);z-index:300;display:flex;flex-direction:row;align-items:center;gap:14px;font-family:var(--body)}
+.cookie-banner{position:fixed;left:0;right:0;bottom:0;width:100%;background:rgba(15,15,42,.97);backdrop-filter:blur(12px);color:#EDEBF6;border:0;border-top:1px solid rgba(255,255,255,.12);border-radius:0;padding:12px 22px;box-shadow:0 -14px 40px -18px rgba(0,0,0,.7);z-index:300;display:flex;flex-direction:row;align-items:center;gap:16px;font-family:var(--body)}
 .cookie-banner p{font-size:12.5px;line-height:1.45;margin:0;color:#CFC9E6;flex:1}
 .cookie-banner a{color:#8b83ff;text-decoration:underline}
 .cookie-banner .cb-btns{display:flex;gap:8px;flex:none}
@@ -676,3 +676,21 @@ footer .foot-brand img{height:26px}
   .calme-panel{padding:20px 18px 18px}
 }
 @media (prefers-reduced-motion: reduce){.calme-fade{animation:none}.calme-letter,.calme-letter.on{transform:none}}
+
+/* ===== Upgrades 2026-08 : tablette, focus clavier, CTA nav secondaire, cookies non-bloquant ===== */
+/* Palier tablette : évite le saut brutal 3 colonnes -> 1 colonne (zone iPad portrait pauvre) */
+@media (min-width:901px) and (max-width:1024px){
+  .offer-grid,.pain-grid,.step-grid,.values-grid,.tgrid,.post-grid,.module-grid{grid-template-columns:repeat(2,1fr)}
+}
+/* Accessibilité clavier : focus visible partout (était absent = navigation à l'aveugle) */
+/* Garde-fou : eyebrow des sections claires toujours en --electric (jamais le mauve clair de base sur fond blanc) */
+.sec-head.light .eyebrow,.method .eyebrow,.steps .eyebrow{color:var(--electric)}
+:focus-visible{outline:2px solid #8b83ff;outline-offset:3px;border-radius:6px}
+.calc-controls input[type=range]:focus-visible,.ba:focus-visible{outline:2px solid #8b83ff;outline-offset:4px}
+/* Le CTA de la nav devient secondaire tant qu'on n'a pas scrollé : un seul bouton plein indigo domine le hero */
+nav:not(.scrolled) .nav-cta{background:rgba(255,255,255,.08);background-image:none;box-shadow:none;border:1px solid rgba(255,255,255,.24)}
+nav:not(.scrolled) .nav-cta:hover{background:rgba(255,255,255,.15);transform:none;animation:none}
+/* Bandeau cookies docké en bas : on remonte WhatsApp + le bouton RDV tant qu'il est affiché */
+body.has-cookie .wa-widget{bottom:calc(22px + 64px)}
+body.has-cookie .book{bottom:calc(24px + 64px)}
+@media (max-width:600px){ body.has-cookie .wa-widget{bottom:150px} }
