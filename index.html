@@ -45,11 +45,13 @@ a{color:inherit;text-decoration:none}
 #glowbg{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(60% 55% at 50% 14%,rgba(84,74,250,.28),transparent 60%),radial-gradient(50% 50% at 82% 78%,rgba(139,131,255,.14),transparent 60%);will-change:opacity}
 #stars{position:fixed;inset:0;z-index:2;pointer-events:none}
 #brain{position:fixed;inset:0;z-index:4;pointer-events:none}
-#portrait{position:fixed;left:50%;bottom:0;height:94vh;z-index:3;transform:translateX(-50%);transform-origin:60% 100%;will-change:transform,opacity}
-#portrait img{height:100%;display:block;filter:none;transition:filter .45s ease}
-#portrait.scan img{filter:grayscale(1) contrast(1.08)}
-#portrait::after{content:"";position:absolute;left:0;right:0;top:var(--scanpos,-20%);height:2px;background:linear-gradient(90deg,transparent,var(--violet),transparent);opacity:0;box-shadow:0 0 22px var(--violet);transition:opacity .3s}
-#portrait.scan::after{opacity:1}
+#portrait{position:fixed;left:50%;bottom:0;height:94vh;z-index:3;transform:translateX(-50%);transform-origin:46% 8%;will-change:transform,opacity}
+#portrait .human{position:relative;height:100%;display:block;filter:none;transition:filter .3s ease}
+#portrait .skull{position:absolute;top:0;left:0;height:100%;display:block;opacity:0;will-change:opacity;transform:translateY(-4%) scale(0.88);transform-origin:50% 12%}
+#portrait.scan .human{filter:grayscale(1) contrast(1.05)}
+/* line scan bleue — overlay FIXE (hors zoom, reste nette) */
+#scanline{position:fixed;left:0;right:0;top:var(--sp,-10vh);height:2px;z-index:6;opacity:0;pointer-events:none;transition:opacity .3s;background:linear-gradient(90deg,transparent 8%,rgba(160,220,255,0) 14%,rgba(160,220,255,.8) 36%,#eaf6ff 50%,rgba(160,220,255,.8) 64%,rgba(160,220,255,0) 86%,transparent 92%);box-shadow:0 0 6px rgba(150,215,255,.45)}
+body.scanning #scanline{opacity:1}
 .top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:30px 34px;will-change:opacity,transform}
 .brand{font-family:var(--disp);font-size:24px;line-height:.92;letter-spacing:-.03em;text-transform:uppercase}
 .brand small{display:block;font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.24em;color:var(--muted);margin-top:8px}
@@ -64,9 +66,9 @@ a{color:inherit;text-decoration:none}
 /* Widget WhatsApp « Lya » (injecté par app.js) */
 .wa-widget{position:fixed;right:22px;bottom:22px;z-index:250;font-family:var(--ui)}
 body.has-cookie .wa-widget{bottom:78px}
-.wa-launcher{position:relative;width:60px;height:60px;border:none;cursor:pointer;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 34px -8px rgba(37,211,102,.6),0 4px 14px rgba(0,0,0,.25);transition:transform .25s}
+.wa-launcher{position:relative;width:52px;height:52px;border:none;cursor:pointer;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 34px -8px rgba(37,211,102,.6),0 4px 14px rgba(0,0,0,.25);transition:transform .25s}
 .wa-launcher:hover{transform:scale(1.06)}
-.wa-launcher svg{width:32px;height:32px;fill:#fff;transition:.25s}
+.wa-launcher svg{width:28px;height:28px;fill:#fff;transition:.25s}
 .wa-launcher .wa-close-ic{position:absolute;opacity:0;transform:rotate(-90deg);font-size:26px;color:#fff;line-height:1}
 .wa-widget.open .wa-launcher svg{opacity:0;transform:rotate(90deg) scale(.4)}
 .wa-widget.open .wa-launcher .wa-close-ic{opacity:1;transform:none}
@@ -100,7 +102,7 @@ body.has-cookie .wa-widget{bottom:78px}
 .wa-chip.wa-chip-wa{background:#25D366;color:#fff;border-color:#25D366}
 .wa-cta{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px;background:#25D366;color:#fff;text-decoration:none;font-family:var(--disp);font-weight:400;font-size:15px;padding:15px;border-radius:14px;box-shadow:0 8px 20px -6px rgba(37,211,102,.7);transition:.2s;flex:0 0 auto}
 .wa-cta:hover{background:#1fbe5b}.wa-cta svg{width:24px;height:24px;fill:#fff}
-@media (max-width:640px){.wa-widget{right:16px;bottom:16px}body.has-cookie .wa-widget{bottom:150px}.wa-launcher{width:56px;height:56px}.wa-panel{bottom:72px}}
+@media (max-width:640px){.wa-widget{right:16px;bottom:16px}body.has-cookie .wa-widget{bottom:150px}.wa-launcher{width:48px;height:48px}.wa-launcher svg{width:26px;height:26px}.wa-panel{bottom:64px}}
 .scrollhint i{width:1px;height:34px;background:var(--muted);display:inline-block;animation:pulse 1.8s ease-in-out infinite;transform-origin:top}
 @keyframes pulse{0%,100%{transform:scaleY(.3);opacity:.4}50%{transform:scaleY(1);opacity:1}}
 .zone{position:fixed;left:34px;top:50%;transform:translateY(-50%);z-index:12;max-width:440px;pointer-events:none;opacity:0;will-change:opacity}
@@ -116,7 +118,7 @@ body.has-cookie .wa-widget{bottom:78px}
 
 /* ===== CONTENU (au-dessus du hero, défile après le voyage) ===== */
 .content{position:relative;z-index:8;isolation:isolate;background:transparent}
-.cbg{position:absolute;inset:0;z-index:0;background:rgba(5,5,15,0.6)}
+.cbg{position:absolute;inset:0;z-index:0;background:rgba(5,5,15,0.53)}
 .aura2{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .aura2 span{position:absolute;border-radius:50%;filter:blur(100px);opacity:.42;mix-blend-mode:screen;will-change:transform}
 .aura2 .a1{width:640px;height:640px;background:#544AFA;top:1%;right:-140px;animation:drift1 22s ease-in-out infinite}
@@ -227,8 +229,8 @@ body.has-cookie .wa-widget{bottom:78px}
 .final h2{font-family:var(--disp);font-size:clamp(34px,6vw,80px);letter-spacing:-.03em;max-width:18ch;margin:0 auto}
 .final .cta{margin-top:34px;display:inline-flex;gap:10px;background:var(--indigo);color:#fff;font-weight:700;font-size:17px;padding:18px 34px;border-radius:100px;box-shadow:0 18px 46px -14px rgba(84,74,250,.7)}
 footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-size:13px;text-align:center}
-@media (max-width:820px){ .wrap{padding:0 22px} .grid3,.offers,.tgrid{grid-template-columns:1fr} .calc{grid-template-columns:1fr} .stats{grid-template-columns:1fr 1fr} .nav2 .lk{display:none} #portrait{height:64vh} .lab.head{display:none} }
-@media (max-width:560px){ .top{padding:16px 18px} .brand{font-size:17px} .top .pill{padding:10px 14px;font-size:12px} .sec{padding:80px 0} .calc{padding:28px} .zone{left:22px;max-width:78vw} }
+@media (max-width:820px){ .wrap{padding:0 22px} .grid3,.offers,.tgrid{grid-template-columns:1fr} .calc{grid-template-columns:1fr} .stats{grid-template-columns:1fr 1fr} .nav2 .lk{display:none} #portrait{height:82vh} .lab.head{display:none} }
+@media (max-width:560px){ .top{padding:14px 16px} .brand{font-size:16px;line-height:.95} .brand small{display:none} .top .pill{padding:9px 13px;font-size:11px;flex:0 0 auto} .sec{padding:80px 0} .calc{padding:28px} .zone{left:20px;max-width:74vw} .zone p{font-size:15px} .zone .zbig{font-size:64px} }
 @media (prefers-reduced-motion:reduce){ .scrollhint i{animation:none} .rev{transition:none;transform:none;opacity:1} }
 </style>
 </head>
@@ -238,7 +240,9 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 <div id="glowbg"></div>
 <canvas id="stars"></canvas>
 <canvas id="brain"></canvas>
-<div id="portrait"><img src="assets/brand/steven_cutout.webp" alt="Steven Lefrançois"></div>
+<div id="scanline"></div>
+<div id="zlabel" style="position:fixed;left:0;top:0;z-index:13;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-shadow:0 0 12px rgba(120,160,255,.95);white-space:nowrap;transform:translate(16px,-50%);opacity:0;pointer-events:none;padding:5px 10px;border:1px solid rgba(255,255,255,.3);border-radius:9px;background:rgba(10,10,30,.45)"></div>
+<div id="portrait"><img class="human" src="assets/brand/steven_cutout.webp" alt="Steven Lefrançois"><img class="skull" src="assets/brand/steven_skull_bw_brain.webp?v=3" alt=""></div>
 <div class="top" id="topbar">
   <div class="brand">Steven<br>Lefrançois<small>Neurovente — Persua™</small></div>
   <a class="pill" href="https://diagnostic.persua-neurovente.com/" target="_blank" rel="noopener">◆ Diagnostic</a>
@@ -366,7 +370,7 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
   function smooth(a,b,x){x=clamp((x-a)/(b-a),0,1);return x*x*(3-2*x);}
   function mix(a,b,t){return a+(b-a)*t;}
-  var HEAD_FX=0.45,HEAD_FY=0.13,HEAD_DIA=0.22,CAMZ=3.2,FOV=40;
+  var HEAD_FX=0.450,HEAD_FY=0.092,HEAD_DIA=0.215,CAMZ=3.2,FOV=40;   // particules calées DANS le cerveau bleu (recalé après calotte complète)
   var ZONES=[
     {L:'C',t:'Cadre',d:"L'état du vendeur, réglé avant le rendez-vous. Ton calme se transmet au cerveau d'en face.",az:-0.95,ey:0.55,col:[0.55,0.51,1.0]},
     {L:'A',t:'Apaiser',d:"Fais tomber la menace perçue. Un cerveau en sécurité écoute ; sur la défensive, il surveille.",az:-0.45,ey:-0.10,col:[0.33,0.29,0.98]},
@@ -383,7 +387,7 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
     function softTex(){var c=document.createElement('canvas');c.width=c.height=64;var x=c.getContext('2d');var g=x.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'#fff');g.addColorStop(.45,'rgba(255,255,255,.6)');g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c);}
     mat=new THREE.ShaderMaterial({
       uniforms:{uMorph:{value:0},uTime:{value:0},uScale:{value:0.2},uPos:{value:new THREE.Vector3()},uRotY:{value:0},uSize:{value:1.0},uColor:{value:new THREE.Color(0x8b83ff)},uAlpha:{value:0},uTex:{value:softTex()}},
-      vertexShader:"uniform float uMorph,uTime,uScale,uRotY,uSize;uniform vec3 uPos;attribute vec3 aSnow;attribute float aSeed;void main(){float c=cos(uRotY),s=sin(uRotY);vec3 b=position;vec3 br=vec3(b.x*c+b.z*s,b.y,-b.x*s+b.z*c);vec3 brainW=br*uScale+uPos;vec3 sn=aSnow;sn.y=mod(aSnow.y-uTime*0.35+4.0,8.0)-4.0;sn.x+=sin(uTime*0.6+aSeed*6.2831)*0.18;vec3 fin=mix(sn,brainW,uMorph);vec4 mv=modelViewMatrix*vec4(fin,1.0);gl_Position=projectionMatrix*mv;gl_PointSize=max(uSize*(9.0/-mv.z),1.0);}",
+      vertexShader:"uniform float uMorph,uTime,uScale,uRotY,uSize;uniform vec3 uPos;attribute vec3 aSnow;attribute float aSeed;void main(){float c=cos(uRotY),s=sin(uRotY);vec3 b=position;vec3 br=vec3(b.x*c+b.z*s,b.y,-b.x*s+b.z*c);vec3 brainW=br*uScale+uPos;vec3 sn=aSnow;sn.y=mod(aSnow.y-uTime*0.35+4.0,8.0)-4.0;sn.x+=sin(uTime*0.6+aSeed*6.2831)*0.18;vec3 fin=mix(sn,brainW,uMorph);vec4 mv=modelViewMatrix*vec4(fin,1.0);gl_Position=projectionMatrix*mv;gl_PointSize=clamp(uSize*(9.0/-mv.z),1.0,34.0);}",
       fragmentShader:"uniform vec3 uColor;uniform float uAlpha;uniform sampler2D uTex;void main(){float a=texture2D(uTex,gl_PointCoord).a;gl_FragColor=vec4(uColor,1.0)*a*uAlpha;}",
       transparent:true,depthWrite:false,blending:THREE.AdditiveBlending
     });
@@ -397,9 +401,9 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
     function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
     addEventListener('resize',resize);resize();
   }
-  var portrait=document.getElementById('portrait');
-  portrait.addEventListener('mouseenter',function(){hovered=true;portrait.classList.add('scan');});
-  portrait.addEventListener('mouseleave',function(){hovered=false;portrait.classList.remove('scan');});
+  var portrait=document.getElementById('portrait'),human=portrait.querySelector('.human'),skull=portrait.querySelector('.skull'),scanline=document.getElementById('scanline');
+  portrait.addEventListener('mouseenter',function(){hovered=true;});portrait.addEventListener('mouseleave',function(){hovered=false;});   // teaser N&B + scan bleu au survol (haut de page)
+  var FORCEHOVER=location.search.indexOf('hover')>=0;   // debug : forcer l'état survolé pour capture
   var stage=document.getElementById('stage'),glowbg=document.getElementById('glowbg'),track=document.getElementById('track'),
       topbar=document.getElementById('topbar'),labHead=document.getElementById('labHead'),card=document.getElementById('card'),
       hint=document.getElementById('hint'),zone=document.getElementById('zone'),zkTxt=document.getElementById('zkTxt'),
@@ -407,7 +411,7 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   var P=0,brainReveal=0,revealed=0,scanTarget=0,curZone=-1,cspin=0,lastT=0;
   var _fp=location.search.match(/[?&]p=([0-9.]+)/),FORCEP=_fp?parseFloat(_fp[1]):null;
   var starCv=document.getElementById('stars'),sctx=starCv?starCv.getContext('2d'):null,STARS=[];
-  function initStars(){STARS=[];var N=Math.min(360,Math.round(innerWidth*innerHeight/8000));for(var i=0;i<N;i++){STARS.push({x:Math.random(),y:Math.random(),r:Math.random()*1.5+0.35,a:Math.random()*0.6+0.25,tw:Math.random()*2.6+0.5,vx:(Math.random()-0.5)*0.00006,vy:Math.random()*0.0001+0.00003});}}
+  function initStars(){STARS=[];var N=Math.min(460,Math.round(innerWidth*innerHeight/6200));for(var i=0;i<N;i++){STARS.push({x:Math.random(),y:Math.random(),r:Math.random()*1.5+0.4,a:Math.random()*0.6+0.3,tw:Math.random()*2.6+0.5,vx:(Math.random()-0.5)*0.00006,vy:Math.random()*0.0001+0.00003});}}
   function sizeStars(){if(!starCv||!sctx)return;var dpr=Math.min(devicePixelRatio,2);starCv.width=innerWidth*dpr;starCv.height=innerHeight*dpr;sctx.setTransform(dpr,0,0,dpr,0,0);}
   function drawStars(tm,fade){if(!sctx)return;sctx.clearRect(0,0,innerWidth,innerHeight);if(fade<=0)return;for(var i=0;i<STARS.length;i++){var s=STARS[i];s.x+=s.vx;s.y+=s.vy;if(s.y>1)s.y-=1;if(s.x>1)s.x-=1;if(s.x<0)s.x+=1;var tw=0.55+0.45*Math.sin(tm*s.tw+i);sctx.beginPath();sctx.fillStyle='rgba('+Math.round(180+40*tw)+','+Math.round(195+35*tw)+',255,'+(s.a*tw*fade)+')';sctx.arc(s.x*innerWidth,s.y*innerHeight,s.r,0,6.2832);sctx.fill();}}
   initStars();sizeStars();addEventListener('resize',function(){sizeStars();initStars();});
@@ -419,13 +423,21 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
     var endFade=1-smooth(0.9,1.0,P);                       // la couche hero s'efface à la fin du voyage
     stage.style.background='rgb('+Math.round(mix(19,7,dark))+','+Math.round(mix(19,7,dark))+','+Math.round(mix(58,26,dark))+')';
     glowbg.style.opacity=(1-dark)+'';drawStars(Date.now()*0.001,(1-dark)*endFade);
-    var px=-e*46,sc0=1+e*0.16,op=(1-smooth(0.05,0.28,P))*endFade;
-    portrait.style.transform='translateX(calc(-50% + '+px+'vw)) scale('+sc0+') rotate('+(e*-3)+'deg)';portrait.style.opacity=op;
-    if(hovered&&P<0.05){var s=((Date.now()%2200)/2200),sp=6+s*80;portrait.style.setProperty('--scanpos',sp+'%');var passed=smooth(8,30,sp);if(passed>0.85)revealed=1;scanTarget=Math.max(passed,revealed);}else if(P<0.05){revealed=0;scanTarget=0;portrait.style.setProperty('--scanpos','-20%');}
-    brainReveal+=(scanTarget-brainReveal)*0.15;
-    var outFade=1-smooth(0.04,0.22,P);topbar.style.opacity=Math.max(outFade,0);topbar.style.transform='translateY('+(-e*24)+'px)';
+    // ---- ZOOM dans la tête (au lieu de partir à gauche) + révélation du crâne/cerveau bleu + scan bleu ----
+    var sc0=1+e*1.4,op=(1-smooth(0.32,0.48,P))*endFade;   // zoom calmé (~2,4x au pic)
+    var panVH=innerWidth<=820?10:36;   // pan responsive : bien moins sur mobile (écran haut/étroit) sinon la tête part tout en bas
+    portrait.style.transform='translateX(-50%) translateY('+(e*panVH)+'vh) scale('+sc0+')';portrait.style.opacity=op;   // pan vers le cerveau (il vient au centre)
+    var mblur=(4*e*(1-e))*2.4;portrait.style.filter=mblur>0.05?('blur('+mblur.toFixed(2)+'px)'):'none';   // flou de mouvement léger pendant le zoom avant (max au milieu, net à la révélation)
+    // fondu tardif → on ne voit plus que le crâne à ~80% du zoom
+    human.style.opacity=(1-smooth(0.15,0.22,P))+'';
+    skull.style.opacity=(smooth(0.18,0.235,P)*(1-0.30*smooth(0.25,0.30,P)))+'';   // skull plein à la révélation puis → 70% d'opacité à partir de ~90% du zoom
+    var scanOn=(P>0.03&&P<0.235),hoverOn=((hovered||FORCEHOVER)&&P<0.03);   // hoverOn = teaser N&B + scan bleu au survol, en haut de page
+    document.body.classList.toggle('scanning',scanOn||hoverOn);portrait.classList.toggle('scan',scanOn||hoverOn);
+    if(hoverOn){var hr=portrait.getBoundingClientRect(),sp=(Date.now()%2600)/2600;scanline.style.top=(hr.top+(0.06+sp*0.52)*hr.height)+'px';var hL=Math.max(hr.left,0),hR=Math.min(hr.right,innerWidth);scanline.style.left=hL+'px';scanline.style.right='auto';scanline.style.width=Math.max(hR-hL,0)+'px';}
+    else if(scanOn){var sr=skull.getBoundingClientRect();var s=smooth(0.04,0.235,P);scanline.style.top=(sr.top+mix(0.03,0.30,s)*sr.height)+'px';var L=Math.max(sr.left,0),Rr=Math.min(sr.right,innerWidth);scanline.style.left=L+'px';scanline.style.right='auto';scanline.style.width=Math.max(Rr-L,0)+'px';}  // scan qui balaie la tête, uniquement sur lui
+    var outFade=1-smooth(0.04,0.22,P);topbar.style.opacity=Math.max(outFade,0);topbar.style.transform=e>0.001?('translateY('+(-e*24)+'px)'):'none';   // 'none' au repos : évite que .top devienne le référent des enfants position:fixed (bug pill mobile)
     labHead.style.opacity=outFade;card.style.opacity=outFade;hint.style.opacity=1-smooth(0.02,0.12,P);
-    zone.style.opacity=smooth(0.34,0.42,P)*endFade;
+    zone.style.opacity=smooth(0.40,0.48,P)*endFade;
     if(renderer){
       var Hw=2*Math.tan(FOV*Math.PI/180/2)*CAMZ,wpp=Hw/innerHeight;
       var rect=portrait.getBoundingClientRect();
@@ -433,16 +445,22 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
       vTmp.set((hpx/innerWidth)*2-1,-((hpy/innerHeight)*2-1),0.5).unproject(camera);vTmp.sub(camera.position).normalize();
       var dist=-camera.position.z/vTmp.z;var hx=camera.position.x+vTmp.x*dist,hy=camera.position.y+vTmp.y*dist;
       var cT=smooth(0.9,1.0,P);                     // phase « contenu » : le cerveau devient fond immersif
-      var _now=Date.now(); if(lastT===0)lastT=_now; var _dt=Math.min((_now-lastT)/1000,0.05); lastT=_now; cspin+=_dt*0.5*cT; // tourne plus vite en fond
-      var headScale=(HEAD_DIA*rect.height*wpp)/(2*R),fillScale=(0.72*Hw)/(2*R),immScale=(1.1*Hw)/(2*R);
-      var sc=mix(mix(headScale,fillScale,e),immScale,cT),pxw=mix(hx,0,e)*(1-cT),pyw=mix(hy,0,e)*(1-cT);
+      var cT0=smooth(0.9,1.0,P);
+      var _now=Date.now(); if(lastT===0)lastT=_now; var _dt=Math.min((_now-lastT)/1000,0.05); lastT=_now; cspin+=_dt*(0.3+0.1*cT0);   // rotation ralentie dans la dernière section (contenu)
+      var headScale=(HEAD_DIA*rect.height*wpp)/(2*R),fillScale=(0.72*Hw)/(2*R),insideScale=4.6/R;
+      var dive=smooth(0.33,0.58,P);          // on plonge : le cerveau grossit
+      var inside=smooth(0.5,0.72,P);         // on RESTE À L'INTÉRIEUR jusqu'à la dernière section (fond du contenu = dedans le cerveau)
+      var sc=mix(headScale,mix(fillScale,insideScale,inside),dive),pxw=mix(hx,0,dive)*(1-inside),pyw=mix(hy,0,dive)*(1-inside);
+      // caméra FIXE (aucun balancement latéral) : on est DEDANS parce que le nuage grossit autour d'elle ; la navigation vient de la rotation douce du nuage → fluide
       var zf=clamp(innerP*5,0,4.999),zi=Math.floor(zf),zj=Math.min(zi+1,4),fr=zf-zi;setZone(zi);
-      var az=mix(ZONES[zi].az,ZONES[zj].az,fr),ey=mix(ZONES[zi].ey,ZONES[zj].ey,fr),roty=mix(0.6,-az,e)+cspin;
+      var az=mix(ZONES[zi].az,ZONES[zj].az,fr),ey=mix(ZONES[zi].ey,ZONES[zj].ey,fr);
+      var roty=-(e*0.6+innerP*3.2+cspin);   // rotation MONOTONE un seul sens (droite→gauche), continue à E et à la sortie — jamais de retour arrière
       var cr=mix(ZONES[zi].col[0],ZONES[zj].col[0],fr),cg=mix(ZONES[zi].col[1],ZONES[zj].col[1],fr),cb=mix(ZONES[zi].col[2],ZONES[zj].col[2],fr);
-      cr=mix(cr,0.55,cT);cg=mix(cg,0.51,cT);cb=mix(cb,1.0,cT);   // vire au violet en fond
-      var morph=clamp(Math.max(brainReveal,smooth(0.02,0.20,P)),0,1);
-      if(mat){var u=mat.uniforms;u.uTime.value=Date.now()*0.001;u.uScale.value=sc;u.uPos.value.set(pxw,pyw,0);u.uRotY.value=roty;u.uMorph.value=morph;u.uColor.value.setRGB(cr,cg,cb);u.uAlpha.value=morph*0.92*mix(endFade,0.7,cT);u.uSize.value=1.0+cT*0.8;}
-      if(glow){glow.position.set(pxw,pyw+ey*R*sc,R*sc*0.9);glow.material.color.setRGB(cr,cg,cb);glow.scale.setScalar(0.25+innerP*0.4);glow.material.opacity=smooth(0.34,0.5,P)*endFade;}
+      // couleurs = celles des zones CALME (pas de virage forcé)
+      var morph=clamp(smooth(0.11,0.30,P),0,1);           // les particules brillent tôt pour combler le passage humain→crâne
+      if(mat){var u=mat.uniforms;u.uTime.value=Date.now()*0.001;u.uScale.value=sc;u.uPos.value.set(pxw,pyw,0);u.uRotY.value=roty;u.uMorph.value=morph;u.uColor.value.setRGB(cr,cg,cb);u.uAlpha.value=morph*mix(0.9,1.02,cT0);u.uSize.value=mix(1.0,2.0,inside);}
+      if(glow){var pls=0.72+0.28*Math.sin(Date.now()*0.005);var gz=mix(R*sc*0.9,1.4,inside),gx=mix(pxw,-az*0.6,inside),gy=mix(pyw+ey*R*sc,ey*0.55,inside);glow.position.set(gx,gy,gz);glow.material.color.setRGB(mix(cr,1,0.45),mix(cg,1,0.45),1.0);glow.scale.setScalar(mix(0.25+innerP*0.4,0.3,inside)*pls);glow.material.opacity=smooth(0.34,0.5,P)*endFade*(0.75+0.25*pls);}   // marqueur de localisation : point plus clair qui pulse
+      var _zl=document.getElementById('zlabel');if(_zl){if(inside>0.25){var _pv=new THREE.Vector3(gx,gy,gz);_pv.project(camera);var _sx=(_pv.x*0.5+0.5)*innerWidth,_sy=(-_pv.y*0.5+0.5)*innerHeight;_sx=clamp(_sx,14,innerWidth-160);_sy=clamp(_sy,80,innerHeight-150);_zl.style.left=_sx+'px';_zl.style.top=_sy+'px';_zl.textContent=ZONES[zi].L+' · '+ZONES[zi].t;_zl.style.opacity=(smooth(0.34,0.5,P)*endFade*0.97)+'';}else{_zl.style.opacity='0';}}   // label C/A/L/M/E flottant PILE sur le point de localisation
       renderer.render(scene,camera);
     }
     requestAnimationFrame(frame);
