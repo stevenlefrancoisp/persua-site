@@ -52,17 +52,18 @@ a{color:inherit;text-decoration:none}
 /* line scan bleue — overlay FIXE (hors zoom, reste nette) */
 #scanline{position:fixed;left:0;right:0;top:var(--sp,-10vh);height:2px;z-index:6;opacity:0;pointer-events:none;transition:opacity .3s;background:linear-gradient(90deg,transparent 8%,rgba(160,220,255,0) 14%,rgba(160,220,255,.8) 36%,#eaf6ff 50%,rgba(160,220,255,.8) 64%,rgba(160,220,255,0) 86%,transparent 92%);box-shadow:0 0 6px rgba(150,215,255,.45)}
 body.scanning #scanline{opacity:1}
-.top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:30px 34px;will-change:opacity,transform}
+.top{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:flex-start;padding:30px 34px;will-change:opacity,transform;pointer-events:none}
+.top .pill{pointer-events:auto}
 .brand{font-family:var(--disp);font-size:24px;line-height:.92;letter-spacing:-.03em;text-transform:uppercase}
 .brand small{display:block;font-family:var(--mono);font-size:10px;font-weight:400;letter-spacing:.24em;color:var(--muted);margin-top:8px}
 .pill{background:var(--indigo);color:#fff;font-weight:700;font-size:13px;padding:12px 20px;border-radius:100px;display:inline-flex;align-items:center;gap:8px;box-shadow:0 12px 30px -10px rgba(84,74,250,.7)}
-.lab{position:fixed;z-index:10;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;will-change:opacity}
+.lab{position:fixed;z-index:10;font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;will-change:opacity;pointer-events:none}
 .lab.head{left:calc(50% + 40px);top:22vh}
 .lab.head::before{content:"";position:absolute;left:-52px;top:7px;width:44px;height:1px;background:var(--muted)}
-.card{position:fixed;left:34px;bottom:34px;z-index:10;border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:rgba(19,19,58,.5);backdrop-filter:blur(6px);will-change:opacity}
+.card{position:fixed;left:34px;bottom:34px;z-index:10;border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:rgba(19,19,58,.5);backdrop-filter:blur(6px);will-change:opacity;pointer-events:none}
 .card .t{font-family:var(--mono);font-size:10px;letter-spacing:.22em;color:var(--muted);margin-bottom:9px}
 .card .c{font-family:var(--disp);font-size:20px;letter-spacing:.14em}
-.scrollhint{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:10;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:10px;will-change:opacity}
+.scrollhint{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:10;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:10px;will-change:opacity;pointer-events:none}
 /* Widget WhatsApp « Lya » (injecté par app.js) */
 .wa-widget{position:fixed;right:22px;bottom:22px;z-index:250;font-family:var(--ui)}
 body.has-cookie .wa-widget{bottom:78px}
@@ -405,7 +406,7 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   portrait.addEventListener('mouseenter',function(){hovered=true;});portrait.addEventListener('mouseleave',function(){hovered=false;});   // teaser N&B + scan bleu au survol (haut de page)
   var FORCEHOVER=location.search.indexOf('hover')>=0;   // debug : forcer l'état survolé pour capture
   var stage=document.getElementById('stage'),glowbg=document.getElementById('glowbg'),track=document.getElementById('track'),
-      topbar=document.getElementById('topbar'),labHead=document.getElementById('labHead'),card=document.getElementById('card'),
+      topbar=document.getElementById('topbar'),topPill=topbar.querySelector('.pill'),labHead=document.getElementById('labHead'),card=document.getElementById('card'),
       hint=document.getElementById('hint'),zone=document.getElementById('zone'),zkTxt=document.getElementById('zkTxt'),
       zBig=document.getElementById('zBig'),zTitle=document.getElementById('zTitle'),zText=document.getElementById('zText'),zBars=document.getElementById('zBars').children;
   var P=0,brainReveal=0,revealed=0,scanTarget=0,curZone=-1,cspin=0,lastT=0;
@@ -436,6 +437,7 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
     if(hoverOn){var hr=portrait.getBoundingClientRect(),sp=(Date.now()%2600)/2600;scanline.style.top=(hr.top+(0.06+sp*0.52)*hr.height)+'px';var hL=Math.max(hr.left,0),hR=Math.min(hr.right,innerWidth);scanline.style.left=hL+'px';scanline.style.right='auto';scanline.style.width=Math.max(hR-hL,0)+'px';}
     else if(scanOn){var sr=skull.getBoundingClientRect();var s=smooth(0.04,0.235,P);scanline.style.top=(sr.top+mix(0.03,0.30,s)*sr.height)+'px';var L=Math.max(sr.left,0),Rr=Math.min(sr.right,innerWidth);scanline.style.left=L+'px';scanline.style.right='auto';scanline.style.width=Math.max(Rr-L,0)+'px';}  // scan qui balaie la tête, uniquement sur lui
     var outFade=1-smooth(0.04,0.22,P);topbar.style.opacity=Math.max(outFade,0);topbar.style.transform=e>0.001?('translateY('+(-e*24)+'px)'):'none';   // 'none' au repos : évite que .top devienne le référent des enfants position:fixed (bug pill mobile)
+    topPill.style.pointerEvents=outFade<0.05?'none':'';   // topbar inerte en CSS (il avalait les clics de la nav collante) ; sa pill est coupée ici une fois le hero fondu
     labHead.style.opacity=outFade;card.style.opacity=outFade;hint.style.opacity=1-smooth(0.02,0.12,P);
     zone.style.opacity=smooth(0.40,0.48,P)*endFade;
     if(renderer){
