@@ -136,6 +136,17 @@ body.has-cookie .wa-widget{bottom:78px}
 .nav2 .b{font-family:var(--disp);font-size:17px;letter-spacing:-.02em;text-transform:uppercase}
 .nav2 .lk{display:flex;gap:28px;font-size:14px;color:#D9D6EA}
 .nav2 .lk a:hover{color:#fff}
+.nav2 .nright{display:flex;align-items:center;gap:12px}
+.nav2 .burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:9px 10px;cursor:pointer}
+.nav2 .burger i{display:block;width:20px;height:2px;border-radius:2px;background:#fff;margin:4px 0;transition:.2s}
+.nav2.open .burger i:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav2.open .burger i:nth-child(2){opacity:0}
+.nav2.open .burger i:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media (max-width:820px){
+  .nav2 .burger{display:block}
+  .nav2.open .lk{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:rgba(7,7,26,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:6px 0 10px}
+  .nav2.open .lk a{padding:14px 34px;font-size:16px}
+}
 .sec{padding:120px 0;position:relative}
 .kick{font-family:var(--mono);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--violet);margin-bottom:20px;display:block}
 .h2{font-family:var(--disp);font-size:clamp(30px,4.6vw,60px);line-height:1.02;letter-spacing:-.03em;max-width:16ch}
@@ -262,10 +273,13 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 <!-- ===== CONTENU ===== -->
 <main class="content">
   <div class="cbg"></div>
-  <nav class="nav2">
+  <nav class="nav2" id="nav2">
     <div class="b">Persua</div>
     <div class="lk"><a href="/methode-calme">Méthode CALME</a><a href="#offres">Offres</a><a href="#avis">Avis</a><a href="#faq">FAQ</a><a href="/a-propos">À propos</a><a href="/blog">Blog</a></div>
-    <a class="pill" href="https://diagnostic.persua-neurovente.com/" target="_blank" rel="noopener">◆ Diagnostic</a>
+    <div class="nright">
+      <a class="pill" href="https://diagnostic.persua-neurovente.com/" target="_blank" rel="noopener">◆ Diagnostic</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+    </div>
   </nav>
 
   <section class="sec"><div class="wrap">
@@ -468,6 +482,10 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
+  // burger mobile (la nav .lk est masquée sous 820px)
+  var nv2=document.getElementById('nav2'),brg=document.getElementById('burger');
+  if(brg){brg.addEventListener('click',function(){var open=nv2.classList.toggle('open');brg.setAttribute('aria-expanded',open?'true':'false');});
+    nv2.querySelectorAll('.lk a').forEach(function(a){a.addEventListener('click',function(){nv2.classList.remove('open');brg.setAttribute('aria-expanded','false');});});}
   // reveal du contenu
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.15});
   document.querySelectorAll('.rev').forEach(function(el,i){el.style.transitionDelay=(i%3*0.07)+'s';io.observe(el);});
