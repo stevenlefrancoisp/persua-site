@@ -450,8 +450,17 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
     });
     glow=new THREE.Sprite(new THREE.SpriteMaterial({map:softTex(),transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending,color:0x8b83ff}));glow.scale.setScalar(0.9);group.add(glow);
     fetch('assets/models/brain-points.bin').then(function(r){return r.arrayBuffer();}).then(function(ab){
-      var q=new Int16Array(ab),n=q.length/3,p=new Float32Array(n*3),snow=new Float32Array(n*3),seed=new Float32Array(n);
-      for(var i=0;i<n;i++){p[i*3]=q[i*3]/32767;p[i*3+1]=q[i*3+1]/32767;p[i*3+2]=q[i*3+2]/32767*-1;snow[i*3]=(Math.random()*2-1)*2.6;snow[i*3+1]=(Math.random()*2-1)*1.7;snow[i*3+2]=(Math.random()*2-1)*0.8;seed[i]=Math.random();}
+      var q=new Int16Array(ab),base=q.length/3;
+      var DUP=innerWidth<=820?2:3;   // cerveau densifié : ×3 desktop, ×2 mobile (framerate préservé) — validé 24/08
+      var JIT=0.012;                 // micro-jitter des copies (unités normalisées)
+      var n=base*DUP,p=new Float32Array(n*3),snow=new Float32Array(n*3),seed=new Float32Array(n),k=0;
+      for(var i=0;i<base;i++){
+        var bx=q[i*3]/32767,by=q[i*3+1]/32767,bz=q[i*3+2]/32767*-1;
+        for(var d=0;d<DUP;d++){
+          p[k*3]=bx+(d?(Math.random()*2-1)*JIT:0);p[k*3+1]=by+(d?(Math.random()*2-1)*JIT:0);p[k*3+2]=bz+(d?(Math.random()*2-1)*JIT:0);
+          snow[k*3]=(Math.random()*2-1)*2.6;snow[k*3+1]=(Math.random()*2-1)*1.7;snow[k*3+2]=(Math.random()*2-1)*0.8;seed[k]=Math.random();k++;
+        }
+      }
       var geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(p,3));geo.setAttribute('aSnow',new THREE.BufferAttribute(snow,3));geo.setAttribute('aSeed',new THREE.BufferAttribute(seed,1));
       geo.center();geo.computeBoundingSphere();R=(geo.boundingSphere&&geo.boundingSphere.radius)||1;group.add(new THREE.Points(geo,mat));
     }).catch(function(){});
