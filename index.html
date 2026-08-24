@@ -245,6 +245,30 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
 @media (max-width:820px){ .wrap{padding:0 22px} .grid3,.offers,.tgrid{grid-template-columns:1fr} .calc{grid-template-columns:1fr} .stats{grid-template-columns:1fr 1fr} .nav2 .lk{display:none} #portrait{height:82vh} .lab.head{display:none} }
 @media (max-width:560px){ .top{padding:14px 16px} .brand{font-size:16px;line-height:.95} .brand small{display:none} .top .pill{padding:9px 13px;font-size:11px;flex:0 0 auto} .sec{padding:80px 0} .calc{padding:28px} .zone{left:20px;max-width:74vw} .zone p{font-size:15px} .zone .zbig{font-size:64px} }
 @media (prefers-reduced-motion:reduce){ .scrollhint i{animation:none} .rev{transition:none;transform:none;opacity:1} }
+/* ===== MENU D'IMMERSION (accès nav pendant le voyage, sans barre classique) ===== */
+.imenu-btn{position:fixed;top:50%;right:0;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 11px;border-radius:14px 0 0 14px;cursor:pointer;pointer-events:auto;background:rgba(19,19,58,.55);backdrop-filter:blur(8px);border:1px solid var(--line);border-right:none;box-shadow:-10px 0 34px -14px rgba(0,0,0,.65);transition:background .25s,border-color .25s,opacity .3s}
+.imenu-btn:hover{background:rgba(34,29,94,.82);border-color:rgba(84,74,250,.6)}
+.imenu-btn .ln{display:flex;flex-direction:column;gap:4px}
+.imenu-btn .ln b{display:block;width:22px;height:2px;border-radius:2px;background:#fff;transition:.25s}
+.imenu-btn:hover .ln b:nth-child(1),.imenu-btn:hover .ln b:nth-child(3){width:16px}
+.imenu-btn .vt{writing-mode:vertical-rl;font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--muted);text-transform:uppercase}
+.imenu-btn::after{content:"";position:absolute;inset:-1px;border-radius:14px 0 0 14px;box-shadow:0 0 0 0 rgba(84,74,250,.4);animation:imPulse 3s ease-out infinite;pointer-events:none}
+@keyframes imPulse{0%{box-shadow:0 0 0 0 rgba(84,74,250,.35)}70%{box-shadow:0 0 0 12px rgba(84,74,250,0)}100%{box-shadow:0 0 0 0 rgba(84,74,250,0)}}
+body.imenu-open .imenu-btn{opacity:0;pointer-events:none}
+body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pris le relais → l'onglet d'immersion s'efface */
+.imenu-ov{position:fixed;inset:0;z-index:290;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(7,7,26,.9);backdrop-filter:blur(20px);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.imenu-ov.open{opacity:1;visibility:visible}
+.imenu-ov .imk{font-family:var(--mono);font-size:12px;letter-spacing:.3em;color:var(--violet);text-transform:uppercase;margin-bottom:30px;display:flex;align-items:center;gap:12px}
+.imenu-ov .imk span{width:7px;height:7px;border-radius:50%;background:var(--violet);box-shadow:0 0 14px var(--violet)}
+.imenu-ov a.il{font-family:var(--disp);font-size:clamp(28px,5.6vw,54px);line-height:1.16;letter-spacing:-.02em;color:#fff;opacity:.5;transition:opacity .22s,transform .22s,color .22s;transform:translateY(14px)}
+.imenu-ov.open a.il{opacity:.62;transform:none}
+.imenu-ov a.il:hover{opacity:1;color:var(--violet);transform:translateX(8px)}
+.imenu-ov.open a.il:nth-of-type(1){transition-delay:.04s}.imenu-ov.open a.il:nth-of-type(2){transition-delay:.08s}.imenu-ov.open a.il:nth-of-type(3){transition-delay:.12s}.imenu-ov.open a.il:nth-of-type(4){transition-delay:.16s}.imenu-ov.open a.il:nth-of-type(5){transition-delay:.2s}.imenu-ov.open a.il:nth-of-type(6){transition-delay:.24s}
+.imenu-ov .ic{margin-top:36px;background:var(--indigo);color:#fff;font-family:var(--ui);font-weight:700;font-size:16px;padding:16px 34px;border-radius:100px;box-shadow:0 18px 46px -14px rgba(84,74,250,.7);transition:transform .2s}
+.imenu-ov .ic:hover{transform:translateY(-2px)}
+.imenu-x{position:absolute;top:26px;right:30px;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.06);color:#fff;font-size:24px;line-height:1;cursor:pointer;transition:.2s}
+.imenu-x:hover{background:rgba(255,255,255,.14);transform:rotate(90deg)}
+@media(max-width:560px){.imenu-btn{gap:8px;padding:13px 8px}.imenu-btn .ln b{width:18px}.imenu-ov a.il{font-size:26px}.imenu-ov .imk{font-size:11px}}
 </style>
 </head>
 <body>
@@ -374,6 +398,23 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   <footer><div class="wrap">Persua SASU · La vente adaptée au cerveau · Proposition A</div></footer>
 </main>
 
+<!-- ===== Menu d'immersion : accès nav pendant le voyage, hors barre classique ===== -->
+<div class="imenu-btn" id="imenuBtn" role="button" tabindex="0" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="imenuOv">
+  <span class="ln"><b></b><b></b><b></b></span>
+  <span class="vt">Menu</span>
+</div>
+<div class="imenu-ov" id="imenuOv" role="dialog" aria-modal="true" aria-label="Navigation Persua">
+  <button class="imenu-x" id="imenuX" aria-label="Fermer le menu">×</button>
+  <div class="imk"><span></span>Navigation · Persua</div>
+  <a class="il" href="/methode-calme">Méthode CALME</a>
+  <a class="il" href="#offres">Offres</a>
+  <a class="il" href="#avis">Avis</a>
+  <a class="il" href="#faq">FAQ</a>
+  <a class="il" href="/a-propos">À propos</a>
+  <a class="il" href="/blog">Blog</a>
+  <a class="ic" href="https://diagnostic.persua-neurovente.com/" target="_blank" rel="noopener">◆ Diagnostic gratuit</a>
+</div>
+
 <div class="lightbox" id="lb"><div class="lb-inner"><button class="lb-close" id="lbClose" aria-label="Fermer">×</button><iframe id="lbFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -435,7 +476,8 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   function frame(){
     var vh=innerHeight,r=track.getBoundingClientRect();
     P=clamp((-r.top)/(track.offsetHeight-vh),0,1); if(FORCEP!==null)P=clamp(FORCEP,0,1);
-    var e=smooth(0.05,0.30,P),innerP=smooth(0.30,1.0,P),dark=smooth(0.05,0.30,P);
+    document.body.classList.toggle('nav-live',P>0.9);   // fin du voyage → nav2 visible → onglet MENU masqué
+    var e=smooth(0.008,0.30,P),innerP=smooth(0.30,1.0,P),dark=smooth(0.008,0.30,P);   // départ de l'animation dès le 1er scroll (zone morte supprimée)
     var endFade=1-smooth(0.9,1.0,P);                       // la couche hero s'efface à la fin du voyage
     stage.style.background='rgb('+Math.round(mix(19,7,dark))+','+Math.round(mix(19,7,dark))+','+Math.round(mix(58,26,dark))+')';
     glowbg.style.opacity=(1-dark)+'';drawStars(Date.now()*0.001,(1-dark)*endFade);
@@ -447,13 +489,13 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
     // fondu tardif → on ne voit plus que le crâne à ~80% du zoom
     human.style.opacity=(1-smooth(0.15,0.22,P))+'';
     skull.style.opacity=(smooth(0.18,0.235,P)*(1-0.30*smooth(0.25,0.30,P)))+'';   // skull plein à la révélation puis → 70% d'opacité à partir de ~90% du zoom
-    var scanOn=(P>0.03&&P<0.235),hoverOn=((hovered||FORCEHOVER)&&P<0.03);   // hoverOn = teaser N&B + scan bleu au survol, en haut de page
+    var scanOn=(P>0.01&&P<0.235),hoverOn=((hovered||FORCEHOVER)&&P<0.01);   // hoverOn = teaser N&B + scan bleu au survol, en haut de page
     document.body.classList.toggle('scanning',scanOn||hoverOn);portrait.classList.toggle('scan',scanOn||hoverOn);
     if(hoverOn){var hr=portrait.getBoundingClientRect(),sp=(Date.now()%2600)/2600;scanline.style.top=(hr.top+(0.06+sp*0.52)*hr.height)+'px';var hL=Math.max(hr.left,0),hR=Math.min(hr.right,innerWidth);scanline.style.left=hL+'px';scanline.style.right='auto';scanline.style.width=Math.max(hR-hL,0)+'px';}
     else if(scanOn){var sr=skull.getBoundingClientRect();var s=smooth(0.04,0.235,P);scanline.style.top=(sr.top+mix(0.03,0.30,s)*sr.height)+'px';var L=Math.max(sr.left,0),Rr=Math.min(sr.right,innerWidth);scanline.style.left=L+'px';scanline.style.right='auto';scanline.style.width=Math.max(Rr-L,0)+'px';}  // scan qui balaie la tête, uniquement sur lui
     var outFade=1-smooth(0.04,0.22,P);topbar.style.opacity=Math.max(outFade,0);topbar.style.transform=e>0.001?('translateY('+(-e*24)+'px)'):'none';   // 'none' au repos : évite que .top devienne le référent des enfants position:fixed (bug pill mobile)
     topPill.style.pointerEvents=outFade<0.05?'none':'';   // topbar inerte en CSS (il avalait les clics de la nav collante) ; sa pill est coupée ici une fois le hero fondu
-    labHead.style.opacity=outFade;card.style.opacity=outFade;hint.style.opacity=1-smooth(0.02,0.12,P);
+    labHead.style.opacity=outFade;card.style.opacity=outFade;hint.style.opacity=1-smooth(0.005,0.09,P);
     zone.style.opacity=smooth(0.40,0.48,P)*endFade;
     if(renderer){
       var Hw=2*Math.tan(FOV*Math.PI/180/2)*CAMZ,wpp=Hw/innerHeight;
@@ -487,6 +529,16 @@ footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-s
   var nv2=document.getElementById('nav2'),brg=document.getElementById('burger');
   if(brg){brg.addEventListener('click',function(){var open=nv2.classList.toggle('open');brg.setAttribute('aria-expanded',open?'true':'false');});
     nv2.querySelectorAll('.lk a').forEach(function(a){a.addEventListener('click',function(){nv2.classList.remove('open');brg.setAttribute('aria-expanded','false');});});}
+  // menu d'immersion : accès nav pendant le voyage, hors barre classique
+  var imBtn=document.getElementById('imenuBtn'),imOv=document.getElementById('imenuOv'),imX=document.getElementById('imenuX');
+  function imOpen(v){ if(!imOv)return; imOv.classList.toggle('open',v); document.body.classList.toggle('imenu-open',v);
+    if(imBtn)imBtn.setAttribute('aria-expanded',v?'true':'false');
+    if(lenis){ if(v)lenis.stop(); else lenis.start(); } }
+  if(imBtn){ imBtn.addEventListener('click',function(){imOpen(true);});
+    imBtn.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();imOpen(true);}}); }
+  if(imX)imX.addEventListener('click',function(){imOpen(false);});
+  if(imOv){ imOv.addEventListener('click',function(e){ if(e.target===imOv||e.target.classList.contains('il')||e.target.classList.contains('ic'))imOpen(false); }); }
+  addEventListener('keydown',function(e){ if(e.key==='Escape')imOpen(false); });
   // reveal du contenu
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.15});
   document.querySelectorAll('.rev').forEach(function(el,i){el.style.transitionDelay=(i%3*0.07)+'s';io.observe(el);});
