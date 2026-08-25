@@ -444,6 +444,10 @@ nav.scrolled{background:rgba(13,13,42,.82);backdrop-filter:blur(16px);border-bot
 .article-body b,.article-body strong{color:#EDEBF7}
 .article-body a{color:#8b83ff;text-decoration:underline;text-underline-offset:3px}
 .article-body a:hover{color:#b3adff}
+.article-body a.btn{color:#fff;text-decoration:none}
+.article-hero{margin:30px 0}
+.article-hero img{width:100%;height:auto;border-radius:18px;border:1px solid rgba(255,255,255,.1);display:block}
+.article-hero figcaption{color:#8b83ff;font-size:13.5px;margin-top:10px;text-align:center}
 .article-body blockquote{border-left:3px solid var(--indigo);padding:6px 0 6px 22px;margin:24px 0;font-size:19px;font-style:italic;color:#fff}
 .takeaways{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(84,74,250,.3);border-radius:20px;padding:26px 30px;margin:34px 0}
 .takeaways h3{font-family:var(--title);font-weight:800;color:#fff;font-size:17px;margin-bottom:14px}
