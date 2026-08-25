@@ -25,7 +25,9 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/brand/steven_cutout.webp" fetchpriority="high">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"></noscript>
 <style>
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
@@ -284,7 +286,7 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
 <canvas id="brain"></canvas>
 <div id="scanline"></div>
 <div id="zlabel" style="position:fixed;left:0;top:0;z-index:13;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-shadow:0 0 12px rgba(120,160,255,.95);white-space:nowrap;transform:translate(16px,-50%);opacity:0;pointer-events:none;padding:5px 10px;border:1px solid rgba(255,255,255,.3);border-radius:9px;background:rgba(10,10,30,.45)"></div>
-<div id="portrait"><img class="human" src="assets/brand/steven_cutout.webp" alt="Steven Lefrançois"><img class="skull" src="assets/brand/steven_skull_bw_brain.webp?v=3" alt=""></div>
+<div id="portrait"><img class="human" src="assets/brand/steven_cutout.webp" alt="Steven Lefrançois" fetchpriority="high" decoding="async"><img class="skull" src="assets/brand/steven_skull_bw_brain.webp?v=3" alt="" loading="lazy" decoding="async"></div>
 <div class="top" id="topbar">
   <div class="brand">Steven<br>Lefrançois<small>Neurovente — Persua™</small></div>
   <a class="pill" href="https://diagnostic.persua-neurovente.com/" target="_blank" rel="noopener">◆ Diagnostic</a>
@@ -462,8 +464,8 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
 </div>
 
 <div class="lightbox" id="lb"><div class="lb-inner"><button class="lb-close" id="lbClose" aria-label="Fermer">×</button><iframe id="lbFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
-<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js" fetchpriority="low"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" fetchpriority="low"></script>
 <script src="assets/app.js?v=31"></script>
 <script src="assets/reviews.js?v=4"></script>
 <script>
