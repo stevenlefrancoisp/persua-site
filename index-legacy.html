@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/meta/favicon.png">
+<meta property="og:image" content="https://persua-neurovente.com/assets/meta/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Persua">
+<meta property="og:url" content="https://persua-neurovente.com/">
+<meta property="og:title" content="Persua · La vente adaptée au cerveau">
+<meta property="og:description" content="La neurovente : vends en parlant au vrai système de décision de ton client, à l'instinct, sans forcer. Diagnostic gratuit en 5 minutes.">
+<meta name="twitter:title" content="Persua · La vente adaptée au cerveau">
+<meta name="twitter:description" content="La neurovente : vends en parlant au système qui décide vraiment. Diagnostic gratuit en 5 minutes.">
+<title>Persua · La vente adaptée au cerveau</title>
+<link rel="canonical" href="https://persua-neurovente.com/">
+<meta name="description" content="Persua, organisme de formation en neurovente. Vends en parlant au vrai système de décision de ton client. Diagnostic gratuit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=37">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Persua","url":"https://persua-neurovente.com/","logo":"https://persua-neurovente.com/assets/brand/persua_logo.svg","description":"Persua forme dirigeants, indépendants et commerciaux à la neurovente : vendre en s'appuyant sur les neurosciences de la décision (Système 1 / Système 2), sans manipuler.","founder":{"@type":"Person","name":"Steven Lefrançois"},"sameAs":["https://www.linkedin.com/in/stevenlfrs","https://www.instagram.com/steven_lefrancois_vente/","https://www.youtube.com/@steven_vente_persua","https://www.tiktok.com/@steven_lefrancois_vente"],"contactPoint":{"@type":"ContactPoint","contactType":"customer support","url":"https://wa.me/33749554615","availableLanguage":"French"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"20","bestRating":"5","worstRating":"1"},"review":[{"@type":"Review","author":{"@type":"Person","name":"Louis Le Corre"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Steven m'a littéralement changé la vie. Il m'a accompagné plus d'un an pour développer mes compétences en vente et en business. Les résultats ont largement dépassé mes attentes."},{"@type":"Review","author":{"@type":"Person","name":"Anne-Sophie Amorim"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"Un accompagnement d'une efficacité redoutable. Steven allie structure, psychologie de vente, pédagogie, disponibilité et bonne humeur."},{"@type":"Review","author":{"@type":"Person","name":"Stephane Bacanin"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"reviewBody":"J'ai collaboré avec Steven sur une mission commune. Les résultats obtenus par son client ont dépassé 56 000 € de chiffre d'affaires. Je recommande vivement la méthode Persua."}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"Persua","url":"https://persua-neurovente.com/","inLanguage":"fr"}
+</script>
+<style>
+/* Cerveau discret en fond de la section démonstration (Système 1/2) */
+#demo{position:relative;overflow:hidden}
+#demo > .wrap{position:relative;z-index:1}
+#demoBrain{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.4s ease .2s}
+#demoBrain.ready{opacity:.5}
+@media (max-width:720px){#demoBrain{display:none}}
+@media (prefers-reduced-motion:reduce){#demoBrain{display:none}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav><div class="wrap nav-in">
+  <a class="nav-logo" href="/"><img src="assets/brand/persua_logo.svg" alt="Persua"></a>
+  <div class="nav-links">
+    <a href="/">Accueil</a><a href="/methode-calme">Méthode CALME</a><a href="/offres">Offres</a><a href="/a-propos">À propos</a><a href="/blog">Blog</a>
+  </div>
+  <a class="btn btn-primary nav-cta" href="https://diagnostic.persua-neurovente.com/">Faire le diagnostic</a>
+</div></nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="aurora"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+  <div class="grid-bg"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="badge"><span class="dot"></span>Vente & Neuroscience · Méthode CALME™</span>
+      <h1 class="hero-h1">La vente n'est pas un don.<br>C'est un mécanisme que tu peux <span class="hl">apprendre.</span></h1>
+      <p class="hero-sub">Tes prospects décident vite, à l'instinct, puis se justifient avec la logique. La neurovente t'apprend à parler à ce moment précis. Sans forcer, sans jouer au requin.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://diagnostic.persua-neurovente.com/">Faire le diagnostic gratuit →</a>
+        <a class="btn btn-ghost" href="/formation">Voir la formation</a>
+      </div>
+      <div class="proof">
+        <span class="stars">★★★★★</span>
+        <span><b>+<span data-count="350">350</span> commerciaux & dirigeants</b> accompagnés en neurovente</span>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-cut">
+        <img src="assets/brand/steven_cutout.webp" alt="Steven Lefrançois">
+      </div>
+      <div class="float-card fc-1"><div class="k" style="font-size:19px;color:#FFC24B;letter-spacing:2px">★★★★★</div><div class="l">Avis clients<br>vérifiés Google</div></div>
+      <div class="float-card fc-2"><div class="q">« M'a littéralement changé la vie. »</div><div class="a">Louis Le Corre</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- LOGO STRIP -->
+<div class="strip"><div class="wrap strip-2">
+  <span class="lbl" style="white-space:nowrap">Ils m'ont fait confiance</span>
+  <div class="marq"><div class="marq-track" id="marqTrack">
+    <span class="txt">Formezvoo</span><span class="sep">◆</span>
+    <span class="txt">Tempur</span><span class="sep">◆</span>
+    <span class="txt">Château d'Ax</span><span class="sep">◆</span>
+    <span class="txt">Leroy Merlin</span><span class="sep">◆</span>
+    <span class="txt">Intersport</span><span class="sep">◆</span>
+    <span class="txt">K par K</span><span class="sep">◆</span>
+    <span class="txt">FEEL Coaching</span><span class="sep">◆</span>
+    <span class="txt">Locacase</span><span class="sep">◆</span>
+  </div></div>
+</div></div>
+
+<!-- PROBLEM -->
+<section class="block problem"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Le syndrome de la douche froide</span>
+    <h2>Le rendez-vous se passe bien. Puis plus rien.</h2>
+    <p>« Super, je reviens vers vous », et le prospect s'évapore. Ce n'est pas votre offre. C'est le moment où son cerveau a décroché, sans que vous le voyiez.</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span><div class="n">01</div><h3>Vous parlez au mauvais cerveau</h3><p>Vous empilez les arguments logiques quand la décision, elle, se joue à l'émotion. Vous nourrissez un système qui n'a encore rien ressenti.</p></div>
+    <div class="pain"><span class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span><div class="n">02</div><h3>« Je vais réfléchir »</h3><p>Ce n'est pas une objection. C'est le reçu d'un rendez-vous trop chargé : un cerveau saturé ne décide pas, il reporte.</p></div>
+    <div class="pain"><span class="ico"><svg viewBox="0 0 24 24"><path d="M20.6 13.4L11 3.8A2 2 0 0 0 9.6 3H4a1 1 0 0 0-1 1v5.6a2 2 0 0 0 .6 1.4l9.6 9.6a2 2 0 0 0 2.8 0l4.6-4.6a2 2 0 0 0 0-2.8z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg></span><div class="n">03</div><h3>Vous bradez par peur</h3><p>Le silence après le prix vous met mal à l'aise, alors vous cassez votre tarif. Vous venez d'envoyer le pire des signaux.</p></div>
+  </div>
+</div></section>
+
+<!-- CALCULATOR -->
+<section class="block calc"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Le coût de l'inaction</span>
+    <h2>Combien ta vente te laisse filer chaque année ?</h2>
+    <p>Que tu vendes toi-même ou avec une équipe : bouge les curseurs et vois ce que la neurovente peut ajouter à ton chiffre d'affaires.</p>
+  </div>
+  <div class="calc-box">
+    <div class="calc-controls">
+      <div class="row"><label>Rendez-vous de vente / mois <b><span id="v-rdv">20</span></b></label><input id="c-rdv" type="range" min="2" max="80" value="20"><span class="row-hint">les tiens, ou ceux de ton équipe</span></div>
+      <div class="row"><label>Panier moyen <b><span id="v-panier">3 000</span> €</b></label><input id="c-panier" type="range" min="200" max="20000" step="100" value="3000"></div>
+      <div class="row"><label>Taux de closing actuel <b><span id="v-taux">20</span> %</b></label><input id="c-taux" type="range" min="5" max="70" value="20"></div>
+      <p class="calc-note">Hypothèse volontairement prudente : +10 % de rendez-vous et +5 points de closing (nos meilleurs élèves montent jusqu'à +37 %). Ce n'est pas une promesse : tes résultats dépendent de ton offre, de ton produit et de ta pratique.</p>
+    </div>
+    <div class="calc-out">
+      <div class="lbl">Manque à gagner récupérable / an</div>
+      <div class="big" id="calc-result">0 €</div>
+      <div class="calc-break">
+        <div class="cb-row"><span>Ton CA aujourd'hui (<span id="cb-t1">20</span>%)</span><b id="cb-now">0 €</b></div>
+        <div class="cb-row hi"><span>Avec la neurovente (+10% RDV · <span id="cb-t2">25</span>% closing)</span><b id="cb-neuro">0 €</b></div>
+      </div>
+      <div class="sub">Le CA que tu laisses sur la table faute de parler au système qui décide vraiment.</div>
+      <a class="btn btn-primary" href="https://diagnostic.persua-neurovente.com/">Récupérer ce CA →</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- METHOD -->
+<section class="block method" id="method"><div class="wrap">
+  <div class="sec-head light">
+    <span class="eyebrow">La Méthode CALME™</span>
+    <h2>La vente n'est pas un art. C'est une science.</h2>
+    <p>Deux systèmes décident dans la tête de votre client. La plupart des commerciaux ne parlent qu'à un seul, le mauvais.</p>
+  </div>
+  <div class="s12">
+    <div class="s-card s1"><span class="s-tag">Système 1 · rapide</span><h3>L'émotion décide</h3><p>Intuitif, instantané, émotionnel. C'est lui qui dit « oui » ou « non » bien avant que votre prospect puisse l'expliquer, et le plus souvent, c'est lui qui l'emporte.</p></div>
+    <div class="s-card s2"><span class="s-tag">Système 2 · lent</span><h3>La logique justifie</h3><p>Analytique, lent, coûteux. Il n'invente pas la décision : il fabrique les arguments rationnels pour valider ce que le Système 1 a déjà tranché.</p></div>
+  </div>
+  <p class="method-punch">L'émotion décide. La logique justifie. <b>Dans cet ordre.</b></p>
+  <div class="calme" id="calme">
+    <p class="calme-tagline">La Méthode CALME™ : dans un rendez-vous, <b>le cerveau le plus stable prend le contrôle</b>.</p>
+    <div class="calme-word" role="tablist" aria-label="Les 5 étapes de la Méthode CALME">
+      <button class="calme-letter on" role="tab" aria-selected="true" data-i="0">C<small>Cadre</small></button>
+      <button class="calme-letter" role="tab" aria-selected="false" data-i="1">A<small>Apaiser</small></button>
+      <button class="calme-letter" role="tab" aria-selected="false" data-i="2">L<small>Localiser</small></button>
+      <button class="calme-letter" role="tab" aria-selected="false" data-i="3">M<small>Miroir</small></button>
+      <button class="calme-letter" role="tab" aria-selected="false" data-i="4">E<small>Engager</small></button>
+    </div>
+    <div class="calme-panel" aria-live="polite">
+      <div class="step" id="calmeStep">Étape 1 · 5 · avant le rendez-vous</div>
+      <h4 id="calmeTitle">Cadre : l'état du vendeur</h4>
+      <p id="calmeText">Réglé avant le rendez-vous. L'étape que toutes les autres méthodes sautent : ton état se transmet à ton client, dans un sens comme dans l'autre.</p>
+      <span class="sci" id="calmeSci">Fondement : <b>corégulation émotionnelle</b> · Gross, Barrett</span>
+    </div>
+    <div class="calme-timer"><i id="calmeTimer"></i></div>
+    <a class="calme-more" href="/methode-calme">Découvrir la Méthode CALME en détail →</a>
+  </div>
+  <script>
+  (function(){
+    var steps=[
+      {k:"Étape 1 · 5 · avant le rendez-vous",t:"Cadre : l'état du vendeur",p:"Réglé avant le rendez-vous. L'étape que toutes les autres méthodes sautent : ton état se transmet à ton client, dans un sens comme dans l'autre.",s:"Fondement : <b>corégulation émotionnelle</b> · Gross, Barrett"},
+      {k:"Étape 2 · 5 · l'ouverture",t:"Apaiser : la sécurité d'abord",p:"Un cerveau sur la défensive n'écoute pas, il surveille. Tant que la menace perçue n'est pas tombée, aucun argument ne passe, même excellent.",s:"Fondement : <b>régulation de la menace</b> · LeDoux"},
+      {k:"Étape 3 · 5 · la découverte",t:"Localiser : la douleur mesurée",p:"Ton client mesure lui-même ce que son problème lui coûte vraiment. Ce qu'il formule avec ses chiffres pèse plus que tout ce que tu pourrais affirmer.",s:"Fondement : <b>aversion à la perte</b> · Kahneman & Tversky"},
+      {k:"Étape 4 · 5 · la présentation",t:"Miroir : la valeur dans ses mots",p:"Une présentation construite dans les mots du client, pas dans les tiens. Quand il entend son propre vocabulaire, il ressent le « c'est exactement ça ».",s:"Fondement : <b>marqueurs somatiques</b> · Damasio"},
+      {k:"Étape 5 · 5 · la décision",t:"Engager : la décision déjà mûre",p:"Un closing qui formule une décision déjà prise. Conclure, pas pousser : la pression amplifie l'alarme, la stabilité la dissout.",s:"Fondement : <b>évaluation subjective de la décision</b> · vmPFC"}
+    ];
+    var root=document.getElementById('calme'); if(!root) return;
+    var nodes=root.querySelectorAll('.calme-letter'),
+        elS=document.getElementById('calmeStep'), elT=document.getElementById('calmeTitle'),
+        elP=document.getElementById('calmeText'), elC=document.getElementById('calmeSci'),
+        timer=document.getElementById('calmeTimer'), panel=root.querySelector('.calme-panel'),
+        cur=0, auto=true, raf=null, t0=null, DUR=5200,
+        still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function show(i){
+      cur=i;
+      nodes.forEach(function(n,j){
+        n.classList.toggle('on',j===i);
+        n.setAttribute('aria-selected', j===i ? 'true':'false');
+      });
+      elS.textContent=steps[i].k; elT.textContent=steps[i].t; elP.textContent=steps[i].p; elC.innerHTML=steps[i].s;
+      panel.classList.remove('calme-fade'); void panel.offsetWidth; panel.classList.add('calme-fade');
+    }
+    function loop(ts){
+      if(!auto) return;
+      if(!t0) t0=ts;
+      var pr=(ts-t0)/DUR;
+      timer.style.width=Math.min(pr*100,100)+'%';
+      if(pr>=1){ t0=ts; show((cur+1)%steps.length); }
+      raf=requestAnimationFrame(loop);
+    }
+    nodes.forEach(function(n){
+      n.addEventListener('click',function(){
+        auto=false; if(raf) cancelAnimationFrame(raf); timer.style.width='0';
+        show(parseInt(n.dataset.i,10));
+      });
+    });
+    root.addEventListener('mouseenter',function(){ t0=null; });
+    show(0);
+    if(!still){
+      var seen=new IntersectionObserver(function(e){
+        if(e[0].isIntersecting){ raf=requestAnimationFrame(loop); seen.disconnect(); }
+      },{threshold:.35});
+      seen.observe(root);
+    } else { timer.style.display='none'; }
+  })();
+  </script>
+  <div class="sci">
+    <span class="sci-eyebrow">Ce que dit la science</span>
+    <div class="sci-grid">
+      <div class="sci-card"><div class="sci-fig">× 1,7</div><p>une perte pèse près de <b>deux fois plus lourd</b> qu'un gain équivalent au moment de décider.</p><span class="sci-src">Kahneman &amp; Tversky, théorie des perspectives · méta-analyse 2024</span></div>
+      <div class="sci-card"><div class="sci-fig">Avant les mots</div><p>l'activité du cerveau <b>prédit l'achat</b> mieux que ce que le client déclare vouloir.</p><span class="sci-src">Knutson et al., revue <i>Neuron</i>, 2007</span></div>
+      <div class="sci-card"><div class="sci-fig">Pas d'émotion, pas de « oui »</div><p>privés de leur cerveau émotionnel, des patients <b>ne savent plus décider</b>, même un choix simple.</p><span class="sci-src">Pr. Antonio Damasio, neurologue</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- BEFORE / AFTER -->
+<section class="block" id="demo" style="background:linear-gradient(180deg,var(--deep),#101029)"><canvas id="demoBrain" aria-hidden="true"></canvas><div class="wrap">
+  <div class="sec-head center">
+    <span class="eyebrow">La démonstration</span>
+    <h2>Deux façons de répondre. Un seul vrai « oui ».</h2>
+    <p>Glisse le curseur : à gauche, la vente qui parle à la logique. À droite, celle qui parle au système qui décide vraiment.</p>
+  </div>
+  <div class="ba" data-ba>
+    <div class="ba-panel ba-before">
+      <span class="ba-lbl">Avant · Système 2</span>
+      <div class="ba-txt"><h3>« Notre solution a 12 fonctionnalités… »</h3><p class="say">Tu déroules les specs, les options, les garanties. Tu remplis un cerveau qui n'a encore rien ressenti.</p><p class="react">→ « OK super… je vais réfléchir. »</p></div>
+      <svg class="ba-viz viz-specs" viewBox="0 0 120 145" fill="none" aria-hidden="true"><rect class="paper" x="20" y="12" width="80" height="118" rx="10"/><rect class="hd" x="32" y="28" width="38" height="6" rx="3"/><g class="rw"><circle cx="35" cy="50" r="3"/><rect x="44" y="47" width="48" height="5" rx="2.5"/></g><g class="rw"><circle cx="35" cy="65" r="3"/><rect x="44" y="62" width="48" height="5" rx="2.5"/></g><g class="rw"><circle cx="35" cy="80" r="3"/><rect x="44" y="77" width="48" height="5" rx="2.5"/></g><g class="rw"><circle cx="35" cy="95" r="3"/><rect x="44" y="92" width="48" height="5" rx="2.5"/></g><g class="rw"><circle cx="35" cy="110" r="3"/><rect x="44" y="107" width="38" height="5" rx="2.5"/></g></svg>
+      <div class="ba-disc"><span class="disc-chip">Le piège</span><p>Le Système 2 est <b>lent et vite saturé</b>. Noyé sous les specs, il se met en pause. « Je vais réfléchir » = un cerveau qui reporte, pas un client qui hésite.</p></div>
+    </div>
+    <div class="ba-panel ba-after">
+      <span class="ba-lbl">Après · Système 1</span>
+      <svg class="ba-viz viz-spark" viewBox="0 0 120 145" fill="none" aria-hidden="true"><g class="rays"><line x1="60" y1="6" x2="60" y2="15"/><line x1="30" y1="16" x2="36" y2="24"/><line x1="90" y1="16" x2="84" y2="24"/><line x1="14" y1="44" x2="24" y2="48"/><line x1="106" y1="44" x2="96" y2="48"/></g><path class="glass" d="M60 20 a27 27 0 0 1 17 48 c-3 3 -5 6 -5 10 v3 h-24 v-3 c0 -4 -2 -7 -5 -10 a27 27 0 0 1 17 -48 Z"/><path class="base" d="M50 88 h20 M53 97 h14 M56 105 h8"/><path class="fil" d="M52 58 q8 -11 16 0 M60 52 v16"/></svg>
+      <div class="ba-txt"><h3>« Qu'est-ce qui vous ferait dire, dans 6 mois, que c'était le bon choix ? »</h3><p class="say">Tu fais projeter, ressentir, formuler. Le client se vend la solution à lui-même.</p><p class="react">→ « En fait… il me le faut. »</p></div>
+      <div class="ba-disc"><span class="disc-chip">Le levier</span><p>Le Système 1 tranche <b>en une fraction de seconde</b>, à l'émotion. Fais ressentir avant d'argumenter : le client bâtit le oui lui-même, ta logique n'a plus qu'à le confirmer.</p></div>
+    </div>
+    <div class="ba-handle"></div>
+  </div>
+</div></section>
+
+<!-- STEPS -->
+<section class="block steps"><div class="wrap">
+  <div class="sec-head light center">
+    <span class="eyebrow">Comment ça marche</span>
+    <h2>Ta vente qui décolle, en 3 étapes</h2>
+  </div>
+  <div class="step-grid">
+    <div class="step-card"><div class="sn">1</div><h3>Tu fais le diagnostic</h3><p>5 minutes, gratuit. On repère précisément où ta vente fuit : découverte, prix, closing ou posture.</p></div>
+    <div class="step-card"><div class="sn">2</div><h3>Tu apprends la Méthode CALME™</h3><p>Les 5 étapes de la décision, applicables dès ton prochain rendez-vous. En autonomie ou avec moi.</p></div>
+    <div class="step-card"><div class="sn">3</div><h3>Tu closes sans forcer</h3><p>Tu vends en restant toi-même. Tes clients disent oui plus souvent, et ils reviennent.</p></div>
+  </div>
+</div></section>
+
+<!-- OFFERS -->
+<section class="block offers" id="offres"><div class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">Passer à l'action</span>
+    <h2>Choisis ton niveau d'accompagnement</h2>
+    <p>La Méthode CALME™, du programme en autonomie à l'immersion d'équipe. Tu commences gratuitement.</p>
+  </div>
+
+  <div class="offer-grid">
+    <div class="offer">
+      <div class="tier">Académie</div>
+      <div class="forwho">Pour le dirigeant qui veut avancer seul, à son rythme</div>
+      <div class="price">700€ <small>HT · accès à vie</small></div>
+      <ul><li><span class="li-ico"><b>Accès à l'Espace Membre Persua</b><button type="button" class="li-i" data-modal="appModal" aria-label="En savoir plus sur l'Espace Membre">i</button></span></li><li>34 leçons vidéo + 40 protocoles</li><li>La Méthode CALME™ & les 5 closings</li><li>Communauté + 2 lives / mois</li><li>NeuroVault : scripts prêts à l'emploi</li></ul>
+      <div class="proof-chip">◆ Applicable dès ton prochain rendez-vous</div>
+      <a class="btn btn-o" href="/academie">Découvrir l'Académie →</a>
+    </div>
+    <div class="offer feat">
+      <div class="pop">Le plus choisi</div>
+      <div class="tier">Mentorat 1:1</div>
+      <div class="forwho">Pour aller vite, avec Steven à tes côtés</div>
+      <div class="price">Sur candidature <small>· places limitées</small></div>
+      <ul><li>Tout l'Académie inclus (34 leçons + 40 protocoles)</li><li><b>Coaching 1:1 chaque semaine</b></li><li><span class="li-ico"><b>Accès à l'Espace Membre Persua</b><button type="button" class="li-i" data-modal="appModal" aria-label="En savoir plus sur l'Espace Membre">i</button></span></li><li><b>Soutien 7/7 par WhatsApp</b></li><li>Tes vrais appels audités et décortiqués</li><li>Plan d'action 100 % personnalisé</li></ul>
+      <div class="proof-chip">◆ Tes rendez-vous décortiqués en direct</div>
+      <a class="btn" href="/mentorat">Découvrir le Mentorat →</a>
+    </div>
+    <div class="offer">
+      <div class="opco-badge">Finançable OPCO</div>
+      <div class="tier">Équipe / OPCO</div>
+      <div class="forwho">Pour former ton équipe commerciale</div>
+      <div class="price">Sur-mesure</div>
+      <ul><li>Présentiel ou distanciel</li><li>Financement OPCO (portage)</li><li>Suivi manager + audits d'appels</li><li>Programme adapté à ton secteur</li></ul>
+      <div class="proof-chip">◆ Reste à charge souvent nul via l'OPCO</div>
+      <a class="btn btn-o" href="/formation">Voir le programme</a>
+    </div>
+  </div>
+
+  <div class="guarantee">🛡 <b>Garantie 30 jours</b> satisfait ou remboursé, et « résultat, ou on continue ensemble jusqu'à ta 1ʳᵉ vente ».</div>
+</div></section>
+
+<!-- CONFÉRENCE -->
+<section class="block" style="background:linear-gradient(180deg,var(--deep),#141439);text-align:center"><div class="wrap">
+  <span class="eyebrow" style="color:var(--electric)">Conférences & interventions</span>
+  <h2 style="font-family:var(--title);font-weight:800;font-size:34px;color:#fff;margin:12px auto 14px;max-width:740px;letter-spacing:-.02em">Un événement, un séminaire ? Fais monter Steven sur scène.</h2>
+  <p style="color:#C6C2DC;font-size:17px;max-width:620px;margin:0 auto 28px">Une conférence neurovente pour ton équipe, ton entreprise ou ton événement, en présentiel ou en distanciel. Vivant, concret, applicable dès le lendemain.</p>
+  <a class="btn btn-primary" href="https://cal.com/steven-lfrs-persua/diagnostic" target="_blank" rel="noopener">Demander une conférence →</a>
+</div></section>
+
+<!-- REVIEWS / TÉMOIGNAGES -->
+<section class="block reviews" id="avis"><div class="wrap">
+  <div class="sec-head center">
+    <span class="eyebrow">Ils en parlent mieux que moi</span>
+    <h2>Des dirigeants réconciliés avec la vente</h2>
+  </div>
+  <div style="text-align:center">
+    <span class="gbadge">
+      <span class="g"><b>G</b><span class="g2">o</span><span class="g3">o</span><span class="g4">g</span><span class="g5">l</span><span class="g6">e</span></span>
+      <span class="st">★★★★★</span>
+      <span style="color:#C6C2DC;font-size:14px">Avis clients vérifiés</span>
+      <a class="lk" href="https://share.google/UA3HuoVNrjvrL1Hs3" target="_blank" rel="noopener">Voir tous les avis →</a>
+    </span>
+  </div>
+
+  <div class="results">
+    <div class="rcard"><div class="rn"><span class="rn-pre">jusqu'à</span>+37%<sup>*</sup></div><div class="rl">d'augmentation du taux de closing</div></div>
+    <div class="rcard"><div class="rn">+350</div><div class="rl">commerciaux accompagnés · +30 entreprises</div></div>
+    <div class="rcard"><div class="rn">97%</div><div class="rl">de taux de satisfaction</div></div>
+    <div class="rcard"><div class="rn">5,0★</div><div class="rl">sur 20 avis Google</div></div>
+  </div>
+  <p class="results-note">*Meilleure progression de taux de closing constatée chez nos clients, variable selon ton offre, ton produit et ta pratique.</p>
+
+  <h3 style="text-align:center;font-family:var(--title);font-weight:800;font-size:22px;margin-bottom:26px;color:#fff">🎥 Ils racontent, en vidéo</h3>
+  <div class="vgrid" id="rv-videos"></div>
+
+  <h3 style="text-align:center;font-family:var(--title);font-weight:800;font-size:22px;margin:52px 0 6px;color:#fff">💬 Recommandations LinkedIn</h3>
+  <p style="text-align:center;color:#9B96B8;font-size:13.5px;margin-bottom:24px"><a href="https://www.linkedin.com/in/stevenlfrs/details/recommendations/" target="_blank" rel="noopener" style="color:#a79fff">Voir toutes les recommandations LinkedIn →</a></p>
+  <div class="rvgrid" id="rv-linkedin"></div>
+
+  <h3 style="text-align:center;font-family:var(--title);font-weight:800;font-size:22px;margin:52px 0 6px;color:#fff">★ Avis Google</h3>
+  <p style="text-align:center;color:#9B96B8;font-size:13.5px;margin-bottom:24px"><a href="https://share.google/UA3HuoVNrjvrL1Hs3" target="_blank" rel="noopener" style="color:#a79fff">Voir tous les avis Google →</a></p>
+  <div class="rvgrid" id="rv-google"></div>
+</div></section>
+
+<!-- FAQ -->
+<section class="block" id="faq" style="background:linear-gradient(180deg,#101029,var(--deep))"><div class="wrap">
+  <div class="sec-head center">
+    <span class="eyebrow">FAQ</span>
+    <h2>Les questions qu'on me pose le plus</h2>
+  </div>
+  <div class="faq">
+    <details open><summary>Je ne suis pas un « commercial dans l'âme ». Ça marche quand même ?</summary><div class="fa-body">C'est même fait pour ça. La neurovente n'est pas une posture de « vendeur » à enfiler, c'est comprendre comment ton client décide, pour vendre en restant toi-même. La plupart de mes clients sont des dirigeants, indépendants et coachs qui <b>détestent</b> le côté « vendeur de tapis ».</div></details>
+    <details><summary>La neurovente, ce n'est pas de la manipulation ?</summary><div class="fa-body">Non, et c'est non négociable chez moi. On comprend le cerveau pour mieux <b>servir</b>, jamais pour forcer. Pas de fausse urgence, pas de pression. L'objectif : amener ton client à une décision qu'il assume, parce que c'est la bonne pour lui.</div></details>
+    <details><summary>En combien de temps je vois des résultats ?</summary><div class="fa-body">Tu repars avec des choses <b>applicables dès ton prochain rendez-vous</b> (un script, une réponse au prix, une question de découverte). Les vrais gains de taux de closing se voient sur quelques semaines de pratique.</div></details>
+    <details><summary>Quelle différence entre l'Académie, le Mentorat et le présentiel ?</summary><div class="fa-body"><b>L'Académie (700 €)</b> = le programme complet en autonomie. <b>Le Mentorat 1:1</b> = on décortique TES vrais rendez-vous ensemble. <b>Le présentiel (1 à 3 jours, finançable OPCO)</b> = pour former ton équipe. Même méthode, accompagnement différent, commence par le diagnostic gratuit, il te dit par où entrer.</div></details>
+    <details><summary>C'est finançable par mon OPCO ?</summary><div class="fa-body">Oui, pour le présentiel et les formats équipe, via mon partenaire de portage. Le <b>reste à charge est souvent nul</b>. On étudie ton dossier ensemble.</div></details>
+    <details><summary>Ça marche pour mon secteur ?</summary><div class="fa-body">La méthode s'appuie sur les mécanismes de décision du cerveau, ils sont les mêmes en B2B, en B2C, au téléphone ou en visio. On adapte les scripts à ta réalité (le programme couvre les 3 cas).</div></details>
+    <details><summary>Il y a une garantie ?</summary><div class="fa-body">Oui : <b>30 jours satisfait ou remboursé</b>. Et sur les accompagnements : « résultat, ou on continue ensemble jusqu'à ta première vente ». Je ne garde pas ton argent si la méthode ne te sert pas.</div></details>
+  </div>
+</div></section>
+
+<!-- FINAL CTA -->
+<section class="final"><div class="wrap">
+  <h2>Découvre où fuit ta vente. En 5 minutes.</h2>
+  <p>Un diagnostic gratuit qui te donne ton score /100 et ton plan personnalisé sur les 7 leviers de la neurovente.</p>
+  <a class="btn btn-primary" href="https://diagnostic.persua-neurovente.com/">Faire le diagnostic gratuit →</a>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot-top">
+    <div class="foot-brand"><img src="assets/brand/persua_logo.svg" alt="Persua"><span style="color:#9B96B8;font-size:13.5px">La vente adaptée au cerveau</span></div>
+    <div class="socials">
+      <a href="https://wa.me/33749554615" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.3L2 22l4.8-1.5A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.8.9.9-2.7-.2-.3A8 8 0 1112 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.7.9-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.5-.2-.3.2-.3.5-.9.1-.1 0-.3 0-.4 0-.1-.5-1.3-.7-1.7-.2-.4-.4-.4-.5-.4h-.4c-.2 0-.4.1-.6.3-.7.7-.9 1.6-.5 2.7.5 1.4 1.5 2.5 2.9 3.3.5.3 1 .5 1.5.6.6.2 1.1.1 1.5.1.5-.1 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.1-.4-.2z"/></svg></a>
+      <a href="https://www.linkedin.com/in/stevenlfrs" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05 4.02 0 4.76 2.65 4.76 6.1V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/></svg></a>
+      <a href="https://www.instagram.com/steven_lefrancois_vente/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.43.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.42-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.43-.37-1.06-.42-2.23C3.21 15.58 3.2 15.2 3.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.17 1.06-.37 2.23-.42C8.42 2.21 8.8 2.2 12 2.2zm0 3.05A6.75 6.75 0 1018.75 12 6.75 6.75 0 0012 5.25zm0 11.13A4.38 4.38 0 1116.38 12 4.38 4.38 0 0112 16.38zM18.9 5a1.58 1.58 0 11-1.58-1.58A1.58 1.58 0 0118.9 5z"/></svg></a>
+      <a href="https://www.youtube.com/@steven_vente_persua?sub_confirmation=1" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 00-1.77-1.77C19.34 5.1 12 5.1 12 5.1s-7.34 0-8.83.42A2.5 2.5 0 001.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 001.77 1.77C4.66 18.9 12 18.9 12 18.9s7.34 0 8.83-.42a2.5 2.5 0 001.77-1.77C23 15.2 23 12 23 12zM9.75 15.02V8.98L15.5 12z"/></svg></a>
+      <a href="https://www.tiktok.com/@steven_lefrancois_vente?lang=fr" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.6 5.82A4.28 4.28 0 0115.5 3h-3.2v12.9a2.3 2.3 0 11-2.3-2.3c.2 0 .4.03.6.08v-3.3a5.6 5.6 0 105 5.57V9.34a7.5 7.5 0 004.4 1.4V7.5a4.28 4.28 0 01-3.4-1.68z"/></svg></a>
+    </div>
+  </div>
+  <div class="foot-in">
+    <span>Persua SASU · SIRET 100 132 497 00015</span>
+    <span><a href="/a-propos">À propos</a> ·  · <a href="/#avis">Avis</a> · <a href="/mentions-legales">Mentions légales</a> · <a href="/cgv">CGV</a> · <a href="/confidentialite">Confidentialité</a></span>
+  </div>
+</footer>
+
+<a class="btn btn-primary book" id="book" href="https://cal.com/steven-lfrs-persua/diagnostic" target="_blank" rel="noopener">📅 Prendre RDV avec Steven</a>
+
+<div class="lightbox" id="lb"><div class="lb-inner"><button class="lb-close" id="lbClose" aria-label="Fermer">×</button><iframe id="lbFrame" src="" allow="autoplay; fullscreen" allowfullscreen></iframe></div></div>
+
+<div class="modal" id="appModal" aria-hidden="true">
+  <div class="modal-in">
+    <button class="modal-close" aria-label="Fermer">×</button>
+    <span class="modal-tag">L'application incluse</span>
+    <h3>L'Espace Membre Persua, tout au même endroit</h3>
+    <p>Accessible partout sur <b>app.persua-neurovente.com</b>, c'est ton espace de formation et d'accompagnement en neurovente :</p>
+    <ul class="modal-feats">
+      <li><b>Ton parcours de formation</b> : tous les modules en vidéo, avec ta progression, tes niveaux et les leçons qui se débloquent au fil de l'eau.</li>
+      <li><b>Le NeuroVault</b> : ta bibliothèque de scripts prêts à l'emploi (prospection, LinkedIn, appels, objections, accroches, relances).</li>
+      <li><b>L'Assistant IA</b> : ton copilote qui génère et personnalise tes scripts et t'aide à traiter les objections en direct.</li>
+      <li><b>Ton diagnostic de vente</b> : ton profil (DISC, leviers de décision) pour vendre selon ta personnalité et celle de ton client.</li>
+      <li><b>Ton journal de bord</b> : tes notes et ton suivi de progression, réunis au même endroit.</li>
+    </ul>
+    <p class="modal-note">Accès à vie, inclus dans ton accompagnement Persua.</p>
+  </div>
+</div>
+
+<script src="assets/app.js?v=30"></script>
+<script src="assets/reviews.js?v=4"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(innerWidth < 720) return;
+  var canvas = document.getElementById('demoBrain'); if(!canvas || !window.THREE) return;
+  var renderer; try { renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:false, powerPreference:'low-power'}); } catch(e){ return; }
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  var scene = new THREE.Scene(), camera = new THREE.PerspectiveCamera(38,1,.1,20);
+  camera.position.set(0,0,3);
+  var ZF = -1;
+  var cv=document.createElement('canvas');cv.width=cv.height=64;var cx=cv.getContext('2d');
+  var gr=cx.createRadialGradient(32,32,0,32,32,32);gr.addColorStop(0,'#fff');gr.addColorStop(.4,'rgba(255,255,255,.55)');gr.addColorStop(1,'rgba(255,255,255,0)');cx.fillStyle=gr;cx.fillRect(0,0,64,64);
+  var sprite=new THREE.CanvasTexture(cv);
+  var group=new THREE.Group(); group.scale.setScalar(0.9); scene.add(group);
+  fetch('assets/models/brain-points.bin').then(function(r){return r.arrayBuffer();}).then(function(ab){
+    var q=new Int16Array(ab), n=q.length/3, p=new Float32Array(n*3), c=new Float32Array(n*3);
+    for(var i=0;i<n;i++){
+      var x=q[i*3]/32767, y=q[i*3+1]/32767, z=q[i*3+2]/32767*ZF;
+      p[i*3]=x;p[i*3+1]=y;p[i*3+2]=z;
+      var t=.5+.5*z; c[i*3]=.30+.16*t; c[i*3+1]=.28+.13*t; c[i*3+2]=.95;
+    }
+    var geo=new THREE.BufferGeometry();
+    geo.setAttribute('position',new THREE.BufferAttribute(p,3));
+    geo.setAttribute('color',new THREE.BufferAttribute(c,3));
+    var mat=new THREE.PointsMaterial({size:0.013,map:sprite,vertexColors:true,transparent:true,opacity:.85,blending:THREE.AdditiveBlending,depthWrite:false,sizeAttenuation:true});
+    group.add(new THREE.Points(geo,mat));
+    canvas.classList.add('ready');
+  }).catch(function(){});
+  function resize(){ var s=canvas.parentNode; var w=s.clientWidth,h=s.clientHeight; renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix(); }
+  addEventListener('resize',resize); resize();
+  var clock=new THREE.Clock(), py=0;
+  (function tick(){
+    var dt=Math.min(clock.getDelta(),.05);
+    group.rotation.y += dt*0.08;                                  // rotation lente
+    group.rotation.x = -0.05 + Math.sin(clock.elapsedTime*0.4)*0.03;
+    var r=canvas.parentNode.getBoundingClientRect();              // parallaxe au scroll
+    var prog=(r.top + r.height/2 - innerHeight/2)/innerHeight;
+    py += (-prog*0.20 - py)*Math.min(1,dt*3);
+    group.position.y = py;
+    renderer.render(scene,camera);
+    requestAnimationFrame(tick);
+  })();
+})();
+</script>
+</body>
+</html>

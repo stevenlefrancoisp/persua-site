@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-Ray · humain → radio crâne (30%) → cerveau</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+:root{--bg:#13133A;--deep:#07071A;--muted:#9B96B8;--violet:#8b83ff;--scan:#46b6ff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{overflow-x:hidden}
+body{background:var(--deep);color:#F1EFFA;font-family:"Space Mono",monospace}
+#stage{position:fixed;inset:0;z-index:0;background:radial-gradient(80% 70% at 50% 22%,#191946,#0f0f2e 55%,#07071A 100%)}
+#stars{position:fixed;inset:0;z-index:1;pointer-events:none}
+/* wrapper qui zoome : les 2 photos partagent EXACTEMENT le même cadre/zoom, origine = la tête */
+#portrait{position:fixed;left:50%;bottom:0;height:94vh;z-index:3;transform:translateX(-50%);transform-origin:46% 13%;will-change:transform,opacity}
+#portrait .human{position:relative;height:100%;display:block}
+#portrait .skull{position:absolute;top:0;left:0;height:100%;display:block;opacity:0;will-change:opacity}   /* démarre à 0, monte jusqu'à 30% */
+#portrait .human{filter:none;transition:filter .3s}
+#portrait.scanning .human{filter:grayscale(.35) contrast(1.06) brightness(1.03)}
+/* line scan bleue */
+#portrait::after{content:"";position:absolute;left:-5%;right:-5%;top:var(--scanpos,-20%);height:3px;
+  background:linear-gradient(90deg,transparent,var(--scan) 30%,#bfe6ff 50%,var(--scan) 70%,transparent);
+  box-shadow:0 0 26px 5px rgba(70,182,255,.85),0 0 60px 12px rgba(70,182,255,.35);opacity:0;z-index:6;transition:opacity .25s}
+#portrait.scanning::after{opacity:1}
+#brain{position:fixed;inset:0;z-index:4;pointer-events:none}
+.tag{position:fixed;left:30px;top:26px;z-index:10;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted)}
+.tag b{color:var(--scan);font-weight:400}
+.hint{position:fixed;left:50%;transform:translateX(-50%);bottom:24px;z-index:10;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:9px}
+.hint i{width:1px;height:32px;background:var(--muted);animation:pl 1.8s ease-in-out infinite;transform-origin:top}
+@keyframes pl{0%,100%{transform:scaleY(.3);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+#track{position:relative;z-index:5;height:340vh;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<canvas id="stars"></canvas>
+<canvas id="brain"></canvas>
+<div id="portrait">
+  <img class="human" src="assets/brand/steven_cutout.webp" alt="Steven">
+  <img class="skull" src="assets/brand/steven_skull_aligned.webp" alt="">
+</div>
+<div class="tag">Persua · <b>on entre dans ta tête</b></div>
+<div class="hint"><span>scroll</span><i></i></div>
+<div id="track"></div>
+
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lenis=null;if(!reduce&&window.Lenis){lenis=new Lenis({lerp:0.08,smoothWheel:true});(function raf(t){lenis.raf(t);requestAnimationFrame(raf);})();}
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  function smooth(a,b,x){x=clamp((x-a)/(b-a),0,1);return x*x*(3-2*x);}
+  function mix(a,b,t){return a+(b-a)*t;}
+
+  /* ---- étoiles ---- */
+  var starCv=document.getElementById('stars'),sctx=starCv.getContext('2d'),STARS=[];
+  function initStars(){STARS=[];var N=Math.min(260,Math.round(innerWidth*innerHeight/9000));for(var i=0;i<N;i++)STARS.push({x:Math.random(),y:Math.random(),r:Math.random()*1.3+0.3,a:Math.random()*0.5+0.2,tw:Math.random()*2.6+0.5});}
+  function sizeStars(){var d=Math.min(devicePixelRatio,2);starCv.width=innerWidth*d;starCv.height=innerHeight*d;sctx.setTransform(d,0,0,d,0,0);}
+  function drawStars(tm,fade){sctx.clearRect(0,0,innerWidth,innerHeight);if(fade<=0)return;for(var i=0;i<STARS.length;i++){var s=STARS[i];var tw=0.5+0.5*Math.sin(tm*s.tw+i);sctx.beginPath();sctx.fillStyle='rgba(150,190,255,'+(s.a*tw*fade)+')';sctx.arc(s.x*innerWidth,s.y*innerHeight,s.r,0,6.2832);sctx.fill();}}
+  initStars();sizeStars();addEventListener('resize',function(){sizeStars();initStars();});
+
+  /* ---- cerveau 3D en particules (assemblage au niveau de la tête -> plongée) ---- */
+  var HEAD_FX=0.46,HEAD_FY=0.13,HEAD_DIA=0.17,CAMZ=3.2,FOV=42;
+  var canvas=document.getElementById('brain'),renderer,scene,camera,group,mat,R=1,vTmp=null;
+  if(window.THREE){try{renderer=new THREE.WebGLRenderer({canvas:canvas,alpha:true,antialias:true,powerPreference:'high-performance'});}catch(e){}}
+  if(renderer){
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    scene=new THREE.Scene();camera=new THREE.PerspectiveCamera(FOV,1,.1,50);camera.position.set(0,0,CAMZ);
+    group=new THREE.Group();scene.add(group);vTmp=new THREE.Vector3();
+    function softTex(){var c=document.createElement('canvas');c.width=c.height=64;var x=c.getContext('2d');var g=x.createRadialGradient(32,32,0,32,32,32);g.addColorStop(0,'#fff');g.addColorStop(.45,'rgba(255,255,255,.6)');g.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=g;x.fillRect(0,0,64,64);return new THREE.CanvasTexture(c);}
+    mat=new THREE.ShaderMaterial({
+      uniforms:{uMorph:{value:0},uTime:{value:0},uScale:{value:0.2},uPos:{value:new THREE.Vector3()},uRotY:{value:0},uSize:{value:1.0},uColor:{value:new THREE.Color(0x6aa8ff)},uAlpha:{value:0},uTex:{value:softTex()}},
+      vertexShader:"uniform float uMorph,uTime,uScale,uRotY,uSize;uniform vec3 uPos;attribute vec3 aSnow;attribute float aSeed;void main(){float c=cos(uRotY),s=sin(uRotY);vec3 b=position;vec3 br=vec3(b.x*c+b.z*s,b.y,-b.x*s+b.z*c);vec3 brainW=br*uScale+uPos;vec3 sn=aSnow;sn.y=mod(aSnow.y-uTime*0.35+4.0,8.0)-4.0;sn.x+=sin(uTime*0.6+aSeed*6.2831)*0.18;vec3 fin=mix(sn,brainW,uMorph);vec4 mv=modelViewMatrix*vec4(fin,1.0);gl_Position=projectionMatrix*mv;gl_PointSize=max(uSize*(9.0/-mv.z),1.0);}",
+      fragmentShader:"uniform vec3 uColor;uniform float uAlpha;uniform sampler2D uTex;void main(){float a=texture2D(uTex,gl_PointCoord).a;gl_FragColor=vec4(uColor,1.0)*a*uAlpha;}",
+      transparent:true,depthWrite:false,blending:THREE.AdditiveBlending
+    });
+    fetch('assets/models/brain-points.bin').then(function(r){return r.arrayBuffer();}).then(function(ab){
+      var q=new Int16Array(ab),n=q.length/3,p=new Float32Array(n*3),snow=new Float32Array(n*3),seed=new Float32Array(n);
+      for(var i=0;i<n;i++){p[i*3]=q[i*3]/32767;p[i*3+1]=q[i*3+1]/32767;p[i*3+2]=q[i*3+2]/32767*-1;snow[i*3]=(Math.random()*2-1)*2.6;snow[i*3+1]=(Math.random()*2-1)*1.7;snow[i*3+2]=(Math.random()*2-1)*0.8;seed[i]=Math.random();}
+      var geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.BufferAttribute(p,3));geo.setAttribute('aSnow',new THREE.BufferAttribute(snow,3));geo.setAttribute('aSeed',new THREE.BufferAttribute(seed,1));
+      geo.center();geo.computeBoundingSphere();R=(geo.boundingSphere&&geo.boundingSphere.radius)||1;group.add(new THREE.Points(geo,mat));
+    }).catch(function(){});
+    function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}
+    addEventListener('resize',resize);resize();
+  }
+
+  var portrait=document.getElementById('portrait'),skull=portrait.querySelector('.skull'),track=document.getElementById('track'),t0=null;
+  var _fp=location.search.match(/[?&]p=([0-9.]+)/),FORCEP=_fp?parseFloat(_fp[1]):null;
+  function frame(ts){
+    if(t0===null)t0=ts;var el=(ts-t0)/1000;
+    var r=track.getBoundingClientRect(),vh=innerHeight;
+    var P=clamp((-r.top)/(track.offsetHeight-vh),0,1);if(FORCEP!==null)P=clamp(FORCEP,0,1);
+
+    /* ---- phases ---- */
+    var zoomP=smooth(0.00,0.55,P);          // zoom sur les 2 photos (même échelle)
+    var scanP=smooth(0.05,0.55,P);          // la line scan bleue balaie la tête
+    var skullOp=smooth(0.12,0.55,P)*0.30;   // opacité crâne : 0 -> 30%
+    var dive=smooth(0.55,1.0,P);            // plongée dans le cerveau
+    var photoFade=1-smooth(0.55,0.74,P);    // les photos s'effacent quand on plonge
+    drawStars(el,1);
+
+    /* ---- ZOOM commun aux 2 photos ---- */
+    var zoom=1+zoomP*2.7;
+    portrait.style.transform='translateX(-50%) scale('+zoom+')';
+    portrait.style.opacity=photoFade+'';
+    /* crâne en radio (opacité 0 -> 30%) */
+    skull.style.opacity=(skullOp*photoFade)+'';
+    /* line scan : balaie la zone tête (haut de la photo) pendant la révélation */
+    var scanning=(P>0.03&&P<0.56);
+    portrait.classList.toggle('scanning',scanning);
+    portrait.style.setProperty('--scanpos',mix(-6,32,scanP)+'%');
+
+    /* ---- cerveau 3D ---- */
+    if(renderer){
+      var Hw=2*Math.tan(FOV*Math.PI/180/2)*CAMZ,wpp=Hw/innerHeight;
+      var rect=portrait.getBoundingClientRect();
+      var hpx=rect.left+HEAD_FX*rect.width,hpy=rect.top+HEAD_FY*rect.height;
+      vTmp.set((hpx/innerWidth)*2-1,-((hpy/innerHeight)*2-1),0.5).unproject(camera);vTmp.sub(camera.position).normalize();
+      var dist=-camera.position.z/vTmp.z;var hx=camera.position.x+vTmp.x*dist,hy=camera.position.y+vTmp.y*dist;
+      var headScale=(HEAD_DIA*rect.height*wpp)/(2*R),fillScale=(1.7*Hw)/(2*R);
+      var sc=mix(headScale,fillScale,dive),pxw=mix(hx,0,dive),pyw=mix(hy,0,dive);
+      group.rotation.y=el*0.14;group.rotation.x=-0.05+Math.sin(el*0.2)*0.03;
+      if(mat){var u=mat.uniforms;u.uTime.value=el;u.uScale.value=sc;u.uPos.value.set(pxw,pyw,0);u.uRotY.value=el*0.14;
+        u.uMorph.value=clamp(smooth(0.30,0.55,P),0,1);                 // se rassemble en cerveau à la fin du zoom
+        u.uAlpha.value=clamp(smooth(0.34,0.58,P),0,1)*0.92;            // apparaît avec la radio
+        u.uColor.value.setRGB(mix(0.42,0.60,dive),mix(0.66,0.55,dive),1.0);
+        u.uSize.value=1.0+dive*1.1;}
+      renderer.render(scene,camera);
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
