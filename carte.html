@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/png" href="/assets/meta/favicon.png">
+<title>Steven Lefrançois · Persua</title>
+<meta name="description" content="Steven Lefrançois, fondateur de Persua. Enregistre mon contact ou fais ton diagnostic neurovente en 2 minutes.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css?v=37">
+<style>
+.card-hero{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;padding-bottom:calc(48px + env(safe-area-inset-bottom));
+  background:radial-gradient(120% 90% at 78% 8%,rgba(71,71,253,.42) 0%,transparent 46%),
+             radial-gradient(90% 70% at 8% 100%,rgba(84,74,250,.20) 0%,transparent 55%),
+             linear-gradient(180deg,var(--deep) 0%,#191946 60%,var(--deep) 100%)}
+.card-in{position:relative;z-index:2;width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center}
+.card-logo{height:26px;margin-bottom:32px}
+.card-ring{width:148px;height:148px;border-radius:50%;padding:6px;background:conic-gradient(from 140deg,var(--electric),var(--indigo),#8b83ff,var(--electric));box-shadow:0 24px 60px -16px rgba(71,71,253,.7);margin-bottom:22px}
+.card-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:4px solid var(--deep)}
+.card-name{font-family:var(--black);font-weight:400;font-size:clamp(22px,6.3vw,32px);letter-spacing:-.02em;line-height:1.12;margin-bottom:10px}
+.card-role{font-size:16px;color:#C6C2DC;max-width:320px;margin-bottom:14px}
+.card-role b{color:#fff;font-weight:600}
+.card-proof{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:#B4AFCE;margin-bottom:32px}
+.card-proof .stars{color:#FFC24B;letter-spacing:2px;font-size:14px}
+.card-proof b{color:#fff;font-weight:600}
+.card-cta{display:flex;flex-direction:column;gap:12px;width:100%;margin-bottom:10px}
+.card-cta .btn{justify-content:center;width:100%;padding:17px 26px;font-size:16px}
+.card-note{font-size:13.5px;color:var(--mist);margin-bottom:34px}
+.card-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.card-links a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border-radius:100px;font-size:14.5px;font-weight:500;color:#D9D6EA;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);transition:.2s}
+.card-links a:hover{background:rgba(255,255,255,.12);color:#fff}
+.card-links .star{color:#FFC24B}
+.card-foot{position:relative;z-index:2;margin-top:40px;font-size:12.5px;color:var(--mist)}
+.card-foot a{color:#B4AFCE}
+</style>
+</head>
+<body>
+
+<main class="card-hero">
+  <div class="grid-bg"></div>
+  <div class="card-in">
+    <img class="card-logo" src="/assets/brand/persua_logo.svg" alt="Persua">
+
+    <div class="card-ring"><img src="/assets/steven.png" alt="Steven Lefrançois" width="148" height="148"></div>
+
+    <h1 class="card-name">Steven Lefrançois</h1>
+    <p class="card-role">Fondateur de <b>Persua</b> · neurosciences appliquées à la vente</p>
+    <p class="card-proof"><span class="stars">★★★★★</span> <b>5,0</b> · 20 avis Google</p>
+
+    <div class="card-cta">
+      <a class="btn btn-primary" href="/assets/steven-lefrancois.vcf" type="text/vcard">Enregistrer mon contact</a>
+      <a class="btn btn-ghost" href="https://diagnostic.persua-neurovente.com/?utm_source=nfc&utm_medium=tap-card&utm_campaign=steven">Faire ton diagnostic neurovente</a>
+    </div>
+    <p class="card-note">2 minutes, gratuit, résultat immédiat.</p>
+
+    <div class="card-links">
+      <a href="https://www.linkedin.com/in/stevenlfrs" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://wa.me/33749554615" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://persua-neurovente.com">Le site</a>
+      <a href="https://search.google.com/local/writereview?placeid=ChIJW2q1MobCn4oRNGtlI3gpAM4" target="_blank" rel="noopener"><span class="star">★</span>&nbsp;Mettre un avis</a>
+    </div>
+  </div>
+
+  <p class="card-foot">Persua · <a href="/">persua-neurovente.com</a></p>
+</main>
+
+</body>
+</html>
