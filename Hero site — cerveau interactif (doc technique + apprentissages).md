@@ -1,7 +1,7 @@
 ---
 tags: [persua-site, hero, webgl, technique, apprentissages]
-maj: 2026-08-08
-statut: DÉPLOYÉ en prod (commit 63260fc)
+maj: 2026-09-22
+statut: DÉPLOYÉ en prod (commit 63260fc) · 22/09 : FILM pré-calculé Blender greffé sur la phase « dedans » (voie B)
 ---
 
 # Hero site Persua — « radio → dedans le cerveau »
@@ -61,3 +61,14 @@ Source : `~/Downloads/Gemini_Generated_Image_3eqj6j3eqj6j3eqj.png` (crâne+cerve
 - **Mesurer avant de deviner** : après 2 corrections ratées, instrumenter (afficher rect/computed/innerWidth) au lieu d'enchaîner les patchs à l'aveugle — et **suspecter son propre outil de test** (le « bug » venait du headless 500px, pas du site).
 - **Itérer sur le VRAI artefact**, pas sur des démos hors-sol sur fond noir (« ça n'a rien à voir avec ce qu'on a fait »). Montrer le rendu avant de tout construire ; verrouiller à chaque validation.
 - **Cause racine, pas symptôme** : traiter le pourquoi (photos non alignées) plutôt que retoucher des opacités en boucle.
+
+
+## 22/09/2026 — Voie B : le voyage « dedans » devient un film pré-calculé (Blender)
+
+Décision Steven (référence : Iron Man 3, hologramme du cerveau de Killian) : le nuage de points est une coquille, pas un volume. La phase d'immersion (P 0,47 → 0,92) est désormais une **séquence d'images rendue dans Blender** et jouée au scroll, image par image, façon pages produit Apple. Le nuage WebGL reste : (1) avant le film (photo → crâne → plongée), (2) en fond du contenu après, (3) seul sur téléphone (≤ 820 px) et si `saveData` / `prefers-reduced-motion`.
+
+- **Pipeline** : `_render/brain_scene.py` (génération volume + faisceaux curl noise + tubes + somas + brume + caméra en orbite intérieure ; sortie EXR linéaire) → `_render/post.py` (Glare BLOOM, view Standard, exposition +0,35 → PNG) → `_render/towebp.py` (WebP 1280 px, q74, ≈ 35 Ko/image) → `assets/hero-film/f_001.webp…f_120.webp` (versionné, ≈ 4 Mo).
+- **Lecteur** (dans `index.html`, objet `FILM`) : canvas `#film` (z-index 4, au-dessus de `#brain`), chargement en tâche de fond au premier scroll (4 fetch en parallèle, `createImageBitmap`), priorité à l'image courante, dessin cover-fit en DPR, image la plus proche déjà chargée en attendant. Opacité = `smooth(0.47,0.56,P) × endFade` ; le nuage WebGL multiplie son alpha par `(1 − filmOp)`. Debug : `?filmtest&filmn=36` (séquence de test), `?nofilm`, `?p=0.7`.
+- **Réglages Blender retenus** : fibres 2 300, largeur 0,00025–0,00115, émission base 0,8 / influx 22, couleur (0.20,0.36,1) → (0.72,0.90,1), atténuation caméra exp(−2,6·d) × fondu proche 0,14–0,36, DoF f/8 focus 0,5, pas de flou de mouvement (scrub), bloom seuil 0,12 / force 2,6 / taille 0,95.
+- **Gotchas** : tubes émissifs translucides qui s'additionnent = cadre cramé → atténuation par distance + bloom en post ; AgX blanchit les bleus intenses → Standard ; `.html` sur `serve` redirige SANS la query (`?p=`) → utiliser l'URL propre ; en headless Chrome (SwiftShader) les lignes fines WebGL sont visibles alors qu'elles n'existent pas sur Retina → toujours vérifier dans le vrai Chrome.
+- **Rollback** : `_render/index.backup-avant-film.html` = index.html d'avant la greffe ; ou `?nofilm`.

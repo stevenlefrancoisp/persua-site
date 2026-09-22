@@ -48,6 +48,8 @@ a{color:inherit;text-decoration:none}
 #glowbg{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(60% 55% at 50% 14%,rgba(84,74,250,.28),transparent 60%),radial-gradient(50% 50% at 82% 78%,rgba(139,131,255,.14),transparent 60%);will-change:opacity}
 #stars{position:fixed;inset:0;z-index:2;pointer-events:none}
 #brain{position:fixed;inset:0;z-index:4;pointer-events:none}
+#film{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:0;will-change:opacity}
+#filmscrim{position:fixed;inset:0;z-index:4;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(5,5,18,.62) 0%,rgba(5,5,18,.35) 28%,rgba(5,5,18,0) 52%)}
 #portrait{position:fixed;left:50%;bottom:0;height:94vh;z-index:3;transform:translateX(-50%);transform-origin:46% 8%;will-change:transform,opacity}
 #portrait .human{position:relative;height:100%;display:block;filter:none;transition:filter .3s ease}
 #portrait .skull{position:absolute;top:0;left:0;height:100%;display:block;opacity:0;will-change:opacity;transform:translateY(-4%) scale(0.88);transform-origin:50% 12%}
@@ -284,6 +286,8 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
 <div id="glowbg"></div>
 <canvas id="stars"></canvas>
 <canvas id="brain"></canvas>
+<canvas id="film"></canvas>
+<div id="filmscrim"></div>
 <div id="scanline"></div>
 <div id="zlabel" style="position:fixed;left:0;top:0;z-index:13;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-shadow:0 0 12px rgba(120,160,255,.95);white-space:nowrap;transform:translate(16px,-50%);opacity:0;pointer-events:none;padding:5px 10px;border:1px solid rgba(255,255,255,.3);border-radius:9px;background:rgba(10,10,30,.45)"></div>
 <div id="portrait"><img class="human" src="assets/brand/steven_cutout.webp" alt="Steven Lefrançois" fetchpriority="high" decoding="async"><img class="skull" src="assets/brand/steven_skull_bw_brain.webp?v=3" alt="" loading="lazy" decoding="async"></div>
@@ -526,6 +530,27 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
       zBig=document.getElementById('zBig'),zTitle=document.getElementById('zTitle'),zText=document.getElementById('zText'),zBars=document.getElementById('zBars').children;
   var P=0,brainReveal=0,revealed=0,scanTarget=0,curZone=-1,cspin=0,lastT=0;
   var _fp=location.search.match(/[?&]p=([0-9.]+)/),FORCEP=_fp?parseFloat(_fp[1]):null;
+  // ---- FILM : voyage dans le cerveau pré-calculé (Blender), joué image par image au scroll (desktop) ----
+  var _fn=location.search.match(/[?&]filmn=(\d+)/);var FILM={base:(location.search.indexOf('filmtest')>=0?'assets/hero-film-test/':'assets/hero-film/'),n:_fn?+_fn[1]:120,ext:'.webp',frames:[],started:false,loading:0,queue:[],cv:document.getElementById('film'),scrim:document.getElementById('filmscrim'),ctx:null,drawn:-1,enabled:false};
+  FILM.enabled=!!(FILM.cv&&window.createImageBitmap&&innerWidth>820&&!(navigator.connection&&navigator.connection.saveData)&&!reduce&&location.search.indexOf('nofilm')<0);
+  if(FILM.enabled){FILM.ctx=FILM.cv.getContext('2d');
+    function filmSize(){var d=Math.min(devicePixelRatio,2);FILM.cv.width=innerWidth*d;FILM.cv.height=innerHeight*d;FILM.drawn=-1;}
+    filmSize();addEventListener('resize',filmSize);
+    function filmUrl(i){var k=String(i+1);while(k.length<3)k='0'+k;return FILM.base+'f_'+k+FILM.ext;}
+    function filmLoad(i){if(FILM.frames[i]!==undefined)return;FILM.frames[i]=null;FILM.loading++;
+      fetch(filmUrl(i)).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){return createImageBitmap(b);}).then(function(bm){FILM.frames[i]=bm;}).catch(function(){FILM.frames[i]=false;}).then(function(){FILM.loading--;filmPump();});}
+    function filmPump(){while(FILM.loading<4&&FILM.queue.length){var i=FILM.queue.shift();if(FILM.frames[i]===undefined)filmLoad(i);}}
+    function filmStart(){if(FILM.started)return;FILM.started=true;for(var i=0;i<FILM.n;i++)FILM.queue.push(i);filmPump();}
+    // priorité à l'image courante : on la met en tête de file
+    function filmWant(i){if(!FILM.started)filmStart();if(FILM.frames[i]===undefined){var k=FILM.queue.indexOf(i);if(k>0){FILM.queue.splice(k,1);FILM.queue.unshift(i);}filmPump();}}
+    // démarrage doux : au premier scroll, ou après 2,5 s si l'utilisateur reste en haut
+    addEventListener('scroll',filmStart,{once:true,passive:true});setTimeout(filmStart,2500);
+  }
+  function filmDraw(idx){ // dessine l'image la plus proche déjà chargée (vers le bas), cover-fit
+    if(!FILM.enabled)return 0;var j=idx;while(j>=0&&!FILM.frames[j])j--;if(j<0){filmWant(idx);return 0;}
+    if(j!==idx)filmWant(idx);
+    if(j===FILM.drawn)return 1;var bm=FILM.frames[j],cw=FILM.cv.width,ch=FILM.cv.height,sc=Math.max(cw/bm.width,ch/bm.height),dw=bm.width*sc,dh=bm.height*sc;
+    FILM.ctx.drawImage(bm,(cw-dw)/2,(ch-dh)/2,dw,dh);FILM.drawn=j;return 1;}
   var starCv=document.getElementById('stars'),sctx=starCv?starCv.getContext('2d'):null,STARS=[];
   function initStars(){STARS=[];var N=Math.min(460,Math.round(innerWidth*innerHeight/6200));for(var i=0;i<N;i++){STARS.push({x:Math.random(),y:Math.random(),r:Math.random()*1.5+0.4,a:Math.random()*0.6+0.3,tw:Math.random()*2.6+0.5,vx:(Math.random()-0.5)*0.00006,vy:Math.random()*0.0001+0.00003});}}
   function sizeStars(){if(!starCv||!sctx)return;var dpr=Math.min(devicePixelRatio,2);starCv.width=innerWidth*dpr;starCv.height=innerHeight*dpr;sctx.setTransform(dpr,0,0,dpr,0,0);}
@@ -568,6 +593,9 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
       var headScale=(HEAD_DIA*rect.height*wpp)/(2*R),fillScale=(0.72*Hw)/(2*R),insideScale=4.6/R;
       var dive=smooth(0.33,0.58,P);          // on plonge : le cerveau grossit
       var inside=smooth(0.5,0.72,P);         // on RESTE À L'INTÉRIEUR jusqu'à la dernière section (fond du contenu = dedans le cerveau)
+      // FILM : visible pendant l'immersion (P 0.47→0.9), scrubbé par le scroll ; le nuage WebGL s'efface derrière lui
+      var filmOp=0;
+      if(FILM.enabled){var fu=smooth(0.47,0.92,P);var fi=Math.min(FILM.n-1,Math.round(fu*(FILM.n-1)));var ok=(P>0.4&&P<0.98)?filmDraw(fi):0;filmOp=ok*smooth(0.47,0.56,P)*endFade;FILM.cv.style.opacity=filmOp.toFixed(3);if(FILM.scrim)FILM.scrim.style.opacity=(filmOp*zone.style.opacity).toFixed(3);}
       var sc=mix(headScale,mix(fillScale,insideScale,inside),dive),pxw=mix(hx,0,dive)*(1-inside),pyw=mix(hy,0,dive)*(1-inside);
       // caméra FIXE (aucun balancement latéral) : on est DEDANS parce que le nuage grossit autour d'elle ; la navigation vient de la rotation douce du nuage → fluide
       var zf=clamp(innerP*5,0,4.999),zi=Math.floor(zf),zj=Math.min(zi+1,4),fr=zf-zi;setZone(zi);
@@ -576,7 +604,7 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
       var cr=mix(ZONES[zi].col[0],ZONES[zj].col[0],fr),cg=mix(ZONES[zi].col[1],ZONES[zj].col[1],fr),cb=mix(ZONES[zi].col[2],ZONES[zj].col[2],fr);
       // couleurs = celles des zones CALME (pas de virage forcé)
       var morph=clamp(smooth(0.11,0.30,P),0,1);           // les particules brillent tôt pour combler le passage humain→crâne
-      if(mat){var u=mat.uniforms;u.uTime.value=Date.now()*0.001;u.uScale.value=sc;u.uPos.value.set(pxw,pyw,0);u.uRotY.value=roty;u.uMorph.value=morph;u.uColor.value.setRGB(cr,cg,cb);u.uAlpha.value=morph*mix(0.9,1.02,cT0);u.uSize.value=mix(1.0,2.0,inside);}
+      if(mat){var u=mat.uniforms;u.uTime.value=Date.now()*0.001;u.uScale.value=sc;u.uPos.value.set(pxw,pyw,0);u.uRotY.value=roty;u.uMorph.value=morph;u.uColor.value.setRGB(cr,cg,cb);u.uAlpha.value=morph*mix(0.9,1.02,cT0)*(1-filmOp);u.uSize.value=mix(1.0,2.0,inside);}
       if(glow){var pls=0.72+0.28*Math.sin(Date.now()*0.005);var gz=mix(R*sc*0.9,1.4,inside),gx=mix(pxw,-az*0.6,inside),gy=mix(pyw+ey*R*sc,ey*0.55,inside);glow.position.set(gx,gy,gz);glow.material.color.setRGB(mix(cr,1,0.45),mix(cg,1,0.45),1.0);glow.scale.setScalar(mix(0.25+innerP*0.4,0.3,inside)*pls);glow.material.opacity=smooth(0.34,0.5,P)*endFade*(0.75+0.25*pls);}   // marqueur de localisation : point plus clair qui pulse
       var _zl=document.getElementById('zlabel');if(_zl){if(inside>0.25){var _pv=new THREE.Vector3(gx,gy,gz);_pv.project(camera);var _sx=(_pv.x*0.5+0.5)*innerWidth,_sy=(-_pv.y*0.5+0.5)*innerHeight;_sx=clamp(_sx,14,innerWidth-160);_sy=clamp(_sy,80,innerHeight-150);_zl.style.left=_sx+'px';_zl.style.top=_sy+'px';_zl.textContent=ZONES[zi].L+' · '+ZONES[zi].t;_zl.style.opacity=(smooth(0.34,0.5,P)*endFade*0.97)+'';}else{_zl.style.opacity='0';}}   // label C/A/L/M/E flottant PILE sur le point de localisation
       renderer.render(scene,camera);
