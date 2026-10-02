@@ -532,7 +532,7 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
   var _fp=location.search.match(/[?&]p=([0-9.]+)/),FORCEP=_fp?parseFloat(_fp[1]):null;
   // ---- FILM : voyage dans le cerveau pré-calculé (Blender), joué image par image au scroll (desktop) ----
   var _fn=location.search.match(/[?&]filmn=(\d+)/);var FILM={base:(location.search.indexOf('filmtest')>=0?'assets/hero-film-test/':'assets/hero-film/'),n:_fn?+_fn[1]:120,ext:'.webp',frames:[],started:false,loading:0,queue:[],cv:document.getElementById('film'),scrim:document.getElementById('filmscrim'),ctx:null,drawn:-1,enabled:false};
-  FILM.enabled=!!(FILM.cv&&window.createImageBitmap&&innerWidth>820&&!(navigator.connection&&navigator.connection.saveData)&&!reduce&&location.search.indexOf('nofilm')<0);
+  FILM.enabled=!!(FILM.cv&&window.createImageBitmap&&innerWidth>820&&!(navigator.connection&&navigator.connection.saveData)&&!reduce&&location.search.indexOf('filmon')>=0); // film Blender retiré le 02/10 (refusé par Steven), ?filmon pour le revoir
   if(FILM.enabled){FILM.ctx=FILM.cv.getContext('2d');
     function filmSize(){var d=Math.min(devicePixelRatio,2);FILM.cv.width=innerWidth*d;FILM.cv.height=innerHeight*d;FILM.drawn=-1;}
     filmSize();addEventListener('resize',filmSize);
