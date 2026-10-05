@@ -292,14 +292,14 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
 <div id="zlabel" style="position:fixed;left:0;top:0;z-index:13;font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#fff;text-shadow:0 0 12px rgba(120,160,255,.95);white-space:nowrap;transform:translate(16px,-50%);opacity:0;pointer-events:none;padding:5px 10px;border:1px solid rgba(255,255,255,.3);border-radius:9px;background:rgba(10,10,30,.45)"></div>
 <div id="portrait"><img class="human" src="assets/brand/steven_cutout.webp" alt="Steven Lefrançois" fetchpriority="high" decoding="async"><img class="skull" src="assets/brand/steven_skull_bw_brain.webp?v=3" alt="" loading="lazy" decoding="async"></div>
 <div class="top" id="topbar">
-  <div class="brand">Steven<br>Lefrançois<small>Neurovente — Persua™</small></div>
+  <div class="brand">Steven<br>Lefrançois<small>Neurovente · Persua™</small></div>
   <a class="pill" href="https://diagnostic.persua-neurovente.com/" target="_blank" rel="noopener">◆ Diagnostic</a>
 </div>
 <div class="lab head" id="labHead">Cortex préfrontal<br>zone de décision</div>
 <div class="card" id="card"><div class="t">Méthode</div><div class="c">C · A · L · M · E</div></div>
 <div class="scrollhint" id="hint"><span>Scroll pour entrer</span><i></i></div>
 <div class="zone" id="zone">
-  <div class="zk"><span class="zdot"></span><span id="zkTxt">Zone 1 / 5 — activée</span></div>
+  <div class="zk"><span class="zdot"></span><span id="zkTxt">Zone 1 / 5 · activée</span></div>
   <div class="zbig" id="zBig">C</div><h2 id="zTitle">Cadre</h2>
   <p id="zText">L'état du vendeur, réglé avant le rendez-vous. Votre calme se transmet au cerveau d'en face.</p>
   <div class="zbars" id="zBars"><i></i><i></i><i></i><i></i><i></i></div>
@@ -337,7 +337,7 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
         <div class="crow"><label>Rendez-vous de vente / mois <b id="v-rdv">20</b></label><input id="c-rdv" type="range" min="2" max="80" value="20"></div>
         <div class="crow"><label>Panier moyen <b><span id="v-panier">3 000</span> €</b></label><input id="c-panier" type="range" min="200" max="20000" step="100" value="3000"></div>
         <div class="crow"><label>Taux de closing actuel <b><span id="v-taux">20</span> %</b></label><input id="c-taux" type="range" min="5" max="70" value="20"></div>
-        <p class="cnote">Hypothèse prudente : +10 % de rendez-vous et +5 points de closing. Potentiel, pas une promesse — vos résultats dépendent de votre offre et de votre pratique.</p>
+        <p class="cnote">Hypothèse prudente : +10 % de rendez-vous et +5 points de closing. Potentiel, pas une promesse : vos résultats dépendent de votre offre et de votre pratique.</p>
       </div>
       <div style="text-align:center">
         <div class="lbl">Ce que +5 points de closing changeraient / an</div>
@@ -350,7 +350,7 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
 
   <section class="sec" id="methode"><div class="wrap">
     <span class="kick rev">Ce que dit la science</span>
-    <h2 class="h2 rev">La vente n'est pas un art. C'est une science.</h2>
+    <h2 class="h2 rev">Votre client décide avant de vous le&nbsp;dire.</h2>
     <div class="grid3">
       <div class="pcard rev"><div class="n">× 1,7</div><h3>L'aversion à la perte</h3><p>Une perte pèse près de deux fois plus lourd qu'un gain équivalent au moment de décider. <span style="color:#6B6690">Kahneman & Tversky</span></p></div>
       <div class="pcard rev"><div class="n">Avant les mots</div><h3>Le cerveau prédit l'achat</h3><p>L'activité neuronale prédit l'achat mieux que ce que le client déclare vouloir. <span style="color:#6B6690">Knutson, Neuron 2007</span></p></div>
@@ -556,7 +556,7 @@ body.nav-live .imenu-btn{opacity:0;pointer-events:none}   /* la barre nav2 a pri
   function sizeStars(){if(!starCv||!sctx)return;var dpr=Math.min(devicePixelRatio,2);starCv.width=innerWidth*dpr;starCv.height=innerHeight*dpr;sctx.setTransform(dpr,0,0,dpr,0,0);}
   function drawStars(tm,fade){if(!sctx)return;sctx.clearRect(0,0,innerWidth,innerHeight);if(fade<=0)return;for(var i=0;i<STARS.length;i++){var s=STARS[i];s.x+=s.vx;s.y+=s.vy;if(s.y>1)s.y-=1;if(s.x>1)s.x-=1;if(s.x<0)s.x+=1;var tw=0.55+0.45*Math.sin(tm*s.tw+i);sctx.beginPath();sctx.fillStyle='rgba('+Math.round(180+40*tw)+','+Math.round(195+35*tw)+',255,'+(s.a*tw*fade)+')';sctx.arc(s.x*innerWidth,s.y*innerHeight,s.r,0,6.2832);sctx.fill();}}
   initStars();sizeStars();addEventListener('resize',function(){sizeStars();initStars();});
-  function setZone(i){i=clamp(i,0,ZONES.length-1);if(i===curZone)return;curZone=i;var z=ZONES[i];zkTxt.textContent='Zone '+(i+1)+' / 5 — activée';zBig.textContent=z.L;zTitle.textContent=z.t;zText.textContent=z.d;for(var k=0;k<zBars.length;k++)zBars[k].classList.toggle('on',k<=i);}
+  function setZone(i){i=clamp(i,0,ZONES.length-1);if(i===curZone)return;curZone=i;var z=ZONES[i];zkTxt.textContent='Zone '+(i+1)+' / 5 · activée';zBig.textContent=z.L;zTitle.textContent=z.t;zText.textContent=z.d;for(var k=0;k<zBars.length;k++)zBars[k].classList.toggle('on',k<=i);}
   function frame(){
     var vh=innerHeight,r=track.getBoundingClientRect();
     P=clamp((-r.top)/(track.offsetHeight-vh),0,1); if(FORCEP!==null)P=clamp(FORCEP,0,1);
