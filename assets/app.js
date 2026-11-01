@@ -201,7 +201,7 @@
       {q:"Combien ça coûte ?", a:"L'Académie : 700 € HT, accès à vie, payable en 1, 2 ou 3 fois. Le Mentorat 1:1 est sur candidature. Les formations en entreprise sont finançables via les OPCO."},
       {q:"C'est finançable OPCO ?", a:"Oui, pour les formations en entreprise (équipe). On s'appuie sur un partenaire de portage certifié Qualiopi le temps que notre propre certification soit finalisée."},
       {q:"L'Académie est-elle remboursable ?", a:"C'est un contenu numérique à accès immédiat : une fois l'accès ouvert, il n'est pas remboursable (tu le valides à l'achat). Le plus sûr avant d'acheter : faire le diagnostic gratuit, ou me poser ta question ici."},
-      {q:"C'est pour qui ?", a:"Pour les dirigeants, indépendants et commerciaux qui vendent leur offre et veulent closer plus, sans forcer ni manipuler. Si tu vends au quotidien, c'est fait pour toi."},
+      {q:"C'est pour qui ?", a:"Pour les dirigeants, indépendants et commerciaux qui vendent leur offre et veulent closer plus, sans manipuler. Si tu vends au quotidien, c'est fait pour toi."},
       {q:"Comment se passe le Mentorat ?", a:"6 mois : un coaching 1:1 chaque semaine, tes vrais appels audités, l'accès à l'Espace Membre + l'IA neurovente, et un soutien WhatsApp 7/7. C'est sur candidature."}
     ];
     var w=document.createElement('div'); w.className='wa-widget';
