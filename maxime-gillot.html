@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="icon" type="image/png" href="/assets/meta/favicon.png">
+<title>Maxime Gillot · Persua Ecosystem</title>
+<meta name="description" content="Maxime Gillot, commercial Persua Ecosystem. Enregistrez son contact ou écrivez-lui sur WhatsApp.">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#13133A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css?v=37">
+<style>
+.card-hero{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:48px 24px;padding-bottom:calc(48px + env(safe-area-inset-bottom));
+  background:radial-gradient(120% 90% at 78% 8%,rgba(71,71,253,.42) 0%,transparent 46%),
+             radial-gradient(90% 70% at 8% 100%,rgba(84,74,250,.20) 0%,transparent 55%),
+             linear-gradient(180deg,var(--deep) 0%,#191946 60%,var(--deep) 100%)}
+.card-in{position:relative;z-index:2;width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center}
+.card-logo{height:26px;margin-bottom:10px}
+.card-eco{font-size:12px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#8B83FF;margin-bottom:32px;margin-right:-.32em}
+.card-ring{width:148px;height:148px;border-radius:50%;padding:6px;background:conic-gradient(from 140deg,var(--electric),var(--indigo),#8b83ff,var(--electric));box-shadow:0 24px 60px -16px rgba(71,71,253,.7);margin-bottom:22px}
+.card-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:4px solid var(--deep)}
+.card-name{font-family:var(--black);font-weight:400;font-size:clamp(24px,6.6vw,32px);letter-spacing:-.02em;line-height:1.12;margin-bottom:10px}
+.card-role{font-size:16px;color:#C6C2DC;margin-bottom:16px}
+.card-role b{color:#fff;font-weight:600}
+.card-pitch{font-size:15px;line-height:1.55;color:#B4AFCE;max-width:330px;margin-bottom:32px}
+.card-cta{display:flex;flex-direction:column;gap:12px;width:100%;margin-bottom:28px}
+.card-cta .btn{justify-content:center;width:100%;padding:17px 26px;font-size:16px}
+.card-links{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.card-links a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border-radius:100px;font-size:14.5px;font-weight:500;color:#D9D6EA;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);transition:.2s}
+.card-links a:hover{background:rgba(255,255,255,.12);color:#fff}
+.card-foot{position:relative;z-index:2;margin-top:40px;font-size:12.5px;color:var(--mist)}
+.card-foot a{color:#B4AFCE}
+</style>
+</head>
+<body>
+
+<main class="card-hero">
+  <div class="grid-bg"></div>
+  <div class="card-in">
+    <img class="card-logo" src="/assets/brand/persua_logo.svg" alt="Persua">
+    <p class="card-eco">Ecosystem</p>
+
+    <div class="card-ring"><img src="/assets/maxime-gillot.jpg" alt="Maxime Gillot" width="148" height="148"></div>
+
+    <h1 class="card-name">Maxime Gillot</h1>
+    <p class="card-role">Commercial · <b>Persua Ecosystem</b></p>
+    <p class="card-pitch">Des agents IA installés dans votre entreprise, qui prennent en charge les tâches répétitives. Vous les pilotez depuis WhatsApp.</p>
+
+    <div class="card-cta">
+      <a class="btn btn-primary" href="/assets/maxime-gillot.vcf" type="text/vcard">Enregistrer mon contact</a>
+      <a class="btn btn-ghost" href="https://wa.me/33763403112" target="_blank" rel="noopener">M'écrire sur WhatsApp</a>
+    </div>
+
+    <div class="card-links">
+      <a href="tel:+33763403112">07 63 40 31 12</a>
+      <a href="https://persua-neurovente.com">Le site</a>
+    </div>
+  </div>
+
+  <p class="card-foot">Persua · <a href="/">persua-neurovente.com</a></p>
+</main>
+
+</body>
+</html>
