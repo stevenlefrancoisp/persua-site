@@ -157,6 +157,34 @@
     addEventListener('keydown', function(e){ if(e.key==='Escape' && m.classList.contains('open')) close(); });
   });
 
+  // Mesure d'audience SANS cookie (18/11/2026) : un compteur anonyme par page vue (page, date, site d'où l'on arrive).
+  // Aucun identifiant, rien de déposé chez le visiteur, adresse IP et navigateur non enregistrés : pas de consentement requis.
+  // Ne compte pas : une page affichée dans un cadre (aperçu), un robot, une adresse autre que le site en ligne, ni l'appareil
+  // de Steven une fois qu'il a ouvert le site avec ?moi=1 (?moi=0 pour le recompter).
+  (function(){
+    try {
+      if(window.self !== window.top) return;
+      if(navigator.webdriver) return;
+      var h = location.hostname;
+      if(h !== 'persua-neurovente.com' && h !== 'www.persua-neurovente.com') return;
+      var q = new URLSearchParams(location.search);
+      try {
+        if(q.get('moi') === '1') localStorage.setItem('persua-moi', '1');
+        if(q.get('moi') === '0') localStorage.removeItem('persua-moi');
+        if(localStorage.getItem('persua-moi') === '1') return;
+      } catch(e){}
+      var ref = '';
+      try { ref = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : ''; } catch(e){}
+      var interne = ref === 'persua-neurovente.com' || /\.persua-neurovente\.com$/.test(ref);
+      var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+      var arrivee = !interne && nav.type !== 'reload' && nav.type !== 'back_forward';
+      var corps = JSON.stringify({p: location.pathname, r: interne ? '' : ref, e: arrivee, s: (q.get('utm_source') || '').slice(0, 40)});
+      var url = 'https://rkbvnploxblebwprzvdg.supabase.co/functions/v1/site-visite';
+      if(navigator.sendBeacon) navigator.sendBeacon(url, new Blob([corps], {type: 'text/plain'}));
+      else fetch(url, {method: 'POST', body: corps, keepalive: true, headers: {'Content-Type': 'text/plain'}}).catch(function(){});
+    } catch(e){}
+  })();
+
   // Consentement cookies (RGPD) + Google Analytics chargé UNIQUEMENT après accord
   (function(){
     var GTM_ID = 'GTM-PDHDPP3K'; // conteneur Google Tag Manager de Persua
